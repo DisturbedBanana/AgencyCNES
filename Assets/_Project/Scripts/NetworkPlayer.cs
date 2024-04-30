@@ -16,6 +16,11 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+<<<<<<< Updated upstream
+=======
+        Debug.Log(IsOwner);
+        base.OnNetworkSpawn();
+>>>>>>> Stashed changes
         if (IsOwner)
         {
             foreach (Renderer item in meshesToDisable)
