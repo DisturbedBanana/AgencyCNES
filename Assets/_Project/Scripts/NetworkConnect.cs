@@ -7,10 +7,12 @@ using UnityEngine;
 public class NetworkConnect : MonoBehaviour
 {
     public TextMeshProUGUI m_TextMeshProUGUI;
+    public GameObject prefabObjects;
     public void Create()
     {
         NetworkManager.Singleton.StartHost();
         m_TextMeshProUGUI.text += "StartHost NetworkConnect\n";
+        Instantiate(prefabObjects);
     }
 
     public void Join()
@@ -18,4 +20,5 @@ public class NetworkConnect : MonoBehaviour
         NetworkManager.Singleton.StartClient();
         m_TextMeshProUGUI.text += "StartClient NetworkConnect\n";
     }
+
 }
