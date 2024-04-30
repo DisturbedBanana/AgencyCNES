@@ -12,7 +12,6 @@ public class NetworkConnect : MonoBehaviour
     {
         NetworkManager.Singleton.StartHost();
         m_TextMeshProUGUI.text += "StartHost NetworkConnect\n";
-        Instantiate(prefabObjects);
     }
 
     public void Join()
