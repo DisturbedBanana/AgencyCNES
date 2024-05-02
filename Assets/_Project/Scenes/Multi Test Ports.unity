@@ -8866,7 +8866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ProtocolType: 0
+  m_ProtocolType: 1
   m_MaxPacketQueueSize: 128
   m_MaxPayloadSize: 6144
   m_HeartbeatTimeoutMS: 500
@@ -8945,6 +8945,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb0e2d127b03144598cbc1cc80ebc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joinCode: 
+  maxConnections: 20
+  transport: {fileID: 1631348032}
   m_TextMeshProUGUI: {fileID: 714495227}
   prefabObjects: {fileID: 1120171927657390916, guid: 9659511a6051c3b4e862c4e4374c9357, type: 3}
 --- !u!1 &1635639569
