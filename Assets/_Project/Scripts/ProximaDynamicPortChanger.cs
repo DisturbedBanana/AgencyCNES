@@ -11,8 +11,9 @@ public class ProximaDynamicPortChanger : MonoBehaviour
     private void Awake()
     {
         int generatedPort = Random.Range(7000, 8000);
-        _proximaInspector.Port = generatedPort;
-        GetComponent<TMP_Text>().text = "Port: " + generatedPort.ToString();
-        Debug.Log("Proxima Port: " + generatedPort);
+        Debug.Log(_proximaInspector.Port);
+        GetComponent<TMP_Text>().text = "Port: " + _proximaInspector.Port;
+        //_proximaInspector.Port = generatedPort;
+        //Debug.Log("Proxima Port: " + generatedPort);
     }
 }
