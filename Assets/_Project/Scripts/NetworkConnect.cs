@@ -21,10 +21,32 @@ public class NetworkConnect : MonoBehaviour
 
     private Lobby _currentLobby;
 
+    private float _heartBeatTimer;
+
     private async void Awake()
     {
         await UnityServices.InitializeAsync();
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+        JoinOrCreate();
+    }
+    public async void JoinOrCreate()
+    {
+        try
+        {
+            _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
+            string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
+
+            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
+            transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
+
+            NetworkManager.Singleton.StartClient();
+            m_TextMeshProUGUI.text += "StartClient NetworkConnect\n";
+        }
+        catch
+        {
+            Create();
+        }
     }
 
     public async void Create()
@@ -58,4 +80,16 @@ public class NetworkConnect : MonoBehaviour
         m_TextMeshProUGUI.text += "StartClient NetworkConnect\n";
     }
 
+    private void Update()
+    {
+        if(_heartBeatTimer > 15)
+        {
+            _heartBeatTimer -= 15;
+
+            if (_currentLobby != null && _currentLobby.HostId == AuthenticationService.Instance.PlayerId)
+                LobbyService.Instance.SendHeartbeatPingAsync(_currentLobby.Id);
+        }
+
+        _heartBeatTimer += Time.deltaTime;
+    }
 }
