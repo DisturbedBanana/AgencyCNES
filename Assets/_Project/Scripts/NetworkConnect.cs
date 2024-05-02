@@ -8,15 +8,18 @@ using Unity.Services.Core;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using Unity.Netcode.Transports.UTP;
+using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Models;
 
 public class NetworkConnect : MonoBehaviour
 {
-    public string joinCode;
     public int maxConnections = 20;
     public UnityTransport transport;
 
     public TextMeshProUGUI m_TextMeshProUGUI;
     public GameObject prefabObjects;
+
+    private Lobby _currentLobby;
 
     private async void Awake()
     {
@@ -31,13 +34,24 @@ public class NetworkConnect : MonoBehaviour
         Debug.LogError("JoinCode: " + newJoinCode);
         transport.SetHostRelayData(allocation.RelayServer.IpV4, (ushort) allocation.RelayServer.Port,allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
 
+        CreateLobbyOptions lobbyOptions = new CreateLobbyOptions();
+        lobbyOptions.IsPrivate = false;
+        lobbyOptions.Data = new Dictionary<string, DataObject>();
+        DataObject dataObject = new DataObject(DataObject.VisibilityOptions.Public, newJoinCode);
+        lobbyOptions.Data.Add("JOIN_CODE", dataObject);
+
+        _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Lobby Name", maxConnections, lobbyOptions);
+
         NetworkManager.Singleton.StartHost();
         m_TextMeshProUGUI.text += "StartHost NetworkConnect\n";
     }
 
     public async void Join()
     {
-        JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+        _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
+        string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
+
+        JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
         transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
         NetworkManager.Singleton.StartClient();
