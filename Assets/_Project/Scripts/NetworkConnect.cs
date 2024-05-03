@@ -28,7 +28,7 @@ public class NetworkConnect : MonoBehaviour
         await UnityServices.InitializeAsync();
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
-        JoinOrCreate();
+        //JoinOrCreate();
     }
     public async void JoinOrCreate()
     {
