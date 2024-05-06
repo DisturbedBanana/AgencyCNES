@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
 
 public class NetworkPlayer : NetworkBehaviour
 {
+
     public Transform root;
     public Transform head;
     public Transform leftHand;
@@ -14,31 +16,34 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        Debug.Log(IsOwner);
         base.OnNetworkSpawn();
         if (IsOwner)
         {
-            foreach (var item in meshesToDisable)
+            foreach (Renderer item in meshesToDisable)
             {
                 item.enabled = false;
             }
         }
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         if (IsOwner)
         {
-            root.position = VrRigReferences.Singleton.root.position;
-            root.rotation = VrRigReferences.Singleton.root.rotation;
+            root.position = VRRigReferences.Singleton.root.position;
+            root.rotation = VRRigReferences.Singleton.root.rotation;
 
-            head.position = VrRigReferences.Singleton.head.position;
-            head.rotation = VrRigReferences.Singleton.head.rotation;
+            head.position = VRRigReferences.Singleton.head.position;
+            head.rotation = VRRigReferences.Singleton.head.rotation;
 
-            leftHand.position = VrRigReferences.Singleton.leftHand.position;
-            leftHand.rotation = VrRigReferences.Singleton.leftHand.rotation;
+            leftHand.position = VRRigReferences.Singleton.leftHand.position;
+            leftHand.rotation = VRRigReferences.Singleton.leftHand.rotation;
 
-            rightHand.position = VrRigReferences.Singleton.rightHand.position;
-            rightHand.rotation = VrRigReferences.Singleton.rightHand.rotation;
+            rightHand.position = VRRigReferences.Singleton.rightHand.position;
+            rightHand.rotation = VRRigReferences.Singleton.rightHand.rotation;
+
         }
     }
 }
