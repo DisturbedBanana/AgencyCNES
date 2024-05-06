@@ -16,7 +16,6 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        Debug.Log(IsOwner);
         base.OnNetworkSpawn();
         if (IsOwner)
         {
