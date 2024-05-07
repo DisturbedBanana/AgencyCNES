@@ -14,6 +14,11 @@ public class TestScript : NetworkBehaviour
 
     }
 
+    public override void OnNetworkSpawn()
+    {
+        Debug.Log("Connected");
+    }
+
     public void CallSelect(SelectEnterEventArgs args)
     {
         var networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
@@ -25,7 +30,8 @@ public class TestScript : NetworkBehaviour
         //    return;
 
         //networkObject.ChangeOwnership(networkManager.LocalClientId);
-        ServerOwnerChangeServerRpc(networkObject, default);
+        if (networkObject.OwnerClientId != NetworkManager.Singleton.LocalClientId)
+            OwnerChangeServerRpc(networkObject, default);
 
     }
 
@@ -36,21 +42,27 @@ public class TestScript : NetworkBehaviour
     //}
 
     [ServerRpc(RequireOwnership = false)]
-    private void ServerOwnerChangeServerRpc(NetworkObjectReference networkObjectRef, ServerRpcParams rpcParams)
+    private void OwnerChangeServerRpc(NetworkObjectReference networkObjectRef, ServerRpcParams rpcParams)
     {
-        if (IsOwner)
-        {
+        
+        Debug.Log("oui");
             ulong clientId = rpcParams.Receive.SenderClientId;
 
             if (networkObjectRef.TryGet(out NetworkObject networkObject2))
             {
+                networkObject2.RemoveOwnership();
                 networkObject2.ChangeOwnership(clientId);
-                Debug.Log("SERVER: " + clientId + " is driving the car.");
+                Debug.Log("SERVER: " + networkObject2.OwnerClientId + " is driving the car.");
             }
             else
             {
                 Debug.LogError("Didn't get car");
             }
-        }
+        
+    }
+
+    public void PushPlayer(GameObject player)
+    {
+        player.GetComponent<Rigidbody>().AddForce(Vector3.forward * 10f, ForceMode.Impulse);
     }
 }
