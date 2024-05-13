@@ -599,7 +599,6 @@ GameObject:
   - component: {fileID: 1624145825}
   - component: {fileID: 1624145828}
   - component: {fileID: 1624145827}
-  - component: {fileID: 1624145826}
   m_Layer: 0
   m_Name: Post_it
   m_TagString: Untagged
@@ -622,28 +621,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1834595255}
   m_LocalEulerAnglesHint: {x: 96.199005, y: -88.681, z: -178.611}
---- !u!64 &1624145826
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1624145824}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1624145827
 MeshRenderer:
   m_ObjectHideFlags: 0
