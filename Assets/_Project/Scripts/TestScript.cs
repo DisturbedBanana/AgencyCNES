@@ -8,6 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class TestScript : NetworkBehaviour
 {
     public NetworkManager networkManager;
+    public GameObject prefabObject;
 
     public void CallDebug()
     {
@@ -19,45 +20,50 @@ public class TestScript : NetworkBehaviour
         Debug.Log("Connected");
     }
 
+    public void SpawnCube()
+    {
+        GameObject go = Instantiate(prefabObject, transform.position, Quaternion.identity);
+        go.transform.localScale = Vector3.one * 30;
+        go.GetComponent<NetworkObject>().SpawnWithOwnership(OwnerClientId, false);
+    }
+
     public void CallSelect(SelectEnterEventArgs args)
     {
-        var networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
+        if(IsClient)
+        {
+            NetworkObject networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
 
-        //Debug.Log(networkManager.LocalClientId +"+"+ OwnerClientId);
-        ////args.interactableObject.transform.GetComponent<NetworkObject>().ChangeOwnership(networkManager.LocalClientId);
-        ////args.interactableObject.transform.GetComponent<NetworkObject>().ow
-        //if (networkObject.OwnerClientId == OwnerClientId)
-        //    return;
+            if(networkObject != null)
+            {
 
-        //networkObject.ChangeOwnership(networkManager.LocalClientId);
-        if (networkObject.OwnerClientId != NetworkManager.Singleton.LocalClientId)
-            OwnerChangeServerRpc(networkObject, default);
+                OwnerChangeServerRpc(networkObject, OwnerClientId);
+            }
+        }
+            
 
     }
 
-    //[Rpc(SendTo.Server)]
-    //public void ServerOwnerChangeRpc(ulong ownerID, NetworkObject networkObject)
-    //{
-    //    networkObject.ChangeOwnership(ownerID);
-    //}
-
     [ServerRpc(RequireOwnership = false)]
-    private void OwnerChangeServerRpc(NetworkObjectReference networkObjectRef, ServerRpcParams rpcParams)
+    private void OwnerChangeServerRpc(NetworkObjectReference networkObjectRef, ulong newClientId)
     {
-        
-        Debug.Log("oui");
-            ulong clientId = rpcParams.Receive.SenderClientId;
 
-            if (networkObjectRef.TryGet(out NetworkObject networkObject2))
-            {
-                networkObject2.RemoveOwnership();
-                networkObject2.ChangeOwnership(clientId);
-                Debug.Log("SERVER: " + networkObject2.OwnerClientId + " is driving the car.");
-            }
-            else
-            {
-                Debug.LogError("Didn't get car");
-            }
+        if (networkObjectRef.TryGet(out NetworkObject networkObject2))
+        {
+            networkObject2.ChangeOwnership(newClientId);
+            Debug.Log("SERVER: " + networkObject2.OwnerClientId + " is driving the car.");
+        }
+        else
+        {
+            Debug.LogError("Didn't get car");
+        }
+
+    }
+
+    [ClientRpc]
+    private void OwnerChangeClientRpc(NetworkObjectReference networkObjectRef, ulong clientID)
+    {
+
+        Debug.Log("non");
         
     }
 
