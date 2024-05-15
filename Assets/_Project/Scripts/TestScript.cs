@@ -6,97 +6,155 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
-namespace UnityEngine.XR.Interaction.Toolkit
+public class TestScript : NetworkBehaviour
 {
-    public class TestScript : NetworkBehaviour
+    public NetworkManager networkManager;
+    public GameObject prefabObject;
+    public Transform RightController;
+    private bool _shouldUpdateObject = false;
+    private SelectEnterEventArgs _currentSelectedObject = null;
+    private GameObject _currentObject = null;
+    private Coroutine moveRoutine = null;
+
+    private void Update()
     {
-        public NetworkManager networkManager;
-        public GameObject prefabObject;
-        private bool _shouldUpdateObject = false;
-        private SelectEnterEventArgs _currentSelectedObject = null;
-
-        private void Update()
+        if (_shouldUpdateObject)
         {
-            if (_shouldUpdateObject)
+            //AskServerForObjectMovementServerRpc(_currentSelectedObject.interactableObject.transform.GetComponent<NetworkObject>(), OwnerClientId);
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        NetworkXRGrabInteractable.tagetMove += ObjectMove;
+    }
+
+    private void OnDisable()
+    {
+        NetworkXRGrabInteractable.tagetMove -= ObjectMove;
+
+    }
+
+    private void ObjectMove(Vector3 pos)
+    {
+        var obje = _currentSelectedObject.interactableObject;
+        //obje.transform.position = pos;
+        AskServerForObjectMovementServerRpc(obje.transform.GetComponent<NetworkObject>(), OwnerClientId, pos);
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if (IsHost)
+            SpawnCube();
+    }
+
+    public void SpawnCube()
+    {
+        GameObject go = Instantiate(prefabObject, transform.position, Quaternion.identity);
+        go.transform.localScale = Vector3.one * 30;
+        go.GetComponent<NetworkObject>().SpawnWithOwnership(OwnerClientId, false);
+    }
+
+    public void CallSelect(SelectEnterEventArgs args)
+    {
+        _currentSelectedObject = args;
+        if (IsClient)
+        {
+            NetworkObject networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
+
+            _currentObject = networkObject.gameObject;
+            if (networkObject != null)
             {
-                AskServerForObjectMovementServerRpc(_currentSelectedObject.interactableObject.transform.GetComponent<NetworkObject>(), OwnerClientId);
+
+                OwnerChangeServerRpc(networkObject, OwnerClientId);
+
             }
         }
+        _shouldUpdateObject = true;
 
-        public void CallDebug()
+    }
+
+    public void RemoveSelect(SelectExitEventArgs args)
+    {
+        if (IsClient)
         {
+            NetworkObject networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
 
-        }
-
-        public override void OnNetworkSpawn()
-        {
-            Debug.Log("Connected");
-        }
-
-        public void SpawnCube()
-        {
-            GameObject go = Instantiate(prefabObject, transform.position, Quaternion.identity);
-            go.transform.localScale = Vector3.one * 30;
-            go.GetComponent<NetworkObject>().SpawnWithOwnership(OwnerClientId, false);
-        }
-
-        public void CallSelect(SelectEnterEventArgs args)
-        {
-            _currentSelectedObject = args;
-            if (IsClient)
+            if (networkObject != null)
             {
-                NetworkObject networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
-
-                if (networkObject != null)
-                {
-
-                    OwnerChangeServerRpc(networkObject, OwnerClientId);
-                }
-            }
-            _shouldUpdateObject = true;
-
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void OwnerChangeServerRpc(NetworkObjectReference networkObjectRef, ulong newClientId)
-        {
-
-            if (networkObjectRef.TryGet(out NetworkObject networkObject2))
-            {
-                networkObject2.ChangeOwnership(newClientId);
-                Debug.Log("SERVER: " + networkObject2.OwnerClientId + " is driving the car.");
-            }
-            else
-            {
-                Debug.LogError("Didn't get car");
-            }
-
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        private void AskServerForObjectMovementServerRpc(NetworkObjectReference networkObjectRef, ulong clientID)
-        {
-            if (networkObjectRef.TryGet(out NetworkObject networkObject))
-            {
-                networkObject.GetComponent<NetworkRigidbody>().transform.position = _currentSelectedObject.interactableObject.transform.position;
-                SendObjectLocationToClientRpc(_currentSelectedObject.interactableObject.transform.position, networkObject);
+                RemoveServerForObjectMovementServerRpc(networkObject, OwnerClientId, _currentSelectedObject.interactableObject.transform.position);
             }
         }
+        _currentObject = null;
+        _shouldUpdateObject = false;
 
-        [ClientRpc]
-        private void SendObjectLocationToClientRpc(Vector3 newPos, NetworkObjectReference networkObjectRef)
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void OwnerChangeServerRpc(NetworkObjectReference networkObjectRef, ulong newClientId)
+    {
+
+        if (networkObjectRef.TryGet(out NetworkObject networkObject2))
         {
-            if (networkObjectRef.TryGet(out NetworkObject networkObject))
-            {
-                networkObject.GetComponent<NetworkRigidbody>().transform.position = newPos;
-            }
+            networkObject2.ChangeOwnership(newClientId);
+            Debug.Log("SERVER: " + networkObject2.OwnerClientId + " is driving the car.");
+        }
+        else
+        {
+            Debug.LogError("Didn't get car");
         }
 
-        public void PushPlayer(GameObject player)
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void AskServerForObjectMovementServerRpc(NetworkObjectReference networkObjectRef, ulong clientID, Vector3 pos)
+    {
+        if (networkObjectRef.TryGet(out NetworkObject networkObject))
         {
-            player.GetComponent<Rigidbody>().AddForce(Vector3.forward * 10f, ForceMode.Impulse);
+            _currentObject = GameObject.Find(networkObject.gameObject.name);
+            networkObject.transform.position = pos;
+            //moveRoutine = StartCoroutine(SendToClientMovement(networkObject));
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void RemoveServerForObjectMovementServerRpc(NetworkObjectReference networkObjectRef, ulong clientID, Vector3 pos)
+    {
+        networkObjectRef.TryGet(out NetworkObject networkObject);
+        Debug.Log("RemoveServerForObjectMovementServerRpc");
+        networkObject.transform.position = pos;
+        //StopCoroutine(moveRoutine);
+        moveRoutine = null;
+    }
+
+    IEnumerator SendToClientMovement(NetworkObject networkObject)
+    {
+        _currentObject = GameObject.Find(networkObject.gameObject.name);
+        while (true)
+        {
+            yield return new WaitForSeconds(0.02f);
+            if (!_currentObject)
+                break;
+            networkObject.transform.position = _currentObject.transform.position;
+
+        }
+    }
+
+    [ClientRpc]
+    private void SendObjectLocationToClientRpc(Vector3 newPos, NetworkObjectReference networkObjectRef)
+    {
+        if (networkObjectRef.TryGet(out NetworkObject networkObject))
+        {
+            networkObject.GetComponent<NetworkRigidbody>().transform.position = newPos;
+        }
+    }
+
+    public void PushPlayer(GameObject player)
+    {
+        player.GetComponent<Rigidbody>().AddForce(Vector3.forward * 10f, ForceMode.Impulse);
     }
 }
 
