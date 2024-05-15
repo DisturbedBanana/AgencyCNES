@@ -729,8 +729,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Transformers
 
     void UpdateTarget(XRGrabInteractable grabInteractable, ref Pose targetPose, ref Vector3 localScale)
     {
-            Vector3 targetNetwork = targetPose.position;
-        ComputeAdjustedInteractorPose(grabInteractable, out Vector3 newHandleBar, out Vector3 adjustedInteractorPosition, out Quaternion adjustedInteractorRotation);
+            ComputeAdjustedInteractorPose(grabInteractable, out Vector3 newHandleBar, out Vector3 adjustedInteractorPosition, out Quaternion adjustedInteractorRotation);
 
             localScale = ComputeNewScale(grabInteractable, m_ScaleAtGrabStart, localScale, m_StartHandleBar, newHandleBar, grabInteractable.trackScale);
 
@@ -741,9 +740,8 @@ namespace UnityEngine.XR.Interaction.Toolkit.Transformers
             m_OffsetPose.position, m_ObjectLocalGrabPoint, m_InteractorLocalGrabPoint,
             out Vector3 targetObjectPosition);
 
-            targetNetwork = targetPose.position;
             tagetMove.Invoke(AdjustPositionForPermittedAxes(targetObjectPosition, m_OriginalObjectPose, m_PermittedDisplacementAxesOnGrab, m_ConstrainedAxisDisplacementModeOnGrab));
-            targetPose.position = AdjustPositionForPermittedAxes(targetObjectPosition, m_OriginalObjectPose, m_PermittedDisplacementAxesOnGrab, m_ConstrainedAxisDisplacementModeOnGrab);
+            //targetPose.position = AdjustPositionForPermittedAxes(targetObjectPosition, m_OriginalObjectPose, m_PermittedDisplacementAxesOnGrab, m_ConstrainedAxisDisplacementModeOnGrab);
         }
 
         public static event Action<Vector3> tagetMove;

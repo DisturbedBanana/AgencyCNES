@@ -17,14 +17,18 @@ public class TestScript : NetworkBehaviour
     private SelectEnterEventArgs _currentSelectedObject = null;
     private GameObject _currentObject = null;
     private Coroutine moveRoutine = null;
+    private float timeBetweenTicks = 0.01f;
+    private float time;
 
     private void Update()
     {
-        if (_shouldUpdateObject)
-        {
-            //AskServerForObjectMovementServerRpc(_currentSelectedObject.interactableObject.transform.GetComponent<NetworkObject>(), OwnerClientId);
-        }
-
+        //if(time >= timeBetweenTicks)
+        //{
+        //    _shouldUpdateObject = true;
+        //    time = 0;
+        //}
+        //time += Time.deltaTime;
+        
     }
 
     private void OnEnable()
@@ -40,9 +44,14 @@ public class TestScript : NetworkBehaviour
 
     private void ObjectMove(Vector3 pos)
     {
+        //if (!_shouldUpdateObject)
+        //    return;
+
         var obje = _currentSelectedObject.interactableObject;
-        //obje.transform.position = pos;
+        if(IsOwner)
+            obje.transform.position = pos;
         AskServerForObjectMovementServerRpc(obje.transform.GetComponent<NetworkObject>(), OwnerClientId, pos);
+        _shouldUpdateObject = false;
     }
 
     public override void OnNetworkSpawn()
@@ -125,7 +134,7 @@ public class TestScript : NetworkBehaviour
     {
         networkObjectRef.TryGet(out NetworkObject networkObject);
         Debug.Log("RemoveServerForObjectMovementServerRpc");
-        networkObject.transform.position = pos;
+        //networkObject.transform.position = pos;
         //StopCoroutine(moveRoutine);
         moveRoutine = null;
     }
