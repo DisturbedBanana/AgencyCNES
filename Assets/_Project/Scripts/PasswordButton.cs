@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PasswordManager;
+using static PasswordPuzzleManager;
 
 public class PasswordButton : MonoBehaviour
 {
-    [SerializeField] PasswordManager _manager;
+    [SerializeField] PasswordPuzzleManager _manager;
     [SerializeField] PASSWORDKEYS _key;
 
     public void OnClick()

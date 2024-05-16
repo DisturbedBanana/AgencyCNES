@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PasswordManager : MonoBehaviour
+public class PasswordPuzzleManager : MonoBehaviour
 {
     public enum PASSWORDKEYS
     {
@@ -24,6 +24,7 @@ public class PasswordManager : MonoBehaviour
     List<PASSWORDKEYS> _currentPassword = new List<PASSWORDKEYS>();
 
     [SerializeField] Light _light;
+    [SerializeField] GameObject _keyboardToActivate;
 
     public void AddKey(PASSWORDKEYS key)
     {
@@ -45,9 +46,9 @@ public class PasswordManager : MonoBehaviour
         }
     }
 
-    public void WrongPasswordVisualFeedback()
+    public void WrongPasswordVisualFeedback(bool success)
     {
-        StartCoroutine(FlashingLightCoroutine());
+        StartCoroutine(FlashingLightCoroutine(success));
     }
 
     private IEnumerator FlashingLightCoroutine(bool success = false)
@@ -86,8 +87,10 @@ public class PasswordManager : MonoBehaviour
         yield return null;
     }
 
-    public void CallKeyboardActivated()
+    public void CallKeyboardActivated(GameObject anchor)
     {
-        Debug.Log("Keyboard activated");
+        anchor.SetActive(false);
+        _keyboardToActivate.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 }
