@@ -10366,10 +10366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb0e2d127b03144598cbc1cc80ebc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxConnections: 2
+  maxConnections: 5
   transport: {fileID: 1631348032}
-  m_TextMeshProUGUI: {fileID: 714495227}
   prefabObjects: {fileID: 1120171927657390916, guid: 9659511a6051c3b4e862c4e4374c9357, type: 3}
+  m_TextMeshProUGUI: {fileID: 714495227}
 --- !u!1 &1635639569
 GameObject:
   m_ObjectHideFlags: 0

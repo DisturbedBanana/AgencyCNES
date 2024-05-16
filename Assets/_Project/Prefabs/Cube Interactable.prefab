@@ -381,7 +381,6 @@ GameObject:
   - component: {fileID: 43584645218399076}
   - component: {fileID: 3833622258593798358}
   - component: {fileID: 2922561136043180024}
-  - component: {fileID: 5131521460821669516}
   - component: {fileID: 8494059469976489902}
   - component: {fileID: 5883392533637888824}
   - component: {fileID: 831470785943553062}
@@ -659,29 +658,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &5131521460821669516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8297278784613590131}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a1302d0d134fa8a2a5b3bf4aec3c20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PermittedDisplacementAxes: -1
-  m_ConstrainedAxisDisplacementMode: 1
-  m_TwoHandedRotationMode: 1
-  m_AllowOneHandedScaling: 1
-  m_AllowTwoHandedScaling: 1
-  m_OneHandedScaleSpeed: 0.5
-  m_ThresholdMoveRatioForScale: 0.01
-  m_ClampScaling: 1
-  m_MinimumScaleRatio: 0.25
-  m_MaximumScaleRatio: 2
-  m_ScaleMultiplier: 0.25
 --- !u!114 &8494059469976489902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,7 +674,7 @@ MonoBehaviour:
   InScenePlacedSourceGlobalObjectIdHash: 2159196525
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
+  ActiveSceneSynchronization: 1
   SceneMigrationSynchronization: 1
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
@@ -764,7 +740,7 @@ MonoBehaviour:
   m_AllowOneHandedScaling: 1
   m_AllowTwoHandedScaling: 1
   m_OneHandedScaleSpeed: 0.5
-  m_ThresholdMoveRatioForScale: 0.05
+  m_ThresholdMoveRatioForScale: 0.01
   m_ClampScaling: 1
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
