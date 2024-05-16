@@ -16,12 +16,41 @@ public class NetworkConnect : MonoBehaviour
     public int maxConnections = 20;
     public UnityTransport transport;
 
-    public TextMeshProUGUI m_TextMeshProUGUI;
     public GameObject prefabObjects;
 
     private Lobby _currentLobby = null;
 
     private float _heartBeatTimer;
+
+    [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
+    public void OnEnable()
+    {
+        if (NetworkManager.Singleton == null)
+            return;
+        NetworkManager.Singleton.OnServerStarted += () => DisplayText("Server Started");
+        NetworkManager.Singleton.OnServerStopped += (bool isstopped) => DisplayText("Server Stopped");
+        //NetworkManager.Singleton.OnClientStarted += () => DisplayText("Client Started");
+        //NetworkManager.Singleton.OnClientStopped += (bool isstopped) => DisplayText("Client Stopped");
+        NetworkManager.Singleton.OnClientConnectedCallback += (ulong id) => DisplayText("A player connected");
+        NetworkManager.Singleton.OnClientDisconnectCallback += (ulong id) => DisplayText("A player disconnected");
+    }
+
+    public void OnDisable()
+    {
+        if (NetworkManager.Singleton == null)
+            return;
+        NetworkManager.Singleton.OnServerStarted -= () => DisplayText("Server Started");
+        NetworkManager.Singleton.OnServerStopped -= (bool isstopped) => DisplayText("Server Stopped");
+        //NetworkManager.Singleton.OnClientStarted -= () => DisplayText("Client Started");
+        //NetworkManager.Singleton.OnClientStopped -= (bool isstopped) => DisplayText("Client Stopped");
+        NetworkManager.Singleton.OnClientConnectedCallback -= (ulong id) => DisplayText("A player connected");
+        NetworkManager.Singleton.OnClientDisconnectCallback -= (ulong id) => DisplayText("A player disconnected");
+    }
+
+    private void DisplayText(string text)
+    {
+        m_TextMeshProUGUI.text += $"{text}\n";
+    }
 
     private async void Awake()
     {
@@ -31,25 +60,7 @@ public class NetworkConnect : MonoBehaviour
         JoinOrCreate();
     }
 
-    private void OnEnable()
-    {
-        NetworkManager.Singleton.OnServerStarted += () => DisplayText("Server Started");
-        NetworkManager.Singleton.OnServerStopped += (bool isstopped) => DisplayText("Server Stopped");
-        //NetworkManager.Singleton.OnClientStarted += () => DisplayText("Client Started");
-        //NetworkManager.Singleton.OnClientStopped += (bool isstopped) => DisplayText("Client Stopped");
-        NetworkManager.Singleton.OnClientConnectedCallback += (ulong id) => DisplayText("A player connected");
-        NetworkManager.Singleton.OnClientDisconnectCallback += (ulong id) => DisplayText("A player disconnected");
-    }
-
-    private void OnDisable()
-    {
-        NetworkManager.Singleton.OnServerStarted -= () => DisplayText("Server Started");
-        NetworkManager.Singleton.OnServerStopped -= (bool isstopped) => DisplayText("Server Stopped");
-        //NetworkManager.Singleton.OnClientStarted -= () => DisplayText("Client Started");
-        //NetworkManager.Singleton.OnClientStopped -= (bool isstopped) => DisplayText("Client Stopped");
-        NetworkManager.Singleton.OnClientConnectedCallback -= (ulong id) => DisplayText("A player connected");
-        NetworkManager.Singleton.OnClientDisconnectCallback -= (ulong id) => DisplayText("A player disconnected");
-    }
+    
     public async void JoinOrCreate()
     {
         try
@@ -61,7 +72,6 @@ public class NetworkConnect : MonoBehaviour
             transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
             NetworkManager.Singleton.StartClient();
-            m_TextMeshProUGUI.text += "StartClient NetworkConnect\n";
         }
         catch
         {
@@ -86,11 +96,6 @@ public class NetworkConnect : MonoBehaviour
         NetworkManager.Singleton.StartHost();
     }
 
-    private void DisplayText(string text)
-    {
-        m_TextMeshProUGUI.text += $"{text}\n";
-    }
-
     public async void Join()
     {
         _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
@@ -100,7 +105,6 @@ public class NetworkConnect : MonoBehaviour
         transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
         NetworkManager.Singleton.StartClient();
-        m_TextMeshProUGUI.text += "StartClient NetworkConnect\n";
     }
 
 

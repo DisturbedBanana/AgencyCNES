@@ -13,12 +13,7 @@ public class TestScript : NetworkBehaviour
     public NetworkManager networkManager;
     public GameObject prefabObject;
     public Transform RightController;
-    private bool _shouldUpdateObject = false;
-    private SelectEnterEventArgs _currentSelectedObject = null;
-    private GameObject _currentObject = null;
-    private Coroutine moveRoutine = null;
-    private float timeBetweenTicks = 0.01f;
-    private float time;
+    private GameObject _currentSelectedObject = null;
 
     private void Update()
     {
@@ -33,25 +28,18 @@ public class TestScript : NetworkBehaviour
 
     private void OnEnable()
     {
-        NetworkXRGrabInteractable.tagetMove += ObjectMove;
+        NetworkXRGrabInteractable.tagetMove += ClientObjectMove;
     }
 
     private void OnDisable()
     {
-        NetworkXRGrabInteractable.tagetMove -= ObjectMove;
+        NetworkXRGrabInteractable.tagetMove -= ClientObjectMove;
 
     }
 
-    private void ObjectMove(Vector3 pos)
+    private void ClientObjectMove(Vector3 pos)
     {
-        //if (!_shouldUpdateObject)
-        //    return;
-
-        var obje = _currentSelectedObject.interactableObject;
-        if(IsOwner)
-            obje.transform.position = pos;
-        AskServerForObjectMovementServerRpc(obje.transform.GetComponent<NetworkObject>(), OwnerClientId, pos);
-        _shouldUpdateObject = false;
+        AskServerForObjectMovementServerRpc(_currentSelectedObject.transform.GetComponent<NetworkObject>(), OwnerClientId, pos);
     }
 
     public override void OnNetworkSpawn()
@@ -69,36 +57,29 @@ public class TestScript : NetworkBehaviour
 
     public void CallSelect(SelectEnterEventArgs args)
     {
-        _currentSelectedObject = args;
-        if (IsClient)
-        {
             NetworkObject networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
 
-            _currentObject = networkObject.gameObject;
+            _currentSelectedObject = networkObject.gameObject;
             if (networkObject != null)
             {
-
+                Debug.Log(OwnerClientId + " owner id");
                 OwnerChangeServerRpc(networkObject, OwnerClientId);
 
             }
-        }
-        _shouldUpdateObject = true;
+        
 
     }
 
     public void RemoveSelect(SelectExitEventArgs args)
     {
-        if (IsClient)
-        {
             NetworkObject networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
 
             if (networkObject != null)
             {
-                RemoveServerForObjectMovementServerRpc(networkObject, OwnerClientId, _currentSelectedObject.interactableObject.transform.position);
+                RemoveObjectMovementServerRpc(networkObject, OwnerClientId, _currentSelectedObject.transform.position);
             }
-        }
-        _currentObject = null;
-        _shouldUpdateObject = false;
+        
+        _currentSelectedObject = null;
 
     }
 
@@ -109,6 +90,7 @@ public class TestScript : NetworkBehaviour
         if (networkObjectRef.TryGet(out NetworkObject networkObject2))
         {
             networkObject2.ChangeOwnership(newClientId);
+            ObjectGravityEnabledClientRpc(false, networkObjectRef);
             Debug.Log("SERVER: " + networkObject2.OwnerClientId + " is driving the car.");
         }
         else
@@ -123,43 +105,42 @@ public class TestScript : NetworkBehaviour
     {
         if (networkObjectRef.TryGet(out NetworkObject networkObject))
         {
-            _currentObject = GameObject.Find(networkObject.gameObject.name);
+            //_currentObject = GameObject.Find(networkObject.gameObject.name);
             networkObject.transform.position = pos;
+            if(IsOwner)
+                AskServerForObjectMovementClientRpc(networkObjectRef, clientID, pos);
             //moveRoutine = StartCoroutine(SendToClientMovement(networkObject));
+        }
+    }
+    [ClientRpc]
+    private void AskServerForObjectMovementClientRpc(NetworkObjectReference networkObjectRef, ulong clientID, Vector3 pos)
+    {
+        if (networkObjectRef.TryGet(out NetworkObject networkObject))
+        {
+            networkObject.transform.position = pos;
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void RemoveServerForObjectMovementServerRpc(NetworkObjectReference networkObjectRef, ulong clientID, Vector3 pos)
+    private void RemoveObjectMovementServerRpc(NetworkObjectReference networkObjectRef, ulong clientID, Vector3 pos)
     {
         networkObjectRef.TryGet(out NetworkObject networkObject);
         Debug.Log("RemoveServerForObjectMovementServerRpc");
+        ObjectGravityEnabledClientRpc(true, networkObjectRef);
         //networkObject.transform.position = pos;
-        //StopCoroutine(moveRoutine);
-        moveRoutine = null;
-    }
-
-    IEnumerator SendToClientMovement(NetworkObject networkObject)
-    {
-        _currentObject = GameObject.Find(networkObject.gameObject.name);
-        while (true)
-        {
-            yield return new WaitForSeconds(0.02f);
-            if (!_currentObject)
-                break;
-            networkObject.transform.position = _currentObject.transform.position;
-
-        }
     }
 
     [ClientRpc]
-    private void SendObjectLocationToClientRpc(Vector3 newPos, NetworkObjectReference networkObjectRef)
+    private void ObjectGravityEnabledClientRpc(bool isEnabled, NetworkObjectReference networkObjectRef)
     {
-        if (networkObjectRef.TryGet(out NetworkObject networkObject))
-        {
-            networkObject.GetComponent<NetworkRigidbody>().transform.position = newPos;
-        }
+
+        networkObjectRef.TryGet(out NetworkObject networkObject);
+        if (networkObject.GetComponent<Rigidbody>().useGravity == isEnabled)
+            return;
+
+        networkObject.GetComponent<Rigidbody>().useGravity = isEnabled;
     }
+
 
     public void PushPlayer(GameObject player)
     {

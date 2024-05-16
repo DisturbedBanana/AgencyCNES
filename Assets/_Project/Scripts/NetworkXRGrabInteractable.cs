@@ -8,6 +8,7 @@ using static UnityEngine.XR.Interaction.Toolkit.Transformers.XRBaseGrabTransform
 using UnityEngine.XR.Interaction.Toolkit.Utilities;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Events;
+using Unity.Netcode;
 
 namespace UnityEngine.XR.Interaction.Toolkit.Transformers
 {
@@ -740,8 +741,10 @@ namespace UnityEngine.XR.Interaction.Toolkit.Transformers
             m_OffsetPose.position, m_ObjectLocalGrabPoint, m_InteractorLocalGrabPoint,
             out Vector3 targetObjectPosition);
 
+            if(NetworkManager.Singleton.IsHost)
+                targetPose.position = AdjustPositionForPermittedAxes(targetObjectPosition, m_OriginalObjectPose, m_PermittedDisplacementAxesOnGrab, m_ConstrainedAxisDisplacementModeOnGrab);
+            else
             tagetMove.Invoke(AdjustPositionForPermittedAxes(targetObjectPosition, m_OriginalObjectPose, m_PermittedDisplacementAxesOnGrab, m_ConstrainedAxisDisplacementModeOnGrab));
-            //targetPose.position = AdjustPositionForPermittedAxes(targetObjectPosition, m_OriginalObjectPose, m_PermittedDisplacementAxesOnGrab, m_ConstrainedAxisDisplacementModeOnGrab);
         }
 
         public static event Action<Vector3> tagetMove;
