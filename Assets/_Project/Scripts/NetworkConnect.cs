@@ -19,7 +19,7 @@ public class NetworkConnect : MonoBehaviour
     public TextMeshProUGUI m_TextMeshProUGUI;
     public GameObject prefabObjects;
 
-    private Lobby _currentLobby;
+    private Lobby _currentLobby = null;
 
     private float _heartBeatTimer;
 
@@ -28,7 +28,27 @@ public class NetworkConnect : MonoBehaviour
         await UnityServices.InitializeAsync();
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
-        //JoinOrCreate();
+        JoinOrCreate();
+    }
+
+    private void OnEnable()
+    {
+        NetworkManager.Singleton.OnServerStarted += () => DisplayText("Server Started");
+        NetworkManager.Singleton.OnServerStopped += (bool isstopped) => DisplayText("Server Stopped");
+        //NetworkManager.Singleton.OnClientStarted += () => DisplayText("Client Started");
+        //NetworkManager.Singleton.OnClientStopped += (bool isstopped) => DisplayText("Client Stopped");
+        NetworkManager.Singleton.OnClientConnectedCallback += (ulong id) => DisplayText("A player connected");
+        NetworkManager.Singleton.OnClientDisconnectCallback += (ulong id) => DisplayText("A player disconnected");
+    }
+
+    private void OnDisable()
+    {
+        NetworkManager.Singleton.OnServerStarted -= () => DisplayText("Server Started");
+        NetworkManager.Singleton.OnServerStopped -= (bool isstopped) => DisplayText("Server Stopped");
+        //NetworkManager.Singleton.OnClientStarted -= () => DisplayText("Client Started");
+        //NetworkManager.Singleton.OnClientStopped -= (bool isstopped) => DisplayText("Client Stopped");
+        NetworkManager.Singleton.OnClientConnectedCallback -= (ulong id) => DisplayText("A player connected");
+        NetworkManager.Singleton.OnClientDisconnectCallback -= (ulong id) => DisplayText("A player disconnected");
     }
     public async void JoinOrCreate()
     {
@@ -63,9 +83,12 @@ public class NetworkConnect : MonoBehaviour
         lobbyOptions.Data.Add("JOIN_CODE", dataObject);
 
         _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Lobby Name", maxConnections, lobbyOptions);
-
         NetworkManager.Singleton.StartHost();
-        m_TextMeshProUGUI.text += "StartHost NetworkConnect\n";
+    }
+
+    private void DisplayText(string text)
+    {
+        m_TextMeshProUGUI.text += $"{text}\n";
     }
 
     public async void Join()
@@ -79,6 +102,7 @@ public class NetworkConnect : MonoBehaviour
         NetworkManager.Singleton.StartClient();
         m_TextMeshProUGUI.text += "StartClient NetworkConnect\n";
     }
+
 
     private void Update()
     {
