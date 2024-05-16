@@ -40,8 +40,8 @@ public class PasswordManager : MonoBehaviour
                     break;
                 }
             }
-
             //Correct Password
+            StartCoroutine(FlashingLightCoroutine(true));
         }
     }
 
@@ -52,6 +52,18 @@ public class PasswordManager : MonoBehaviour
 
     private IEnumerator FlashingLightCoroutine(bool success = false)
     {
+        switch (success)
+        {
+            case true:
+                _light.color = Color.green;
+                break;
+            case false:
+                _light.color = Color.red;
+                break;
+            default:
+                break;
+        }
+
         _light.color = new Color(0, 0, 0);
         float t = 0;
         
@@ -72,5 +84,10 @@ public class PasswordManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return null;
+    }
+
+    public void CallKeyboardActivated()
+    {
+        Debug.Log("Keyboard activated");
     }
 }
