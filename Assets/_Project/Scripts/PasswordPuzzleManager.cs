@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PasswordPuzzleManager : MonoBehaviour
 {
+    bool _isCoroutineRunning = false;
+    int _ignoreKeysAmount = 0;
+
     public enum PASSWORDKEYS
     {
         PASSWORDKEY1,
@@ -21,7 +25,7 @@ public class PasswordPuzzleManager : MonoBehaviour
     }
 
     [SerializeField] List<PASSWORDKEYS> _correctPassword = new List<PASSWORDKEYS>();
-    List<PASSWORDKEYS> _currentPassword = new List<PASSWORDKEYS>();
+    public List<PASSWORDKEYS> _currentPassword = new List<PASSWORDKEYS>();
 
     [SerializeField] Light _light;
     [SerializeField] GameObject _keyboardToActivate;
@@ -29,8 +33,18 @@ public class PasswordPuzzleManager : MonoBehaviour
 
     public void AddKey(PASSWORDKEYS key)
     {
+        if (_isCoroutineRunning)
+            return;
+
+
+        if (_ignoreKeysAmount > 0)
+        {
+            _ignoreKeysAmount--;
+            return;
+        }
+        
         _currentPassword.Add(key);
-        Debug.Log("added key : " + key);
+        Debug.Log(key);
         
         if (_currentPassword.Count == _correctPassword.Count)
         {
@@ -38,12 +52,14 @@ public class PasswordPuzzleManager : MonoBehaviour
             {
                 if (_correctPassword[i] != _currentPassword[i])
                 {
-                    _currentPassword.Clear();
                     //Wrong password
-                    break;
+                    _currentPassword.Clear();
+                    StartCoroutine(FlashingLightCoroutine(false));
+                    return;
                 }
             }
             //Correct Password
+            _currentPassword.Clear();
             StartCoroutine(FlashingLightCoroutine(true));
         }
     }
@@ -55,35 +71,39 @@ public class PasswordPuzzleManager : MonoBehaviour
 
     private IEnumerator FlashingLightCoroutine(bool success = false)
     {
+        _isCoroutineRunning = true;
+        Color targetColor;
+        float t = 0;
+        
         switch (success)
         {
             case true:
-                _light.color = Color.green;
+                targetColor = Color.green;
                 break;
             case false:
-                _light.color = Color.red;
+                targetColor = Color.red;
                 break;
         }
 
-        _light.color = new Color(0, 0, 0);
-        float t = 0;
         
         for (float i = 0; i < 255; i++)
         {
             t = i / 255;
-            _light.color = Color.Lerp(_light.color, Color.red, t);
-            yield return new WaitForSeconds(0.01f);
+            _light.color = Color.Lerp(_light.color, targetColor, t);
+            yield return new WaitForSeconds(0.02f);
         }
 
         t = 0;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
         for (float i = 0; i < 255; i++)
         {
             t = i / 255;
             _light.color = Color.Lerp(_light.color, Color.white, t);
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.02f);
         }
+        
+        _isCoroutineRunning = false;
         yield return null;
     }
 

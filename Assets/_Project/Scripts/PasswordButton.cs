@@ -11,6 +11,5 @@ public class PasswordButton : MonoBehaviour
     public void OnClick()
     {
         _manager.AddKey(_key);
-        Debug.Log("onclick : " + _key);
     }
 }
