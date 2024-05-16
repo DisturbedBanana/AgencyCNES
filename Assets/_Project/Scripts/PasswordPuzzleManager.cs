@@ -25,10 +25,12 @@ public class PasswordPuzzleManager : MonoBehaviour
 
     [SerializeField] Light _light;
     [SerializeField] GameObject _keyboardToActivate;
+    [SerializeField] GameObject _keyboardToDeactivate;
 
     public void AddKey(PASSWORDKEYS key)
     {
         _currentPassword.Add(key);
+        Debug.Log("added key : " + key);
         
         if (_currentPassword.Count == _correctPassword.Count)
         {
@@ -61,8 +63,6 @@ public class PasswordPuzzleManager : MonoBehaviour
             case false:
                 _light.color = Color.red;
                 break;
-            default:
-                break;
         }
 
         _light.color = new Color(0, 0, 0);
@@ -91,6 +91,6 @@ public class PasswordPuzzleManager : MonoBehaviour
     {
         anchor.SetActive(false);
         _keyboardToActivate.SetActive(true);
-        this.gameObject.SetActive(false);
+        _keyboardToDeactivate.GetComponentInChildren<MeshRenderer>().enabled = false;
     }
 }
