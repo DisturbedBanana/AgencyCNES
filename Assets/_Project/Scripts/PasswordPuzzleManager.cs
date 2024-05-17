@@ -27,23 +27,33 @@ public class PasswordPuzzleManager : MonoBehaviour
     }
 
     [Serializable]
-    public struct PasswordSprites
+    private struct PasswordSprites
     {
         public PASSWORDKEYS Key;
         public Sprite Sprite;
     }
 
+    [Header("Password")]
     [SerializeField] List<PASSWORDKEYS> _correctPassword = new List<PASSWORDKEYS>();
     public List<PASSWORDKEYS> _currentPassword = new List<PASSWORDKEYS>();
 
-    [SerializeField] Light _light;
+    [Header("Keyboard")]
     [SerializeField] GameObject _keyboardToActivate;
     [SerializeField] GameObject _keyboardToDeactivate;
+
+    [Header("Light")]
+    [SerializeField] Light _light;
+    [SerializeField, Range(2f, 15f)] float _lightFlashingSpeed = 10f;
 
     [Header("Computer Sprites")]
     [SerializeField] List<PasswordSprites> passwordsSprites = new List<PasswordSprites>(12);
     [SerializeField] Transform _computerSpritesParent;
     [SerializeField] Sprite _spriteBarre;
+
+    private void Start()
+    {
+        ClearDisplayPaswordOnComputer();
+    }
 
     public void AddKey(PASSWORDKEYS key)
     {
@@ -100,34 +110,30 @@ public class PasswordPuzzleManager : MonoBehaviour
                 break;
         }
 
-        
         for (float i = 0; i < 255; i++)
         {
-            t = i / 255;
-            if (t > 0.8f)
-            {
+            t = (i / 255) * _lightFlashingSpeed * Time.deltaTime;
+            if (t > 0.95f)
                 break;
-            }
+            
             _light.color = Color.Lerp(_light.color, targetColor, t);
-            yield return new WaitForSeconds(0.02f);
+            yield return null;
         }
 
         t = 0;
 
         for (float i = 0; i < 255; i++)
         {
-            t = i / 255;
-            if (t > 0.8f)
-            {
+            t = (i / 255) * _lightFlashingSpeed * Time.deltaTime;
+            if (t > 0.95f)
                 break;
-            }
+            
             _light.color = Color.Lerp(_light.color, Color.white, t);
-            yield return new WaitForSeconds(0.02f);
+            yield return null;
         }
 
         ClearDisplayPaswordOnComputer();
         _isCoroutineRunning = false;
-        yield return null;
     }
 
     public void CallKeyboardActivated(GameObject anchor)
