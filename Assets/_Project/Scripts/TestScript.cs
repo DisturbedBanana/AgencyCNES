@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -5,8 +6,37 @@ using Unity.Netcode.Components;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Transformers;
+
+[Serializable]
+public struct ObjectMultiSync : INetworkSerializable
+{
+    public Vector3 Position; 
+    public Quaternion Rotation;
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        // Array
+        if (serializer.IsReader)
+        {
+            Position = new Vector3();
+        }
+
+        serializer.SerializeValue(ref Position);
+
+
+        // Array
+        if (serializer.IsReader)
+        {
+            Rotation = new Quaternion();
+        }
+
+        serializer.SerializeValue(ref Rotation);
+        
+    }
+}
 
 public class TestScript : NetworkBehaviour
 {
@@ -14,6 +44,7 @@ public class TestScript : NetworkBehaviour
     public GameObject prefabObject;
     public Transform RightController;
     private GameObject _currentSelectedObject = null;
+    public bool SpawnCubeAtStart = false;
 
     private void Update()
     {
@@ -28,23 +59,23 @@ public class TestScript : NetworkBehaviour
 
     private void OnEnable()
     {
-        NetworkXRGrabInteractable.tagetMove += ClientObjectMove;
+        NetworkXRGrabInteractable.targetMove += ClientObjectMove;
     }
 
     private void OnDisable()
     {
-        NetworkXRGrabInteractable.tagetMove -= ClientObjectMove;
+        NetworkXRGrabInteractable.targetMove -= ClientObjectMove;
 
     }
 
-    private void ClientObjectMove(Vector3 pos)
+    private void ClientObjectMove(ObjectMultiSync objectToSend)
     {
-        AskServerForObjectMovementServerRpc(_currentSelectedObject.transform.GetComponent<NetworkObject>(), OwnerClientId, pos);
+        AskServerForObjectMovementServerRpc(_currentSelectedObject.transform.GetComponent<NetworkObject>(), OwnerClientId, objectToSend);
     }
 
     public override void OnNetworkSpawn()
     {
-        if (IsHost)
+        if (IsHost && SpawnCubeAtStart)
             SpawnCube();
     }
 
@@ -57,16 +88,17 @@ public class TestScript : NetworkBehaviour
 
     public void CallSelect(SelectEnterEventArgs args)
     {
-            NetworkObject networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
-
-            _currentSelectedObject = networkObject.gameObject;
-            if (networkObject != null)
-            {
-                Debug.Log(OwnerClientId + " owner id");
+        NetworkObject networkObject = args.interactableObject.transform.GetComponent<NetworkObject>();
+        _currentSelectedObject = networkObject.gameObject;
+        if (networkObject != null)
+        {
+            if(networkObject.OwnerClientId != OwnerClientId)
                 OwnerChangeServerRpc(networkObject, OwnerClientId);
+            if(networkObject.CompareTag("GravityObject"))
+                ObjectGravityEnabledClientRpc(false, networkObject);
 
-            }
-        
+        }
+
 
     }
 
@@ -90,7 +122,6 @@ public class TestScript : NetworkBehaviour
         if (networkObjectRef.TryGet(out NetworkObject networkObject2))
         {
             networkObject2.ChangeOwnership(newClientId);
-            ObjectGravityEnabledClientRpc(false, networkObjectRef);
             Debug.Log("SERVER: " + networkObject2.OwnerClientId + " is driving the car.");
         }
         else
@@ -101,15 +132,13 @@ public class TestScript : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void AskServerForObjectMovementServerRpc(NetworkObjectReference networkObjectRef, ulong clientID, Vector3 pos)
+    private void AskServerForObjectMovementServerRpc(NetworkObjectReference networkObjectRef, ulong clientID, ObjectMultiSync objectToSend)
     {
         if (networkObjectRef.TryGet(out NetworkObject networkObject))
         {
-            //_currentObject = GameObject.Find(networkObject.gameObject.name);
-            networkObject.transform.position = pos;
-            if(IsOwner)
-                AskServerForObjectMovementClientRpc(networkObjectRef, clientID, pos);
-            //moveRoutine = StartCoroutine(SendToClientMovement(networkObject));
+            //networkObject.transform.position = pos; 
+            GetRigidbody(networkObjectRef).MovePosition(objectToSend.Position);
+            GetRigidbody(networkObjectRef).MoveRotation(objectToSend.Rotation);
         }
     }
     [ClientRpc]
@@ -124,10 +153,10 @@ public class TestScript : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void RemoveObjectMovementServerRpc(NetworkObjectReference networkObjectRef, ulong clientID, Vector3 pos)
     {
-        networkObjectRef.TryGet(out NetworkObject networkObject);
         Debug.Log("RemoveServerForObjectMovementServerRpc");
-        ObjectGravityEnabledClientRpc(true, networkObjectRef);
-        //networkObject.transform.position = pos;
+        networkObjectRef.TryGet(out NetworkObject networkObject);
+        if (networkObject.CompareTag("GravityObject"))
+            ObjectGravityEnabledClientRpc(true, networkObjectRef);
     }
 
     [ClientRpc]
@@ -135,10 +164,25 @@ public class TestScript : NetworkBehaviour
     {
 
         networkObjectRef.TryGet(out NetworkObject networkObject);
-        if (networkObject.GetComponent<Rigidbody>().useGravity == isEnabled)
-            return;
+        GetRigidbody(networkObjectRef).useGravity = isEnabled;
+    }
 
-        networkObject.GetComponent<Rigidbody>().useGravity = isEnabled;
+    private Rigidbody GetRigidbody(NetworkObjectReference networkObjectRef)
+    {
+        if (!networkObjectRef.TryGet(out NetworkObject networkObject))
+            return null;
+        
+        
+        if (networkObject.TryGetComponent(out Rigidbody rb))
+        {
+            return rb;
+        }
+        else if (networkObject.GetComponentInChildren<Rigidbody>() != null)
+        {
+            return networkObject.GetComponentInChildren<Rigidbody>();
+        }
+
+        return null;
     }
 
 

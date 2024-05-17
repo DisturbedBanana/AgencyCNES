@@ -734,19 +734,21 @@ namespace UnityEngine.XR.Interaction.Toolkit.Transformers
 
             localScale = ComputeNewScale(grabInteractable, m_ScaleAtGrabStart, localScale, m_StartHandleBar, newHandleBar, grabInteractable.trackScale);
 
-            //targetPose.rotation = ComputeNewObjectRotation(adjustedInteractorRotation, grabInteractable.trackRotation);
+            targetPose.rotation = ComputeNewObjectRotation(adjustedInteractorRotation, grabInteractable.trackRotation);
 
-            ComputeNewObjectPosition(adjustedInteractorPosition, adjustedInteractorRotation,
-            targetPose.rotation, localScale, grabInteractable.trackRotation,
+            ComputeNewObjectPosition(adjustedInteractorPosition, adjustedInteractorRotation, targetPose.rotation, localScale, grabInteractable.trackRotation,
             m_OffsetPose.position, m_ObjectLocalGrabPoint, m_InteractorLocalGrabPoint,
             out Vector3 targetObjectPosition);
 
-            if(NetworkManager.Singleton.IsHost)
-                targetPose.position = AdjustPositionForPermittedAxes(targetObjectPosition, m_OriginalObjectPose, m_PermittedDisplacementAxesOnGrab, m_ConstrainedAxisDisplacementModeOnGrab);
+            ObjectMultiSync PosToSend = new ObjectMultiSync();
+            PosToSend.Position = AdjustPositionForPermittedAxes(targetObjectPosition, m_OriginalObjectPose, m_PermittedDisplacementAxesOnGrab, m_ConstrainedAxisDisplacementModeOnGrab);
+            PosToSend.Rotation = targetPose.rotation;
+            if (NetworkManager.Singleton.IsHost)
+                targetPose.position = PosToSend.Position;
             else
-            tagetMove.Invoke(AdjustPositionForPermittedAxes(targetObjectPosition, m_OriginalObjectPose, m_PermittedDisplacementAxesOnGrab, m_ConstrainedAxisDisplacementModeOnGrab));
+                targetMove.Invoke(PosToSend);
         }
 
-        public static event Action<Vector3> tagetMove;
+        public static event Action<ObjectMultiSync> targetMove;
 }
 }
