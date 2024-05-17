@@ -104,16 +104,23 @@ public class PasswordPuzzleManager : MonoBehaviour
         for (float i = 0; i < 255; i++)
         {
             t = i / 255;
+            if (t > 0.8f)
+            {
+                break;
+            }
             _light.color = Color.Lerp(_light.color, targetColor, t);
             yield return new WaitForSeconds(0.02f);
         }
 
         t = 0;
-        yield return new WaitForSeconds(0.5f);
 
         for (float i = 0; i < 255; i++)
         {
             t = i / 255;
+            if (t > 0.8f)
+            {
+                break;
+            }
             _light.color = Color.Lerp(_light.color, Color.white, t);
             yield return new WaitForSeconds(0.02f);
         }
