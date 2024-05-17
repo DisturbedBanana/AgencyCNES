@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PasswordPuzzleManager : MonoBehaviour
 {
@@ -24,12 +26,24 @@ public class PasswordPuzzleManager : MonoBehaviour
         PASSWORDKEY12
     }
 
+    [Serializable]
+    public struct PasswordSprites
+    {
+        public PASSWORDKEYS Key;
+        public Sprite Sprite;
+    }
+
     [SerializeField] List<PASSWORDKEYS> _correctPassword = new List<PASSWORDKEYS>();
     public List<PASSWORDKEYS> _currentPassword = new List<PASSWORDKEYS>();
 
     [SerializeField] Light _light;
     [SerializeField] GameObject _keyboardToActivate;
     [SerializeField] GameObject _keyboardToDeactivate;
+
+    [Header("Computer Sprites")]
+    [SerializeField] List<PasswordSprites> passwordsSprites = new List<PasswordSprites>(12);
+    [SerializeField] Transform _computerSpritesParent;
+    [SerializeField] Sprite _spriteBarre;
 
     public void AddKey(PASSWORDKEYS key)
     {
@@ -44,6 +58,7 @@ public class PasswordPuzzleManager : MonoBehaviour
         }
         
         _currentPassword.Add(key);
+        DisplayKeyOnComputer(key);
         Debug.Log(key);
         
         if (_currentPassword.Count == _correctPassword.Count)
@@ -102,7 +117,8 @@ public class PasswordPuzzleManager : MonoBehaviour
             _light.color = Color.Lerp(_light.color, Color.white, t);
             yield return new WaitForSeconds(0.02f);
         }
-        
+
+        ClearDisplayPaswordOnComputer();
         _isCoroutineRunning = false;
         yield return null;
     }
@@ -112,5 +128,30 @@ public class PasswordPuzzleManager : MonoBehaviour
         anchor.SetActive(false);
         _keyboardToActivate.SetActive(true);
         _keyboardToDeactivate.GetComponentInChildren<MeshRenderer>().enabled = false;
+    }
+
+    public void DisplayKeyOnComputer(PASSWORDKEYS key)
+    {
+        PasswordSprites passSprite = GetPasswordSpriteFromKey(key);
+        _computerSpritesParent.GetChild(_currentPassword.Count - 1).GetComponent<Image>().sprite = passSprite.Sprite;
+    }
+
+    private PasswordSprites GetPasswordSpriteFromKey(PASSWORDKEYS key)
+    {
+        for (int i = 0; i < passwordsSprites.Count; i++)
+        {
+            if (passwordsSprites[i].Key == key)
+                return passwordsSprites[i];
+        }
+
+        return passwordsSprites[0];
+    }
+
+    public void ClearDisplayPaswordOnComputer()
+    {
+        foreach (var child in _computerSpritesParent.GetComponentsInChildren<Image>(true))
+        {
+            child.sprite = _spriteBarre;
+        }
     }
 }
