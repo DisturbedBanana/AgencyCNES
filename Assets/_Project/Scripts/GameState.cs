@@ -50,10 +50,22 @@ public class GameState : NetworkBehaviour
         switch (_stateIndex)
         {
             case 1:
-                Debug.LogError("State 1");
+                //Password found
+                //Must calibrate tool
                 break;
             case 2:
-                Debug.LogError("State 2");
+                //Tool calibrated
+                //Must attach harness
+                break;
+            case 3:
+                //Harness attached
+                //Must launch rocket
+                break;
+            case 4:
+                //Launched rocket
+                break;
+            case 5:
+                
                 break;
             default:
                 break;

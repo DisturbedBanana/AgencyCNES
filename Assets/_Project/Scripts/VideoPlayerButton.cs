@@ -14,12 +14,15 @@ public class VideoPlayerButton : MonoBehaviour
         _video = _videoObject.GetComponent<VideoPlayer>();
         _video.Stop();
         _videoObject.SetActive(false);
-
     }
 
     public void PlayVideo()
     {
-        _videoObject.SetActive(true);
-        _video.Play();
+        if (GameState.instance.StateIndex == 1)
+        {
+            _videoObject.SetActive(true);
+            _video.Play();
+            GameState.instance.NextState();
+        }
     }
 }
