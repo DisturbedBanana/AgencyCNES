@@ -179,30 +179,20 @@ public class CustomClimbProvider : LocomotionProvider
                 movement = climbTransform.TransformVector(movementInClimbSpace);
             }
 
-            //rigTransform.position += movement;
-            //rigTransform.GetComponent<Rigidbody>().velocity += movement;
-            //rigTransform.GetComponent<Rigidbody>().MovePosition((rigTransform.position += movement));
-
-            //    Debug.Log(rigTransform.GetComponent<Rigidbody>().velocity.magnitude);
-            //if(rigTransform.GetComponent<Rigidbody>(). =  > 5)
 
             //Set a target velocity
-                Vector3 targetVelocity = movement * _climbSpeed;
+            Vector3 targetVelocity = movement * _climbSpeed;
 
             //Find the change of velocity needed to reach target
-
             Vector3 velocityChange = targetVelocity - rigRigidbody.velocity;
 
             //Convert to acceleration, which is change of velocity over time
-
             Vector3 acceleration = velocityChange / Time.fixedDeltaTime;
 
             //Clamp it to your maximum acceleration magnitude
-
             acceleration = Vector3.ClampMagnitude(acceleration, _maxClimbSpeed);
 
             //Then AddForce
-
             rigRigidbody.AddForce(acceleration, ForceMode.Acceleration);
 
 
