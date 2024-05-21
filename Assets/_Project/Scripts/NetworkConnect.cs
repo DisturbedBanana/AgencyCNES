@@ -10,6 +10,7 @@ using Unity.Services.Relay.Models;
 using Unity.Netcode.Transports.UTP;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
+using System;
 
 public class NetworkConnect : MonoBehaviour
 {
@@ -23,8 +24,13 @@ public class NetworkConnect : MonoBehaviour
     private float _heartBeatTimer;
 
     [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
-    public void OnEnable()
+
+
+    private async void Awake()
     {
+        await UnityServices.InitializeAsync();
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
         if (NetworkManager.Singleton == null)
             return;
         NetworkManager.Singleton.OnServerStarted += () => DisplayText("Server Started");
@@ -33,6 +39,8 @@ public class NetworkConnect : MonoBehaviour
         //NetworkManager.Singleton.OnClientStopped += (bool isstopped) => DisplayText("Client Stopped");
         NetworkManager.Singleton.OnClientConnectedCallback += (ulong id) => DisplayText("A player connected");
         NetworkManager.Singleton.OnClientDisconnectCallback += (ulong id) => DisplayText("A player disconnected");
+
+        //JoinOrCreate();
     }
 
     public void OnDisable()
@@ -50,14 +58,6 @@ public class NetworkConnect : MonoBehaviour
     private void DisplayText(string text)
     {
         m_TextMeshProUGUI.text += $"{text}\n";
-    }
-
-    private async void Awake()
-    {
-        await UnityServices.InitializeAsync();
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
-
-        JoinOrCreate();
     }
 
     
@@ -98,13 +98,22 @@ public class NetworkConnect : MonoBehaviour
 
     public async void Join()
     {
-        _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
-        string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
+        try
+        {
+            _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
+            string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
 
-        JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
-        transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
+            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
+            transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
-        NetworkManager.Singleton.StartClient();
+            NetworkManager.Singleton.StartClient();
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+
+        }
+
     }
 
 
