@@ -26,7 +26,6 @@ public class PlayerController : CharacterControllerDriver
 
         if (_rigidbody.velocity.magnitude > _maxMagnitude)
         {
-            Debug.Log("Too fast");
             _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime;
         }
         
