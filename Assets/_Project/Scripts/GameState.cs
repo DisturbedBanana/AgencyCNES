@@ -3,18 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using Unity.Netcode.Components;
+using UnityEngine.InputSystem.LowLevel;
 
 public class GameState : NetworkBehaviour
 {
     public static GameState instance;
 
-    int _stateIndex = 0;
-
-    public int StateIndex
+    public enum GAMESTATES
     {
-        get { return _stateIndex; }
-        set { _stateIndex = value; }
+        PASSWORD, //Control player enters password
+        CALIBRATE, //Ship player calibrates
+        LAUNCH, //Harness and button
+        VALVES, //Ship player moves valves to match control gauges
+        SIMONSAYS, //Control player activates color in order -> told by ship player
+        SEPARATION, //Ship player connects cables according to control player's instructions -> players pull lever together
+        FUSES, //Control player activates fuses according to ship player's  instructions
+        FREQUENCY, //Both players tune frequency to match other's instructions (easier for ship player)
+        DODGE, //Control player controls ship to dodge asteroids, but is guided by ship player (30s)
     }
+
+    #region PROPERTIES
+
+    GAMESTATES _currentGameState = GAMESTATES.PASSWORD;
+    public GAMESTATES CurrentGameState
+    {
+        get { return _currentGameState; }
+        set { _currentGameState = value; }
+    }
+    #endregion
 
     private void Awake()
     {
@@ -28,65 +44,88 @@ public class GameState : NetworkBehaviour
         }
     }
 
-    public void NextState()
+    public void ChangeState(GAMESTATES state)
     {
         if (IsOwner)
         {
-            AskForGameStateUpdateClientRpc(this.GetComponent<NetworkObject>());
+            AskForGameStateUpdateClientRpc(this.GetComponent<NetworkObject>(),state);
         }
         else
         {
-            AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>());
+            AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>(),state);
         }
         
-        SwitchState();
+        ApplyStateChanges(state);
     }
 
-    public void SwitchState()
+    public void ApplyStateDebug(int debug)
     {
-        _stateIndex++;
-
-
-        switch (_stateIndex)
-        {
-            case 1:
-                //Password found
-                //Must calibrate tool
-                break;
-            case 2:
-                //Tool calibrated
-                //Must attach harness
-                break;
-            case 3:
-                //Harness attached
-                //Must launch rocket
-                break;
-            case 4:
-                //Launched rocket
-                break;
-            case 5:
-                
-                break;
-            default:
-                break;
-        }
+        ApplyStateChanges(GAMESTATES.PASSWORD, true, debug);
     }
-    
+
+    public void ApplyStateChanges(GAMESTATES state = GAMESTATES.PASSWORD, bool isDebug = false, int debugID = 0)
+    {
+        if (isDebug)
+        {
+            switch (debugID)
+            {
+                case 1:
+                    CurrentGameState = GAMESTATES.LAUNCH;
+                    break;
+                case 2:
+                    CurrentGameState = GAMESTATES.VALVES;
+                    break;
+                case 3:
+                    CurrentGameState = GAMESTATES.SIMONSAYS;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            switch (state)
+            {
+                case GAMESTATES.PASSWORD:
+                    break;
+                case GAMESTATES.CALIBRATE:
+                    break;
+                case GAMESTATES.LAUNCH:
+                    break;
+                case GAMESTATES.VALVES:
+                    break;
+                case GAMESTATES.SIMONSAYS:
+                    break;
+                case GAMESTATES.SEPARATION:
+                    break;
+                case GAMESTATES.FUSES:
+                    break;
+                case GAMESTATES.FREQUENCY:
+                    break;
+                case GAMESTATES.DODGE:
+                    break;
+                default:
+                    break;
+            }
+        }
+        Debug.LogError(CurrentGameState);
+    }
+
     [ServerRpc(RequireOwnership = false)]
-    private void AskForGameStateUpdateServerRpc(NetworkObjectReference networkObjectRef)
+    private void AskForGameStateUpdateServerRpc(NetworkObjectReference networkObjectRef, GAMESTATES state)
     {
         if (networkObjectRef.TryGet(out NetworkObject networkObject2))
         {
-            networkObject2.GetComponent<GameState>().SwitchState();
+            networkObject2.GetComponent<GameState>().ApplyStateChanges(state);
         }
     }
 
     [Rpc(SendTo.NotMe, RequireOwnership = true)]
-    private void AskForGameStateUpdateClientRpc(NetworkObjectReference networkObjectRef)
+    private void AskForGameStateUpdateClientRpc(NetworkObjectReference networkObjectRef, GAMESTATES state)
     {
         if (networkObjectRef.TryGet(out NetworkObject networkObject2))
         {
-            networkObject2.GetComponent<GameState>().SwitchState();
+            networkObject2.GetComponent<GameState>().ApplyStateChanges(state);
         }
     }
 }

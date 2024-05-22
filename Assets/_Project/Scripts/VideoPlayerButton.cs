@@ -18,11 +18,10 @@ public class VideoPlayerButton : MonoBehaviour
 
     public void PlayVideo()
     {
-        if (GameState.instance.StateIndex == 1)
+        if (GameState.instance.CurrentGameState == GameState.GAMESTATES.LAUNCH)
         {
             _videoObject.SetActive(true);
             _video.Play();
-            GameState.instance.NextState();
         }
     }
 }
