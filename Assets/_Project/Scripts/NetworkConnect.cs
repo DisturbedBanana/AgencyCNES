@@ -10,26 +10,57 @@ using Unity.Services.Relay.Models;
 using Unity.Netcode.Transports.UTP;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
+using System;
 
 public class NetworkConnect : MonoBehaviour
 {
     public int maxConnections = 20;
     public UnityTransport transport;
 
-    public TextMeshProUGUI m_TextMeshProUGUI;
     public GameObject prefabObjects;
 
-    private Lobby _currentLobby;
+    private Lobby _currentLobby = null;
 
     private float _heartBeatTimer;
+
+    [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
+
 
     private async void Awake()
     {
         await UnityServices.InitializeAsync();
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
+        if (NetworkManager.Singleton == null)
+            return;
+        NetworkManager.Singleton.OnServerStarted += () => DisplayText("Server Started");
+        NetworkManager.Singleton.OnServerStopped += (bool isstopped) => DisplayText("Server Stopped");
+        //NetworkManager.Singleton.OnClientStarted += () => DisplayText("Client Started");
+        //NetworkManager.Singleton.OnClientStopped += (bool isstopped) => DisplayText("Client Stopped");
+        NetworkManager.Singleton.OnClientConnectedCallback += (ulong id) => DisplayText("A player connected");
+        NetworkManager.Singleton.OnClientDisconnectCallback += (ulong id) => DisplayText("A player disconnected");
+
         //JoinOrCreate();
     }
+
+    public void OnDisable()
+    {
+        if (NetworkManager.Singleton == null)
+            return;
+        NetworkManager.Singleton.OnServerStarted -= () => DisplayText("Server Started");
+        NetworkManager.Singleton.OnServerStopped -= (bool isstopped) => DisplayText("Server Stopped");
+        //NetworkManager.Singleton.OnClientStarted -= () => DisplayText("Client Started");
+        //NetworkManager.Singleton.OnClientStopped -= (bool isstopped) => DisplayText("Client Stopped");
+        NetworkManager.Singleton.OnClientConnectedCallback -= (ulong id) => DisplayText("A player connected");
+        NetworkManager.Singleton.OnClientDisconnectCallback -= (ulong id) => DisplayText("A player disconnected");
+    }
+
+    private void DisplayText(string text)
+    {
+        m_TextMeshProUGUI.text += $"{text}\n";
+    }
+
+    
     public async void JoinOrCreate()
     {
         try
@@ -41,7 +72,6 @@ public class NetworkConnect : MonoBehaviour
             transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
             NetworkManager.Singleton.StartClient();
-            m_TextMeshProUGUI.text += "StartClient NetworkConnect\n";
         }
         catch
         {
@@ -63,22 +93,29 @@ public class NetworkConnect : MonoBehaviour
         lobbyOptions.Data.Add("JOIN_CODE", dataObject);
 
         _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Lobby Name", maxConnections, lobbyOptions);
-
         NetworkManager.Singleton.StartHost();
-        m_TextMeshProUGUI.text += "StartHost NetworkConnect\n";
     }
 
     public async void Join()
     {
-        _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
-        string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
+        try
+        {
+            _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
+            string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
 
-        JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
-        transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
+            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
+            transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
-        NetworkManager.Singleton.StartClient();
-        m_TextMeshProUGUI.text += "StartClient NetworkConnect\n";
+            NetworkManager.Singleton.StartClient();
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+
+        }
+
     }
+
 
     private void Update()
     {
