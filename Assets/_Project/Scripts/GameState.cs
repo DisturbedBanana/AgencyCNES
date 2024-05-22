@@ -12,7 +12,7 @@ public class GameState : NetworkBehaviour
     public enum GAMESTATES
     {
         PASSWORD, //Control player enters password
-        CALIBRATE, //Ship player calibrates
+        CALIBRATE, //Both player calibrate
         LAUNCH, //Harness and button
         VALVES, //Ship player moves valves to match control gauges
         SIMONSAYS, //Control player activates color in order -> told by ship player
@@ -31,6 +31,8 @@ public class GameState : NetworkBehaviour
         set { _currentGameState = value; }
     }
     #endregion
+
+    [SerializeField] List<GameObject> LaunchButtons = new List<GameObject>();
 
     private void Awake()
     {
@@ -89,8 +91,12 @@ public class GameState : NetworkBehaviour
                 case GAMESTATES.PASSWORD:
                     break;
                 case GAMESTATES.CALIBRATE:
+                    CurrentGameState = GAMESTATES.CALIBRATE;
+                    //Activate all elements related to calibrating
                     break;
                 case GAMESTATES.LAUNCH:
+                    //Change control video (launch video)
+                    //When harness is attached and button pressed -> valves (coroutine for timer?)
                     break;
                 case GAMESTATES.VALVES:
                     break;
