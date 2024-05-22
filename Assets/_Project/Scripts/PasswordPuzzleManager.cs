@@ -49,6 +49,8 @@ public class PasswordPuzzleManager : MonoBehaviour
     [SerializeField] List<PasswordSprites> passwordsSprites = new List<PasswordSprites>(12);
     [SerializeField] Transform _computerSpritesParent;
     [SerializeField] Sprite _spriteBarre;
+    
+    [SerializeField] GameState _gameState;
 
     private void Start()
     {
@@ -84,6 +86,7 @@ public class PasswordPuzzleManager : MonoBehaviour
                 }
             }
             //Correct Password
+            _gameState.ChangeState(GameState.GAMESTATES.CALIBRATE);
             _currentPassword.Clear();
             StartCoroutine(FlashingLightCoroutine(true));
         }
