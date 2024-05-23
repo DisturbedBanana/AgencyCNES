@@ -7,53 +7,33 @@ using Unity.Netcode;
 
 public class VideoPlayerButton : NetworkBehaviour
 {
+    [SerializeField] GameState _gs;
+    
     private DateTime _pressedTime;
     private DateTime _stockedTime;
+
+    bool _canLaunch = true;
+    
+    #region PROPERTIES
+    public bool CanLaunch 
+    {
+        get { return _canLaunch; }
+        set { _canLaunch = value; }
+    }
 
     public DateTime Stockedtime
     {
         get { return _stockedTime; }
         set { _stockedTime = value; }
     }
-
-    [SerializeField] VideoPlayerButton _otherButton;
-    [SerializeField] GameObject _videoObject;
-    VideoPlayer _video;
-
-    private void Awake()
-    {
-        _video = _videoObject.GetComponent<VideoPlayer>();
-        _video.Stop();
-        _videoObject.SetActive(false);
-    }
-
-    public void PlayVideo()
-    {
-        if (GameState.instance.CurrentGameState == GameState.GAMESTATES.LAUNCH)
-        {
-            _videoObject.SetActive(true);
-            _video.Play();
-        }
-    }
+    #endregion
 
     public void ButtonPress() 
     {
-        _pressedTime = DateTime.Now;
-        
-    }
-
-    [Rpc(SendTo.NotMe, RequireOwnership = false)]
-    private void NetworkButtonPressedRpc(DateTime date)
-    {
-        if (_otherButton.Stockedtime != null)
+        if (_canLaunch)
         {
-            _otherButton.Stockedtime = date;
+            GameState.instance.CheckLaunchButtonTimingRpc(DateTime.Now, NetworkManager.Singleton.LocalClientId);
+            Debug.LogError("Clicked button" + NetworkManager.Singleton.LocalClientId);
         }
-        else
-        {
-            _otherButton.Stockedtime = date;
-        }
-
-        Stockedtime = date;
     }
 }
