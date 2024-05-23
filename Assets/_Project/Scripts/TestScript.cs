@@ -40,21 +40,21 @@ public struct ObjectMultiSync : INetworkSerializable
 
 public class TestScript : NetworkBehaviour
 {
-    public NetworkManager networkManager;
     public GameObject prefabObject;
     public Transform RightController;
     private GameObject _currentSelectedObject = null;
     public bool SpawnCubeAtStart = false;
-
+    
     private void Update()
     {
+        
         //if(time >= timeBetweenTicks)
         //{
         //    _shouldUpdateObject = true;
         //    time = 0;
         //}
         //time += Time.deltaTime;
-        
+
     }
 
     private void OnEnable()
@@ -70,7 +70,7 @@ public class TestScript : NetworkBehaviour
 
     private void ClientObjectMove(ObjectMultiSync objectToSend)
     {
-        AskServerForObjectMovementServerRpc(_currentSelectedObject.transform.GetComponent<NetworkObject>(), OwnerClientId, objectToSend);
+        AskServerForObjectMovementServerRpc(_currentSelectedObject.transform.GetComponent<NetworkObject>(), NetworkManager.Singleton.LocalClientId, objectToSend);
     }
 
     public override void OnNetworkSpawn()
@@ -83,7 +83,7 @@ public class TestScript : NetworkBehaviour
     {
         GameObject go = Instantiate(prefabObject, transform.position, Quaternion.identity);
         go.transform.localScale = Vector3.one * 30;
-        go.GetComponent<NetworkObject>().SpawnWithOwnership(OwnerClientId, false);
+        go.GetComponent<NetworkObject>().SpawnWithOwnership(NetworkManager.Singleton.LocalClientId, false);
     }
 
     public void CallSelect(SelectEnterEventArgs args)
@@ -92,8 +92,8 @@ public class TestScript : NetworkBehaviour
         _currentSelectedObject = networkObject.gameObject;
         if (networkObject != null)
         {
-            if(networkObject.OwnerClientId != OwnerClientId)
-                OwnerChangeServerRpc(networkObject, OwnerClientId);
+            if(networkObject.OwnerClientId != NetworkManager.Singleton.LocalClientId)
+                OwnerChangeServerRpc(networkObject, NetworkManager.Singleton.LocalClientId);
             if(networkObject.CompareTag("GravityObject"))
                 ObjectGravityEnabledClientRpc(false, networkObject);
 
@@ -108,7 +108,7 @@ public class TestScript : NetworkBehaviour
 
             if (networkObject != null)
             {
-                RemoveObjectMovementServerRpc(networkObject, OwnerClientId, _currentSelectedObject.transform.position);
+                RemoveObjectMovementServerRpc(networkObject, NetworkManager.Singleton.LocalClientId, _currentSelectedObject.transform.position);
             }
         
         _currentSelectedObject = null;
