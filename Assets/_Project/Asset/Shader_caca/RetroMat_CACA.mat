@@ -37,12 +37,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Grisaille: 1
+    - _NoiseAmount: 0.178
+    - _NoiseScale: 100
+    - _NumberLines: 7
+    - _OpacityBackground: 0.268
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ScanningLinesAmmount_Caca: 0.661
-    - _ScanningLinesSpeed_Caca: 1
+    - _ScanningLines2: 0.3
+    - _ScanningLinesAmmount_Caca: 0.993
+    - _ScanningLinesSpeed_Caca: 5.98
     - _ScanningLines_Caca: 7
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0.53333336, g: 1, b: 0.9383333, a: 0}
+    - _NoiseSpeed: {r: 0, g: 0.03, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3431226414283093264
 MonoBehaviour:
