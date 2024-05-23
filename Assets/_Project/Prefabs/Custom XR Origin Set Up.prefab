@@ -3818,7 +3818,8 @@ MonoBehaviour:
   m_MinHeight: 0
   m_MaxHeight: Infinity
   _maxMagnitude: 1
-  _magnitude: 0
+  _decreaseSpeed: 1
+  _currentMagnitude: 0
 --- !u!54 &2199386396740333340
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3865,7 +3866,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.73, y: 1, z: 0.300599}
+  m_Size: {x: 0.5, y: 1.7, z: 0.3}
   m_Center: {x: 0, y: 0.8999185, z: 0.0132765025}
 --- !u!1 &3224087529256587301 stripped
 GameObject:

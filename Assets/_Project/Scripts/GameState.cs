@@ -4,10 +4,24 @@ using UnityEngine;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine.InputSystem.LowLevel;
+using System;
+using UnityEngine.Video;
 
 public class GameState : NetworkBehaviour
 {
     public static GameState instance;
+
+    [Header("Variables")]
+    [SerializeField] int _launchButtonTimingTolerance;
+
+    [Header("References")]
+    [SerializeField] List<GameObject> _launchButtons = new List<GameObject>();
+    [SerializeField] GameObject _videoObject;
+
+    VideoPlayer _video;
+    ulong _firstClientToPushButtonID = 0;
+    DateTime _firstButtonPressTime;
+    Coroutine _toleranceCoroutine = null;
 
     public enum GAMESTATES
     {
@@ -32,10 +46,10 @@ public class GameState : NetworkBehaviour
     }
     #endregion
 
-    [SerializeField] List<GameObject> LaunchButtons = new List<GameObject>();
 
     private void Awake()
     {
+        
         if (instance == null)
         {
             instance = this;
@@ -44,6 +58,10 @@ public class GameState : NetworkBehaviour
         {
             Destroy(gameObject);
         }
+
+        //_video = _videoObject.GetComponent<VideoPlayer>();
+        //_video.Stop();
+        //_videoObject.SetActive(false);
     }
 
     public void ChangeState(GAMESTATES state)
@@ -63,6 +81,17 @@ public class GameState : NetworkBehaviour
     public void ApplyStateDebug(int debug)
     {
         ApplyStateChanges(GAMESTATES.PASSWORD, true, debug);
+    }
+
+
+
+    private void PlayVideo()
+    {
+        if (CurrentGameState == GameState.GAMESTATES.LAUNCH)
+        {
+            _videoObject.SetActive(true);
+            _video.Play();
+        }
     }
 
     public void ApplyStateChanges(GAMESTATES state = GAMESTATES.PASSWORD, bool isDebug = false, int debugID = 0)
@@ -95,6 +124,10 @@ public class GameState : NetworkBehaviour
                     //Activate all elements related to calibrating
                     break;
                 case GAMESTATES.LAUNCH:
+                    foreach (GameObject item in _launchButtons)
+                    {
+                        item.GetComponent<VideoPlayerButton>().CanLaunch = true;
+                    }
                     //Change control video (launch video)
                     //When harness is attached and button pressed -> valves (coroutine for timer?)
                     break;
@@ -133,5 +166,51 @@ public class GameState : NetworkBehaviour
         {
             networkObject2.GetComponent<GameState>().ApplyStateChanges(state);
         }
+    }
+
+    [Rpc(SendTo.Everyone)]
+    public void CheckLaunchButtonTimingRpc(DateTime givenTime, ulong clientID)
+    {
+        
+        if (DateTime.Equals(_firstButtonPressTime, DateTime.MinValue))
+        {
+            if (_toleranceCoroutine == null)
+                _toleranceCoroutine = StartCoroutine(ButtonPushedCoroutine());
+
+            _firstClientToPushButtonID = clientID;
+            _firstButtonPressTime = givenTime;
+        }
+        else
+        {
+            if (clientID == _firstClientToPushButtonID)
+            {
+                Debug.LogError("Same Client called twice");
+                _firstClientToPushButtonID = 0;
+                _firstButtonPressTime = DateTime.MinValue;
+                StopCoroutine(_toleranceCoroutine);
+                _toleranceCoroutine = null;
+            }
+            else
+            {
+                if (givenTime.Subtract(_firstButtonPressTime).TotalMilliseconds <= _launchButtonTimingTolerance)
+                {
+                    CurrentGameState = GAMESTATES.CALIBRATE;
+                }
+                
+                _firstClientToPushButtonID = 0;
+                _firstButtonPressTime = DateTime.MinValue;
+                StopCoroutine(_toleranceCoroutine);
+                _toleranceCoroutine = null;
+            }
+
+        }
+    }
+
+    private IEnumerator ButtonPushedCoroutine()
+    {
+        yield return new WaitForSeconds(_launchButtonTimingTolerance / 1000);
+        _firstClientToPushButtonID = 0;
+        _firstButtonPressTime = DateTime.MinValue;
+        yield return null;
     }
 }
