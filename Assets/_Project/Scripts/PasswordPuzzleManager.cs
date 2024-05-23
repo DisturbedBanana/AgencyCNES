@@ -54,7 +54,7 @@ public class PasswordPuzzleManager : MonoBehaviour
 
     private void Start()
     {
-        ClearDisplayPaswordOnComputer();
+        ClearDisplayPasswordOnComputer();
     }
 
     public void AddKey(PASSWORDKEYS key)
@@ -101,7 +101,7 @@ public class PasswordPuzzleManager : MonoBehaviour
     {
         _isCoroutineRunning = true;
         Color targetColor;
-        float t = 0;
+        float t;
         
         switch (success)
         {
@@ -135,7 +135,7 @@ public class PasswordPuzzleManager : MonoBehaviour
             yield return null;
         }
 
-        ClearDisplayPaswordOnComputer();
+        ClearDisplayPasswordOnComputer();
         _isCoroutineRunning = false;
     }
 
@@ -163,7 +163,7 @@ public class PasswordPuzzleManager : MonoBehaviour
         return passwordsSprites[0];
     }
 
-    public void ClearDisplayPaswordOnComputer()
+    public void ClearDisplayPasswordOnComputer()
     {
         foreach (var child in _computerSpritesParent.GetComponentsInChildren<Image>(true))
         {
