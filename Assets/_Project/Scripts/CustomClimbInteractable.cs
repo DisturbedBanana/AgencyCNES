@@ -111,8 +111,8 @@ public class CustomClimbInteractable : XRBaseInteractable
         base.Awake();
         if (m_ClimbProvider == null)
         {
-            Debug.LogError("NoClimbProvider");
             //ComponentLocatorUtility<ClimbProvider>.TryFindComponent(out m_ClimbProvider);
+            m_ClimbProvider = FindFirstObjectByType<CustomClimbProvider>();
         }
     }
 

@@ -78,6 +78,18 @@ public class GameState : NetworkBehaviour
         ApplyStateChanges(state);
     }
 
+    public void ChangeState(string state)
+    {
+        foreach (var enumValue in Enum.GetValues(typeof(GAMESTATES)))
+        {
+            if(enumValue.ToString() == state.ToUpper())
+            {
+                ChangeState((GAMESTATES)enumValue);
+            }
+        }
+        Debug.LogError("Enum"+ state.ToUpper() + " value found in " + typeof(GAMESTATES));
+    }
+
     public void ApplyStateDebug(int debug)
     {
         ApplyStateChanges(GAMESTATES.PASSWORD, true, debug);
