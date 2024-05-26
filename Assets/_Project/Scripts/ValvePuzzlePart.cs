@@ -77,8 +77,8 @@ public class ValvePuzzlePart : MonoBehaviour
 
     private bool AreValuesRoughlyEqual()
     {
-        //return CurrentValue - _correctValue <= Mathf.Abs(10);
-        return CurrentValue - _correctValue < 10 && CurrentValue - _correctValue > 10;
+        //Check if CurrentValue is within 5% of the CorrectValue
+        return Mathf.Abs(_currentValue - _correctValue) <= (_maxValue - _minValue) * 0.01f;
     }
 
     public void ChangeTargetValue()
@@ -89,9 +89,9 @@ public class ValvePuzzlePart : MonoBehaviour
     public void LetGoOfHandle() 
     {
         if (AreValuesRoughlyEqual())
-        {
             IsSolved = true;
-        }
+        else
+            IsSolved = false;
     }
 }
 
