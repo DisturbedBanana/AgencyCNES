@@ -86,12 +86,15 @@ public class ValvePuzzlePart : MonoBehaviour
         TargetValue = _knob.value;
     }
 
+    
     public void LetGoOfHandle() 
     {
         if (AreValuesRoughlyEqual())
             IsSolved = true;
         else
             IsSolved = false;
+
+        ValveManager.instance.CheckValves();
     }
 }
 
