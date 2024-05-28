@@ -50,7 +50,7 @@ public class Simon : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        _canChooseColor.Value = true;
+        _canChooseColor.Value = false;
     }
 
 

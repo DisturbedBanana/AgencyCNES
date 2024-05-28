@@ -140,13 +140,15 @@ public class GameState : NetworkBehaviour
                     {
                         item.GetComponent<VideoPlayerButton>().CanLaunch = true;
                     }
+                    CurrentGameState = GAMESTATES.LAUNCH;
                     //Change control video (launch video)
                     //When harness is attached and button pressed -> valves (coroutine for timer?)
                     break;
                 case GAMESTATES.VALVES:
-                    break;
                 case GAMESTATES.SIMONSAYS:
+                    CurrentGameState = GAMESTATES.SIMONSAYS;
                     FindObjectOfType<Simon>().CanChooseColor = true;
+                    FindObjectOfType<Simon>().StartSimonClientRpc();
                     break;
                 case GAMESTATES.SEPARATION:
                     break;
@@ -207,6 +209,7 @@ public class GameState : NetworkBehaviour
             {
                 if (givenTime.Subtract(_firstButtonPressTime).TotalMilliseconds <= _launchButtonTimingTolerance)
                 {
+                    PlayVideo();
                     CurrentGameState = GAMESTATES.CALIBRATE;
                 }
                 
