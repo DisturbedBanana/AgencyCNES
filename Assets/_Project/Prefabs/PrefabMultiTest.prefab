@@ -232,9 +232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49643b9f0e8fbdd48b8159e40a9438eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManager: {fileID: 0}
   prefabObject: {fileID: 8297278784613590131, guid: 240f09b2ae75dd242b3b1617c624388b, type: 3}
   RightController: {fileID: 0}
+  SpawnCubeAtStart: 0
 --- !u!1 &3520872889408407418
 GameObject:
   m_ObjectHideFlags: 0

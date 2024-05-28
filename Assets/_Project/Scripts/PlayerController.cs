@@ -7,19 +7,19 @@ using UnityEngine.XR.Interaction.Toolkit.Utilities;
 public class PlayerController : CharacterControllerDriver
 {
     private Rigidbody _rigidbody;
-    [SerializeField, Range(0, 4)] private float _maxMagnitude = 1;
-    [SerializeField, Range(0, 10)] private float _decreaseSpeed = 1;
+    [SerializeField, Range(0, 4)] private float _maxMagnitude;
+    [SerializeField, Range(0, 10)] private float _decreaseSpeed;
 
     [SerializeField] private float _currentMagnitude;
 
-    // Start is called before the first frame update
-    protected new void Start()
+    private void Reset()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _maxMagnitude = 1; 
+        _decreaseSpeed = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         if (_rigidbody == null)
             return;
@@ -28,8 +28,7 @@ public class PlayerController : CharacterControllerDriver
 
         if (_rigidbody.velocity.magnitude > _maxMagnitude)
         {
-            _rigidbody.velocity -= _rigidbody.velocity * Time.deltaTime * _decreaseSpeed;
+            _rigidbody.velocity -= _rigidbody.velocity * Time.fixedDeltaTime * _decreaseSpeed;
         }
-        
     }
 }
