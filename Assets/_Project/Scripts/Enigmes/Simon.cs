@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Simon : NetworkBehaviour
 {
@@ -35,7 +36,7 @@ public class Simon : NetworkBehaviour
 
     [SerializeField] private List<SimonLight> _colorsLights = new List<SimonLight>(4);
     [SerializeField] private List<SimonLevel> _levelList = new List<SimonLevel>();
-    private int _currentLevel = 0;
+    [FormerlySerializedAs("_currentLevel")] private int _currentLevel = 0;
     private List<SimonColor> _colorsStackEnteredByPlayer = new List<SimonColor>();
     //private NetworkVariable<List<SimonColor>> _colorsStackEnteredByPlayer = new NetworkVariable<List<SimonColor>>();
 
@@ -81,12 +82,12 @@ public class Simon : NetworkBehaviour
             colorsValue.Add((int)item);
         }
 
-        if (isColorOrderFinished)
+        if (_isColorOrderFinished)
             ColorsOrderVerificationServerRPC(colorsValue.ToArray());
 
     }
 
-    private bool isColorOrderFinished => _colorsStackEnteredByPlayer.Count == _levelList[_currentLevel].ColorOrder.Count;
+    private bool _isColorOrderFinished => _colorsStackEnteredByPlayer.Count == _levelList[_currentLevel].ColorOrder.Count;
 
     [ServerRpc(RequireOwnership = false)]
     private void ColorsOrderVerificationServerRPC(int[] colorsByPlayer)
@@ -142,13 +143,17 @@ public class Simon : NetworkBehaviour
     public void StartSimonClientRpc()
     {
         StopSimonRoutine();
-        _colorRoutine = StartCoroutine(DisplayColorRoutine(_currentLevel));
+        if(_colorRoutine == null)
+            _colorRoutine = StartCoroutine(DisplayColorRoutine(_currentLevel));
     }
 
     private void StopSimonRoutine()
     {
         if (_colorRoutine != null)
+        {
             StopCoroutine(_colorRoutine);
+            _colorRoutine = null;
+        }
     }
 
     [ClientRpc]
@@ -165,17 +170,18 @@ public class Simon : NetworkBehaviour
 
     private IEnumerator DisplayColorRoutine(int level)
     {
+        var wait1 = new WaitForSeconds(_holdColorTime);
+        var wait2 = new WaitForSeconds(_pauseAfterColors);
         while (_canChooseColor.Value)
         {
             for (int i = 0; i < _levelList[_currentLevel].ColorOrder.Count; i++)
             {
                 Light lightToEnable = ChooseLight(_levelList[_currentLevel].ColorOrder[i]);
                 lightToEnable.enabled = true;
-                yield return new WaitForSeconds(_holdColorTime);
+                yield return wait1;
                 lightToEnable.enabled = false;
             }
-            yield return new WaitForSeconds(_pauseAfterColors);
-            yield return null;
+            yield return wait2;
         }
         
     }
