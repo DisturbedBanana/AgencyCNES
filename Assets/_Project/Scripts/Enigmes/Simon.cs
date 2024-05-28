@@ -2,35 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
-using static GameState;
 
-public class Simon : MonoBehaviour
+public class Simon : NetworkBehaviour
 {
 
-    // list de niveaux ou on peut choisir l'ordre des couleurs en auto en amont dans l'editeur, du coup une struct niveau1, list de couleurs
-    // Enum avec les couleurs
-    // faire défiler dans l'ordre les couleurs avec un gros temps de pause régulable
-    // centre de controle click sur les couleurs dans l'ordre
-    // faire vérification de l'ordre, on peut les ajouter dans un stack
-    // reset lorsqu'ils ont faux, faut vérifier la taille du ColorOrder
-
-
-
-    //demander a Nico lorsqu'on fait une faute
-
-    public enum SimonColor
-    {
-        GREEN = 0,
-        RED, 
-        BLUE,
-        YELLOW
-    }
+    #region Structs
 
     [Serializable]
     struct SimonLevel
     {
-        public int Level;
         public List<SimonColor> ColorOrder;
     }
 
@@ -40,27 +23,48 @@ public class Simon : MonoBehaviour
         public SimonColor Color;
         public Light Light;
     }
+    #endregion
 
-    [SerializeField] private List<SimonLevel> _levelList = new List<SimonLevel>();
-    public int _currentLevel = 0;
-    [SerializeField] private List<SimonColor> _colorsStackEnteredByPlayer = new List<SimonColor>();
+    public enum SimonColor
+    {
+        GREEN = 0,
+        RED,
+        BLUE,
+        YELLOW
+    }
+
     [SerializeField] private List<SimonLight> _colorsLights = new List<SimonLight>(4);
+    [SerializeField] private List<SimonLevel> _levelList = new List<SimonLevel>();
+    private int _currentLevel = 0;
+    private List<SimonColor> _colorsStackEnteredByPlayer = new List<SimonColor>();
+    //private NetworkVariable<List<SimonColor>> _colorsStackEnteredByPlayer = new NetworkVariable<List<SimonColor>>();
 
     private Coroutine _colorRoutine = null;
-    private float _holdColorTime = 2f;
-    private float _pauseBlankTime = 3f;
+    [SerializeField, Range(0, 5)] private float _holdColorTime = 2f;
+    [SerializeField, Range(0, 10)] private float _pauseAfterColors = 3f;
 
-    private bool _canChooseColor = true;
+    //private bool _canChooseColor = true;
+    private NetworkVariable<bool> _canChooseColor = new NetworkVariable<bool>();
+    public bool CanChooseColor { get => _canChooseColor.Value; set => _canChooseColor.Value = value; }
 
-    private void Start()
+
+    public override void OnNetworkSpawn()
     {
-        _colorsStackEnteredByPlayer.Clear();
-        StartFirstSimonLevel();
+        _canChooseColor.Value = true;
+    }
+
+
+    public void ButtonStartSimon()
+    {
+        if (NetworkManager.Singleton.ServerIsHost)
+        {
+            StartSimonClientRpc();
+        }
     }
 
     public void PushButton(string color)
     {
-        if (!_canChooseColor)
+        if (!_canChooseColor.Value)
             return;
 
         foreach (var enumValue in Enum.GetValues(typeof(SimonColor)))
@@ -71,58 +75,97 @@ public class Simon : MonoBehaviour
             }
         }
 
+        List<int> colorsValue = new List<int>();
+        foreach (var item in _colorsStackEnteredByPlayer)
+        {
+            colorsValue.Add((int)item);
+        }
+
         if (isColorOrderFinished)
-            ColorsOrderVerification();
+            ColorsOrderVerificationServerRPC(colorsValue.ToArray());
 
     }
 
     private bool isColorOrderFinished => _colorsStackEnteredByPlayer.Count == _levelList[_currentLevel].ColorOrder.Count;
 
-    private void ColorsOrderVerification()
+    [ServerRpc(RequireOwnership = false)]
+    private void ColorsOrderVerificationServerRPC(int[] colorsByPlayer)
     {
         bool isOrderCorrect = true;
         for (int i = 0; i < _levelList[_currentLevel].ColorOrder.Count; i++)
         {
-            if (_colorsStackEnteredByPlayer[i] != _levelList[_currentLevel].ColorOrder[i])
+            if ((SimonColor)colorsByPlayer[i] != _levelList[_currentLevel].ColorOrder[i])
             {
                 isOrderCorrect = false;
                 break;
             }
         }
-
         Debug.Log(isOrderCorrect ? "Order correct!" : "Order is not good!");
+
+        ClearPlayerColorsClientRpc();
+        DisableAllLightsClientRpc();
+
 
         if (isOrderCorrect && _currentLevel < (_levelList.Count - 1))
         {
-            DisableAllLights();
-            if(_colorRoutine != null)
-                StopCoroutine(_colorRoutine);
-            _colorRoutine = StartCoroutine(DisplayColorRoutine(_currentLevel++));
+            ChangeLevelClientRpc(_currentLevel + 1);
+            StartSimonClientRpc();
             Debug.Log("Next level is " + _currentLevel);
         } 
         else if (isOrderCorrect && _currentLevel >= (_levelList.Count - 1))
         {
-            _canChooseColor = false;
-            DisableAllLights();
-            if (_colorRoutine != null)
-                StopCoroutine(_colorRoutine);
-            Debug.Log("It was the last level");
+            EndSimonClientRpc();
+            
+        }
+        else if (!isOrderCorrect)
+        {
+            ChangeLevelClientRpc(0);
+            StartSimonClientRpc();
         }
 
         //_canChooseColor = currentLevel < (_levelList.Count - 1);
-
-        _colorsStackEnteredByPlayer.Clear();
-
+    }
+    
+    [ClientRpc]
+    private void ChangeLevelClientRpc(int level)
+    {
+        _currentLevel = level;
     }
 
-    public void StartFirstSimonLevel()
+    [ClientRpc]
+    private void ClearPlayerColorsClientRpc()
     {
+        _colorsStackEnteredByPlayer.Clear();
+    }
+
+    [ClientRpc]
+    public void StartSimonClientRpc()
+    {
+        StopSimonRoutine();
         _colorRoutine = StartCoroutine(DisplayColorRoutine(_currentLevel));
+    }
+
+    private void StopSimonRoutine()
+    {
+        if (_colorRoutine != null)
+            StopCoroutine(_colorRoutine);
+    }
+
+    [ClientRpc]
+    private void EndSimonClientRpc()
+    {
+        StopSimonRoutine();
+        Debug.Log("It was the last level");
+        if (NetworkManager.Singleton.IsHost)
+        {
+            _canChooseColor.Value = false;
+            GameState.instance.ChangeState(GameState.GAMESTATES.FUSES);
+        }
     }
 
     private IEnumerator DisplayColorRoutine(int level)
     {
-        while (_canChooseColor)
+        while (_canChooseColor.Value)
         {
             for (int i = 0; i < _levelList[_currentLevel].ColorOrder.Count; i++)
             {
@@ -131,13 +174,14 @@ public class Simon : MonoBehaviour
                 yield return new WaitForSeconds(_holdColorTime);
                 lightToEnable.enabled = false;
             }
-            yield return new WaitForSeconds(_pauseBlankTime);
+            yield return new WaitForSeconds(_pauseAfterColors);
             yield return null;
         }
         
     }
 
-    private void DisableAllLights()
+    [ClientRpc]
+    private void DisableAllLightsClientRpc()
     {
         foreach (var item in _colorsLights)
         {

@@ -146,6 +146,7 @@ public class GameState : NetworkBehaviour
                 case GAMESTATES.VALVES:
                     break;
                 case GAMESTATES.SIMONSAYS:
+                    FindObjectOfType<Simon>().CanChooseColor = true;
                     break;
                 case GAMESTATES.SEPARATION:
                     break;
