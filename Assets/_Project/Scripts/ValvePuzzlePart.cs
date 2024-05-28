@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.XR.Content.Interaction;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
-public class ValvePuzzlePart : MonoBehaviour
+public class ValvePuzzlePart : NetworkBehaviour
 {
     [Header("Variables")]
     [SerializeField] float _minValue;
@@ -15,13 +17,12 @@ public class ValvePuzzlePart : MonoBehaviour
     [SerializeField] float _targetValue;
     [SerializeField] float _correctValue;
     [SerializeField] float _speed = 1;
-    [SerializeField] bool _isSolved;
+    [SerializeField] bool _isSolved = false;
 
     [Header("References")]
     [SerializeField] Transform _needle;
     [SerializeField] XRKnob _knob;
 
-    Coroutine _toleranceCoroutine = null;
 
     public float CurrentValue
     {
@@ -44,24 +45,13 @@ public class ValvePuzzlePart : MonoBehaviour
     private void Start()
     {
         RollRandomValues();
+        _needle.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        CurrentValue = TargetValue;
     }
 
     private void Update()
     {
-        if (_currentValue != _targetValue)
-        {
-            _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, _speed * Time.deltaTime);
-            _needle.localEulerAngles = new Vector3(Mathf.Lerp(-90, 90, (_currentValue - _minValue) / (_maxValue - _minValue)), 0, 0);
-        }
 
-        if (AreValuesRoughlyEqual())
-        {
-            _needle.GetComponentInChildren<SpriteRenderer>().color = Color.green;
-        }
-        else
-        {
-            _needle.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        }
     }
 
     private void RollRandomValues()
@@ -77,13 +67,27 @@ public class ValvePuzzlePart : MonoBehaviour
 
     private bool AreValuesRoughlyEqual()
     {
-        //Check if CurrentValue is within 5% of the CorrectValue
         return Mathf.Abs(_currentValue - _correctValue) <= (_maxValue - _minValue) * 0.01f;
     }
 
     public void ChangeTargetValue()
     {
         TargetValue = _knob.value;
+
+        if (CurrentValue != TargetValue)
+        {
+            CurrentValue = Mathf.MoveTowards(CurrentValue, TargetValue, _speed * Time.deltaTime);
+            _needle.localEulerAngles = new Vector3(Mathf.Lerp(-90, 90, (CurrentValue - _minValue) / (_maxValue - _minValue)), 90, 0);
+        }
+
+        if (AreValuesRoughlyEqual())
+        {
+            _needle.GetComponentInChildren<SpriteRenderer>().color = Color.green;
+        }
+        else
+        {
+            _needle.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        }
     }
 
     

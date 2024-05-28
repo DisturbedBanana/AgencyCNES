@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class ValveManager : MonoBehaviour
+public class ValveManager : NetworkBehaviour
 {
     public static ValveManager instance;
 
     [SerializeField] private ValvePuzzlePart[] _valvePuzzleParts;
-    bool isSolved = true;
+    bool _isSolved = false;
     
+    public bool IsSolved { get { return _isSolved; } set { _isSolved = value; } }
 
     private void Awake()
     {
@@ -28,14 +30,12 @@ public class ValveManager : MonoBehaviour
         {
             if (!valvePuzzlePart.IsSolved)
             {
-                isSolved = false;
-                break;
+                _isSolved = false;
+                return;
             }
         }
 
-        if (isSolved)
-        {
-            Debug.Log("Valve puzzle solved!");
-        }
+        _isSolved = true;
+        Debug.LogError("Valve puzzle solved!");
     }
 }
