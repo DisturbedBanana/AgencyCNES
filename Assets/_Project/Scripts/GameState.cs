@@ -6,6 +6,7 @@ using Unity.Netcode.Components;
 using UnityEngine.InputSystem.LowLevel;
 using System;
 using UnityEngine.Video;
+using TMPro;
 
 public class GameState : NetworkBehaviour
 {
@@ -19,9 +20,11 @@ public class GameState : NetworkBehaviour
     [SerializeField] GameObject _videoObject;
 
     VideoPlayer _video;
-    ulong _firstClientToPushButtonID = 0;
+    ulong _firstClientToPushButtonID = 150;
     DateTime _firstButtonPressTime;
     Coroutine _toleranceCoroutine = null;
+
+    [SerializeField] TextMeshProUGUI _notifText;
 
     public enum GAMESTATES
     {
@@ -102,7 +105,7 @@ public class GameState : NetworkBehaviour
         if (CurrentGameState == GameState.GAMESTATES.LAUNCH)
         {
             _videoObject.SetActive(true);
-            _video.Play();
+            _videoObject.GetComponent<VideoPlayer>().Play();
         }
     }
 
@@ -140,12 +143,15 @@ public class GameState : NetworkBehaviour
                     {
                         item.GetComponent<VideoPlayerButton>().CanLaunch = true;
                     }
+                    CurrentGameState = GAMESTATES.LAUNCH;
                     //Change control video (launch video)
                     //When harness is attached and button pressed -> valves (coroutine for timer?)
                     break;
                 case GAMESTATES.VALVES:
-                    break;
                 case GAMESTATES.SIMONSAYS:
+                    CurrentGameState = GAMESTATES.SIMONSAYS;
+                    FindObjectOfType<Simon>().CanChooseColor = true;
+                    FindObjectOfType<Simon>().StartSimonClientRpc();
                     break;
                 case GAMESTATES.SEPARATION:
                     break;
@@ -160,6 +166,7 @@ public class GameState : NetworkBehaviour
             }
         }
         Debug.LogError(CurrentGameState);
+        _notifText.text += "ChangeState to: " + CurrentGameState;
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -197,19 +204,21 @@ public class GameState : NetworkBehaviour
             if (clientID == _firstClientToPushButtonID)
             {
                 Debug.LogError("Same Client called twice");
-                _firstClientToPushButtonID = 0;
+                _firstClientToPushButtonID = 150;
                 _firstButtonPressTime = DateTime.MinValue;
                 StopCoroutine(_toleranceCoroutine);
                 _toleranceCoroutine = null;
             }
             else
             {
+                Debug.LogError("First time: " + _firstButtonPressTime+ "\nSecond time: " + givenTime);
                 if (givenTime.Subtract(_firstButtonPressTime).TotalMilliseconds <= _launchButtonTimingTolerance)
                 {
-                    CurrentGameState = GAMESTATES.CALIBRATE;
+                    PlayVideo();
+                    ChangeState(GAMESTATES.SIMONSAYS);
                 }
                 
-                _firstClientToPushButtonID = 0;
+                _firstClientToPushButtonID = 150;
                 _firstButtonPressTime = DateTime.MinValue;
                 StopCoroutine(_toleranceCoroutine);
                 _toleranceCoroutine = null;
@@ -221,7 +230,7 @@ public class GameState : NetworkBehaviour
     private IEnumerator ButtonPushedCoroutine()
     {
         yield return new WaitForSeconds(_launchButtonTimingTolerance / 1000);
-        _firstClientToPushButtonID = 0;
+        _firstClientToPushButtonID = 150;
         _firstButtonPressTime = DateTime.MinValue;
         yield return null;
     }
