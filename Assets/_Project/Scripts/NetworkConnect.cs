@@ -25,9 +25,10 @@ public class NetworkConnect : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
 
-    [SerializeField] private Transform[] _playerPositions;
     [SerializeField] private GameObject _playerControllerFusee;
     [SerializeField] private GameObject _playerControllerMissionControl;
+
+    [SerializeField] private bool enableSpawnPosition;
 
 
     private async void Awake()
@@ -64,12 +65,14 @@ public class NetworkConnect : MonoBehaviour
 
     private void DisplayText(string text)
     {
-        //m_TextMeshProUGUI.text += $"{text}\n";
+        m_TextMeshProUGUI.text += $"{text}\n";
     }
 
     private void PlayerConnected(ulong id)
     {
         DisplayText("A player connected");
+        if (!enableSpawnPosition)
+            return;
         bool isHost = NetworkManager.Singleton.IsHost;
         _playerControllerMissionControl.SetActive(isHost ? false : true);
         _playerControllerFusee.SetActive(isHost ? true : false);
