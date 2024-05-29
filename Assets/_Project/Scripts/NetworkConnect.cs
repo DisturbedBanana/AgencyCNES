@@ -64,7 +64,7 @@ public class NetworkConnect : MonoBehaviour
 
     private void DisplayText(string text)
     {
-        m_TextMeshProUGUI.text += $"{text}\n";
+        //m_TextMeshProUGUI.text += $"{text}\n";
     }
 
     private void PlayerConnected(ulong id)
