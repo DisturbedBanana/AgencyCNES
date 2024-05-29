@@ -24,6 +24,8 @@ public class ValvePuzzlePart : NetworkBehaviour
     [SerializeField] XRKnob _knob;
 
 
+    NetworkVariable<float> _angle = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     public float CurrentValue
     {
         get { return _currentValue; }
@@ -47,11 +49,25 @@ public class ValvePuzzlePart : NetworkBehaviour
         RollRandomValues();
         _needle.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         CurrentValue = TargetValue;
+
     }
 
     private void Update()
     {
+        if (CurrentValue != _angle.Value)
+        {
+            CurrentValue = Mathf.MoveTowards(CurrentValue, _angle.Value, _speed * Time.deltaTime);
+            _needle.localEulerAngles = new Vector3(Mathf.Lerp(-90, 90, (CurrentValue - _minValue) / (_maxValue - _minValue)), 90, 0);
+        }
 
+        if (AreValuesRoughlyEqual())
+        {
+            _needle.GetComponentInChildren<SpriteRenderer>().color = Color.green;
+        }
+        else
+        {
+            _needle.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        }
     }
 
     private void RollRandomValues()
@@ -72,22 +88,8 @@ public class ValvePuzzlePart : NetworkBehaviour
 
     public void ChangeTargetValue()
     {
-        TargetValue = _knob.value;
+        _angle.Value = _knob.value;
 
-        if (CurrentValue != TargetValue)
-        {
-            CurrentValue = Mathf.MoveTowards(CurrentValue, TargetValue, _speed * Time.deltaTime);
-            _needle.localEulerAngles = new Vector3(Mathf.Lerp(-90, 90, (CurrentValue - _minValue) / (_maxValue - _minValue)), 90, 0);
-        }
-
-        if (AreValuesRoughlyEqual())
-        {
-            _needle.GetComponentInChildren<SpriteRenderer>().color = Color.green;
-        }
-        else
-        {
-            _needle.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        }
     }
 
     
