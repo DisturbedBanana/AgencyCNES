@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PasswordPuzzleManager : MonoBehaviour
 {
@@ -140,7 +141,8 @@ public class PasswordPuzzleManager : MonoBehaviour
 
     public void CallKeyboardActivated(GameObject anchor)
     {
-        anchor.SetActive(false);
+        //anchor.SetActive(false);
+        anchor.GetComponent<XRSocketInteractor>().enabled = false;
         _keyboardToActivate.SetActive(true);
         _keyboardToDeactivate.GetComponentInChildren<MeshRenderer>().enabled = false;
     }

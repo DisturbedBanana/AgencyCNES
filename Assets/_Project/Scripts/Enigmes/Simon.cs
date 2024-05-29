@@ -45,14 +45,8 @@ public class Simon : NetworkBehaviour
     [SerializeField, Range(0, 10)] private float _pauseAfterColors = 3f;
 
     //private bool _canChooseColor = true;
-    private NetworkVariable<bool> _canChooseColor = new NetworkVariable<bool>();
+    private NetworkVariable<bool> _canChooseColor = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public bool CanChooseColor { get => _canChooseColor.Value; set => _canChooseColor.Value = value; }
-
-
-    public override void OnNetworkSpawn()
-    {
-        _canChooseColor.Value = false;
-    }
 
 
     public void ButtonStartSimon()
