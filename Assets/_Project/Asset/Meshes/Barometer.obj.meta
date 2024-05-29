@@ -3,7 +3,17 @@ guid: 5b640e0010954f143acfda69b5fb408c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Barometre
+    second: {fileID: 2100000, guid: 8c2b6328254f99641b1afa9f6787f170, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 6e9efdd1821c00c49be00db8c8163c1c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
