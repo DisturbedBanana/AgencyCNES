@@ -57,7 +57,7 @@ public class ValvePuzzlePart : NetworkBehaviour
         if (CurrentValue != _angle.Value)
         {
             CurrentValue = Mathf.MoveTowards(CurrentValue, _angle.Value, _speed * Time.deltaTime);
-            _needle.localEulerAngles = new Vector3(Mathf.Lerp(-90, 90, (CurrentValue - _minValue) / (_maxValue - _minValue)), 90, 0);
+            _needle.localEulerAngles = new Vector3(Mathf.Lerp(-90, 90, (CurrentValue - _minValue) / (_maxValue - _minValue)), 0, 0);
         }
 
         if (AreValuesRoughlyEqual())
