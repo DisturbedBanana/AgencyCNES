@@ -11,23 +11,29 @@ using Unity.Netcode.Transports.UTP;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using System;
+using UnityEngine.Serialization;
+using Unity.XR.CoreUtils;
 
 public class NetworkConnect : MonoBehaviour
 {
     public int maxConnections = 20;
-    public UnityTransport transport;
+    [SerializeField] private UnityTransport _unityTransport;
 
-    public GameObject prefabObjects;
-
-    private Lobby _currentLobby = null;
+    private Lobby _currentLobby;
 
     private float _heartBeatTimer;
 
     [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
 
+    [SerializeField] private GameObject _playerControllerFusee;
+    [SerializeField] private GameObject _playerControllerMissionControl;
+
+    [SerializeField] private bool enableSpawnPosition;
+
 
     private async void Awake()
     {
+        _currentLobby = null;
         await UnityServices.InitializeAsync();
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
@@ -37,10 +43,12 @@ public class NetworkConnect : MonoBehaviour
         NetworkManager.Singleton.OnServerStopped += (bool isstopped) => DisplayText("Server Stopped");
         //NetworkManager.Singleton.OnClientStarted += () => DisplayText("Client Started");
         //NetworkManager.Singleton.OnClientStopped += (bool isstopped) => DisplayText("Client Stopped");
-        NetworkManager.Singleton.OnClientConnectedCallback += (ulong id) => DisplayText("A player connected");
+        NetworkManager.Singleton.OnClientConnectedCallback += PlayerConnected;
         NetworkManager.Singleton.OnClientDisconnectCallback += (ulong id) => DisplayText("A player disconnected");
 
         //JoinOrCreate();
+
+        _heartBeatTimer = 0f;
     }
 
     public void OnDisable()
@@ -51,7 +59,7 @@ public class NetworkConnect : MonoBehaviour
         NetworkManager.Singleton.OnServerStopped -= (bool isstopped) => DisplayText("Server Stopped");
         //NetworkManager.Singleton.OnClientStarted -= () => DisplayText("Client Started");
         //NetworkManager.Singleton.OnClientStopped -= (bool isstopped) => DisplayText("Client Stopped");
-        NetworkManager.Singleton.OnClientConnectedCallback -= (ulong id) => DisplayText("A player connected");
+        NetworkManager.Singleton.OnClientConnectedCallback -= PlayerConnected;
         NetworkManager.Singleton.OnClientDisconnectCallback -= (ulong id) => DisplayText("A player disconnected");
     }
 
@@ -60,7 +68,17 @@ public class NetworkConnect : MonoBehaviour
         m_TextMeshProUGUI.text += $"{text}\n";
     }
 
-    
+    private void PlayerConnected(ulong id)
+    {
+        DisplayText("A player connected");
+        if (!enableSpawnPosition)
+            return;
+        bool isHost = NetworkManager.Singleton.IsHost;
+        _playerControllerMissionControl.SetActive(isHost ? false : true);
+        _playerControllerFusee.SetActive(isHost ? true : false);
+    }
+
+
     public async void JoinOrCreate()
     {
         try
@@ -69,7 +87,7 @@ public class NetworkConnect : MonoBehaviour
             string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
 
             JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
-            transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
+            _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
             NetworkManager.Singleton.StartClient();
         }
@@ -84,7 +102,7 @@ public class NetworkConnect : MonoBehaviour
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
         string newJoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
         Debug.LogError("JoinCode: " + newJoinCode);
-        transport.SetHostRelayData(allocation.RelayServer.IpV4, (ushort) allocation.RelayServer.Port,allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
+        _unityTransport.SetHostRelayData(allocation.RelayServer.IpV4, (ushort) allocation.RelayServer.Port,allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
 
         CreateLobbyOptions lobbyOptions = new CreateLobbyOptions();
         lobbyOptions.IsPrivate = false;
@@ -104,7 +122,7 @@ public class NetworkConnect : MonoBehaviour
             string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
 
             JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
-            transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
+            _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
             NetworkManager.Singleton.StartClient();
         }
