@@ -19,6 +19,11 @@ public class PlayerController : CharacterControllerDriver
         _decreaseSpeed = 1;
     }
 
+    protected new void Start()
+    {
+
+    }
+
     private void FixedUpdate()
     {
         if (_rigidbody == null)
