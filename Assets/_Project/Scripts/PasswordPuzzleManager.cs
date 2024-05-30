@@ -141,8 +141,8 @@ public class PasswordPuzzleManager : MonoBehaviour
 
     public void CallKeyboardActivated(GameObject anchor)
     {
-        //anchor.SetActive(false);
-        anchor.GetComponent<XRSocketInteractor>().enabled = false;
+        anchor.SetActive(false);
+        //anchor.GetComponent<XRSocketInteractor>().enabled = false;
         _keyboardToActivate.SetActive(true);
         _keyboardToDeactivate.GetComponentInChildren<MeshRenderer>().enabled = false;
     }
