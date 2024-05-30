@@ -21588,6 +21588,36 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!65 &1941871525 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3826975673722144876, guid: e615466ef56ebed4e92c36d4adc2f310, type: 3}
+  m_PrefabInstance: {fileID: 1966645711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1941871526 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1217210747796446750, guid: e615466ef56ebed4e92c36d4adc2f310, type: 3}
+  m_PrefabInstance: {fileID: 1966645711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1941871527 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 7406764161231680784, guid: e615466ef56ebed4e92c36d4adc2f310, type: 3}
+  m_PrefabInstance: {fileID: 1966645711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1941871528 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 180833545003731010, guid: e615466ef56ebed4e92c36d4adc2f310, type: 3}
+  m_PrefabInstance: {fileID: 1966645711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1941871529 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 958237217300874436, guid: e615466ef56ebed4e92c36d4adc2f310, type: 3}
+  m_PrefabInstance: {fileID: 1966645711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1941871530 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 2527122396085239949, guid: e615466ef56ebed4e92c36d4adc2f310, type: 3}
+  m_PrefabInstance: {fileID: 1966645711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1966645711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21598,7 +21628,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 926743289685158416, guid: e615466ef56ebed4e92c36d4adc2f310, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1046739699300956184, guid: e615466ef56ebed4e92c36d4adc2f310, type: 3}
       propertyPath: m_Convex
@@ -21713,7 +21743,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 1941871530}
+  - {fileID: 1941871529}
+  - {fileID: 1941871528}
+  - {fileID: 1941871527}
+  - {fileID: 1941871526}
+  - {fileID: 1941871525}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
