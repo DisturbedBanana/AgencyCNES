@@ -17,7 +17,7 @@ public class GameState : NetworkBehaviour
 
     [Header("References")]
     [SerializeField] List<GameObject> _launchButtons = new List<GameObject>();
-    [SerializeField] GameObject _videoObject;
+    [SerializeField] VideoPlayer _videoObject;
 
     VideoPlayer _video;
     ulong _firstClientToPushButtonID = 150;
@@ -98,8 +98,8 @@ public class GameState : NetworkBehaviour
     {
         if (CurrentGameState == GAMESTATES.LAUNCH)
         {
-            _videoObject.SetActive(true);
-            _videoObject.GetComponent<VideoPlayer>().Play();
+            _videoObject.gameObject.SetActive(true);
+            _videoObject.Play();
         }
     }
 
