@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VrRigReferences : MonoBehaviour
+public class VRRigReferences : MonoBehaviour
 {
-    public static VrRigReferences Singleton;
-
+    public static VRRigReferences Singleton;
     public Transform root;
     public Transform head;
     public Transform leftHand;
