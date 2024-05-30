@@ -25,6 +25,7 @@ public class NetworkConnect : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
 
+    [Header("Player spawn")]
     [SerializeField] private GameObject _playerControllerFusee;
     [SerializeField] private GameObject _playerControllerMissionControl;
 
@@ -99,19 +100,27 @@ public class NetworkConnect : MonoBehaviour
 
     public async void Create()
     {
-        Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
-        string newJoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-        Debug.LogError("JoinCode: " + newJoinCode);
-        _unityTransport.SetHostRelayData(allocation.RelayServer.IpV4, (ushort) allocation.RelayServer.Port,allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
+        try
+        {
+            Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
+            string newJoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+            _unityTransport.SetHostRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
 
-        CreateLobbyOptions lobbyOptions = new CreateLobbyOptions();
-        lobbyOptions.IsPrivate = false;
-        lobbyOptions.Data = new Dictionary<string, DataObject>();
-        DataObject dataObject = new DataObject(DataObject.VisibilityOptions.Public, newJoinCode);
-        lobbyOptions.Data.Add("JOIN_CODE", dataObject);
+            CreateLobbyOptions lobbyOptions = new CreateLobbyOptions();
+            lobbyOptions.IsPrivate = false;
+            lobbyOptions.Data = new Dictionary<string, DataObject>();
+            DataObject dataObject = new DataObject(DataObject.VisibilityOptions.Public, newJoinCode);
+            lobbyOptions.Data.Add("JOIN_CODE", dataObject);
 
-        _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Lobby Name", maxConnections, lobbyOptions);
-        NetworkManager.Singleton.StartHost();
+            _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Lobby Name", maxConnections, lobbyOptions);
+            NetworkManager.Singleton.StartHost();
+            Debug.LogError("Lobby created");
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+
+        }
     }
 
     public async void Join()
