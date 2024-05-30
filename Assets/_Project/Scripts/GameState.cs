@@ -117,7 +117,9 @@ public class GameState : NetworkBehaviour
                     FindObjectOfType<Launch>().CanAttach = true;
                     break;
                 case GAMESTATES.VALVES:
-                case GAMESTATES.SIMONSAYS:
+                    
+                    break;
+            case GAMESTATES.SIMONSAYS:
                     FindObjectOfType<Simon>().CanChooseColor = true;
                     FindObjectOfType<Simon>().StartSimonClientRpc();
                     break;
