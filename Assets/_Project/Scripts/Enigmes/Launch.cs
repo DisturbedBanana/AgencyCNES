@@ -9,21 +9,22 @@ public class Launch : NetworkBehaviour
 {
     [SerializeField] private bool _canAttach;
     public bool CanAttach { get => _canAttach; set => _canAttach = value; }
-    [SerializeField] private XRLockSocketInteractor _socketInteractor;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private Transform _attach;
+    [SerializeField, Range(0, 30)] private float _timeBeforeDetach;
 
-    [SerializeField] NetworkVariable<bool> _playerIsLock = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> _playerIsLock = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     private void Reset()
     {
-        _canAttach = true;
+        _canAttach = false;
+        _timeBeforeDetach = 5f;
     }
 
     public void AttachPlayer()
     {
         if (!CanAttach)
             return;
-        Debug.Log("PlayerAttach");
+
         _playerController.GetComponent<Collider>().enabled = false;
         _playerController.LockMovement(true);
         _playerController.transform.position = _attach.position;
@@ -33,10 +34,14 @@ public class Launch : NetworkBehaviour
     }
     public void DetachPlayer()
     {
-        Debug.Log("PlayerDetach");
         _playerController.GetComponent<Collider>().enabled = true;
         _playerController.LockMovement(false);
-        _playerController.GetComponent<Rigidbody>().AddForce(Vector3.forward, ForceMode.Impulse);
+    }
+
+    private IEnumerator WaitBeforeDetach()
+    {
+        yield return new WaitForSeconds(_timeBeforeDetach);
+        DetachPlayer();
     }
 
     public void PlayerPushedButton()
@@ -53,9 +58,8 @@ public class Launch : NetworkBehaviour
         {
             if (_playerIsLock.Value)
             {
-                //Launch
-                GameState.instance.ChangeState(GameState.GAMESTATES.SIMONSAYS);
-                DetachPlayer();
+                GameState.instance.ChangeState(GameState.GAMESTATES.VALVES);
+                StartCoroutine(WaitBeforeDetach());
                 _canAttach = false;
             }
         }

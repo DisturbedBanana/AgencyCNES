@@ -38,7 +38,6 @@ public class Simon : NetworkBehaviour
     [SerializeField] private List<SimonLevel> _levelList = new List<SimonLevel>();
     [FormerlySerializedAs("_currentLevel")] private int _currentLevel = 0;
     private List<SimonColor> _colorsStackEnteredByPlayer = new List<SimonColor>();
-    //private NetworkVariable<List<SimonColor>> _colorsStackEnteredByPlayer = new NetworkVariable<List<SimonColor>>();
 
     private Coroutine _colorRoutine = null;
     [SerializeField, Range(0, 5)] private float _holdColorTime = 2f;
@@ -48,14 +47,6 @@ public class Simon : NetworkBehaviour
     private NetworkVariable<bool> _canChooseColor = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public bool CanChooseColor { get => _canChooseColor.Value; set => _canChooseColor.Value = value; }
 
-
-    public void ButtonStartSimon()
-    {
-        if (NetworkManager.Singleton.ServerIsHost)
-        {
-            StartSimonClientRpc();
-        }
-    }
 
     public void PushButton(string color)
     {
