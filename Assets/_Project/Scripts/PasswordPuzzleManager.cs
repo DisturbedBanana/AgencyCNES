@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PasswordPuzzleManager : MonoBehaviour
 {
@@ -50,7 +51,6 @@ public class PasswordPuzzleManager : MonoBehaviour
     [SerializeField] Transform _computerSpritesParent;
     [SerializeField] Sprite _spriteBarre;
     
-    [SerializeField] GameState _gameState;
 
     private void Start()
     {
@@ -86,7 +86,7 @@ public class PasswordPuzzleManager : MonoBehaviour
                 }
             }
             //Correct Password
-            _gameState.ChangeState(GameState.GAMESTATES.CALIBRATE);
+            GameState.instance.ChangeState(GameState.GAMESTATES.LAUNCH);
             _currentPassword.Clear();
             StartCoroutine(FlashingLightCoroutine(true));
         }
@@ -141,7 +141,8 @@ public class PasswordPuzzleManager : MonoBehaviour
 
     public void CallKeyboardActivated(GameObject anchor)
     {
-        anchor.SetActive(false);
+        //anchor.SetActive(false);
+        anchor.GetComponent<XRSocketInteractor>().enabled = false;
         _keyboardToActivate.SetActive(true);
         _keyboardToDeactivate.GetComponentInChildren<MeshRenderer>().enabled = false;
     }

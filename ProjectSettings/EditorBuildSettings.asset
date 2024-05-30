@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Project/Scenes/Nico_GameplayScene.unity
+    guid: ca872a3297040214cb1c76af6ed2c070
+  - enabled: 0
     path: Assets/_Project/Scenes/GameplayScene.unity
     guid: 64547a6eb895ec24d96d28f5348ba65f
   - enabled: 0
@@ -14,13 +17,17 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Project/Scenes/Multi Test Ports.unity
     guid: e54647f2caf4ea84b842ca10438a62fd
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/Enzo.unity
     guid: eabdfe9d033de0c4f8f0f067d6454a6c
+  - enabled: 0
+    path: Assets/_Project/Scenes/Gym_MissionControl.unity
+    guid: 9cd52a24515b1fb4ea711f03bc645676
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9bec1ce6a03ccba4b9a8215241b32e63, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a49cadc1a815591479693b955ccf08c1, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 30cb7a94b6b70a7468c934ce70cfa583, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a4c68ca72a83449f938d669337cb305, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: a9a6963505ddf7f4d886008c6dc86122, type: 2}

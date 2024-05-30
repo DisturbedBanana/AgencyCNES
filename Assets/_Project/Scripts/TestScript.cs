@@ -41,7 +41,6 @@ public struct ObjectMultiSync : INetworkSerializable
 public class TestScript : NetworkBehaviour
 {
     public GameObject prefabObject;
-    public Transform RightController;
     private GameObject _currentSelectedObject = null;
     public bool SpawnCubeAtStart = false;
     
