@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.LowLevel;
 using System;
 using UnityEngine.Video;
 using TMPro;
+using NaughtyAttributes;
 
 public class GameState : NetworkBehaviour
 {
@@ -17,7 +18,7 @@ public class GameState : NetworkBehaviour
 
     [Header("References")]
     [SerializeField] List<GameObject> _launchButtons = new List<GameObject>();
-    [SerializeField] GameObject _videoObject;
+    [SerializeField] VideoPlayer _videoObject;
 
     VideoPlayer _video;
     ulong _firstClientToPushButtonID = 150;
@@ -50,6 +51,37 @@ public class GameState : NetworkBehaviour
     #endregion
 
 
+    [Button]
+    public void NextStateForce()
+    {
+        switch (CurrentGameState)
+        {
+            case GAMESTATES.PASSWORD:
+                ApplyStateChanges(GAMESTATES.LAUNCH);
+                break;
+            case GAMESTATES.CALIBRATE:
+                break;
+            case GAMESTATES.LAUNCH:
+                ApplyStateChanges(GAMESTATES.VALVES);
+                break;
+            case GAMESTATES.VALVES:
+                ApplyStateChanges(GAMESTATES.SIMONSAYS);
+                break;
+            case GAMESTATES.SIMONSAYS:
+                break;
+            case GAMESTATES.SEPARATION:
+                break;
+            case GAMESTATES.FUSES:
+                break;
+            case GAMESTATES.FREQUENCY:
+                break;
+            case GAMESTATES.DODGE:
+                break;
+            default:
+                break;
+        }
+    }
+
     private void Awake()
     {
         
@@ -77,7 +109,7 @@ public class GameState : NetworkBehaviour
         {
             AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>(),state);
         }
-        
+
         ApplyStateChanges(state);
     }
 
@@ -98,15 +130,17 @@ public class GameState : NetworkBehaviour
     {
         if (CurrentGameState == GAMESTATES.LAUNCH)
         {
-            _videoObject.SetActive(true);
-            _videoObject.GetComponent<VideoPlayer>().Play();
+            _videoObject.gameObject.SetActive(true);
+            _videoObject.Play();
         }
     }
 
     public void ApplyStateChanges(GAMESTATES state)
     {
         CurrentGameState = state;
-            switch (state)
+        Debug.Log(CurrentGameState);
+        
+        switch (state)
             {
                 case GAMESTATES.PASSWORD:
                     break;

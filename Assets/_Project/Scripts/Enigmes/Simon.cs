@@ -5,11 +5,11 @@ using System.Linq;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Serialization;
 
 public class Simon : NetworkBehaviour
 {
-
     #region Structs
 
     [Serializable]
@@ -19,10 +19,10 @@ public class Simon : NetworkBehaviour
     }
 
     [Serializable]
-    struct SimonLight
+    struct SimonSpotLight
     {
-        public SimonColor Color;
-        public Light Light;
+        public SimonColor SimonColor;
+        public Color Color;
     }
     #endregion
 
@@ -34,28 +34,21 @@ public class Simon : NetworkBehaviour
         YELLOW
     }
 
-    [SerializeField] private List<SimonLight> _colorsLights = new List<SimonLight>(4);
     [SerializeField] private List<SimonLevel> _levelList = new List<SimonLevel>();
-    [FormerlySerializedAs("_currentLevel")] private int _currentLevel = 0;
+
+    [SerializeField] private List<SimonSpotLight> _colorsSpotLights = new List<SimonSpotLight>(4);
+    [SerializeField] private List<Light> _spotLights = new List<Light>();
+
+    private int _currentLevel = 0;
     private List<SimonColor> _colorsStackEnteredByPlayer = new List<SimonColor>();
-    //private NetworkVariable<List<SimonColor>> _colorsStackEnteredByPlayer = new NetworkVariable<List<SimonColor>>();
 
     private Coroutine _colorRoutine = null;
     [SerializeField, Range(0, 5)] private float _holdColorTime = 2f;
     [SerializeField, Range(0, 10)] private float _pauseAfterColors = 3f;
 
-    //private bool _canChooseColor = true;
     private NetworkVariable<bool> _canChooseColor = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public bool CanChooseColor { get => _canChooseColor.Value; set => _canChooseColor.Value = value; }
 
-
-    public void ButtonStartSimon()
-    {
-        if (NetworkManager.Singleton.ServerIsHost)
-        {
-            StartSimonClientRpc();
-        }
-    }
 
     public void PushButton(string color)
     {
@@ -133,6 +126,12 @@ public class Simon : NetworkBehaviour
         _colorsStackEnteredByPlayer.Clear();
     }
 
+    public void StartSimon()
+    {
+        _canChooseColor.Value = true;
+        StartSimonClientRpc();
+    }
+
     [ClientRpc]
     public void StartSimonClientRpc()
     {
@@ -170,10 +169,9 @@ public class Simon : NetworkBehaviour
         {
             for (int i = 0; i < _levelList[_currentLevel].ColorOrder.Count; i++)
             {
-                Light lightToEnable = ChooseLight(_levelList[_currentLevel].ColorOrder[i]);
-                lightToEnable.enabled = true;
+                ChangeSpotLightsColor(_levelList[_currentLevel].ColorOrder[i]);
                 yield return wait1;
-                lightToEnable.enabled = false;
+                DisableAllLightsClientRpc();
             }
             yield return wait2;
         }
@@ -183,11 +181,19 @@ public class Simon : NetworkBehaviour
     [ClientRpc]
     private void DisableAllLightsClientRpc()
     {
-        foreach (var item in _colorsLights)
+        foreach (var item in _spotLights)
         {
-            item.Light.enabled = false;
+            item.color = Color.white;
         }
     }
 
-    private Light ChooseLight(SimonColor simon) => _colorsLights.First(color => color.Color.Equals(simon)).Light;
+    private Color ChooseColor(SimonColor simon) => _colorsSpotLights.First(spotLight => spotLight.SimonColor.Equals(simon)).Color;
+
+    private void ChangeSpotLightsColor(SimonColor simonColor)
+    {
+        for (int i = 0; i < _spotLights.Count; i++)
+        {
+            _spotLights[i].color = ChooseColor(simonColor);
+        }
+    }
 }
