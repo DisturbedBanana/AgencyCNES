@@ -38,6 +38,7 @@ public class GameState : NetworkBehaviour
         FUSES, //Control player activates fuses according to ship player's  instructions
         FREQUENCY, //Both players tune frequency to match other's instructions (easier for ship player)
         DODGE, //Control player controls ship to dodge asteroids, but is guided by ship player (30s)
+        WHACKAMOLE, //whack-a-mole game
     }
 
     #region PROPERTIES
@@ -149,7 +150,11 @@ public class GameState : NetworkBehaviour
                     break;
                 case GAMESTATES.LAUNCH:
                     FindObjectOfType<Launch>().CanAttach = true;
-                    break;
+                    foreach (GameObject item in _launchButtons)
+                    {
+                        item.GetComponent<VideoPlayerButton>().CanLaunch = true;
+                    }
+                break;
                 case GAMESTATES.VALVES:
                     
                     break;
@@ -158,13 +163,11 @@ public class GameState : NetworkBehaviour
                     FindObjectOfType<Simon>().StartSimonClientRpc();
                     break;
                 case GAMESTATES.SEPARATION:
-                foreach (GameObject item in _launchButtons)
-                {
-                    item.GetComponent<VideoPlayerButton>().CanLaunch = true;
-                }
                 //Change control video (launch video)
                 //When harness is attached and button pressed -> valves (coroutine for timer?)
                 break;
+                case GAMESTATES.WHACKAMOLE:
+                    break;
                 case GAMESTATES.FUSES:
                     break;
                 case GAMESTATES.FREQUENCY:

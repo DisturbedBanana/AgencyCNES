@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ public class Simon : NetworkBehaviour
     [SerializeField] private List<Light> _spotLights = new List<Light>();
 
     private int _currentLevel = 0;
+
     private List<SimonColor> _colorsStackEnteredByPlayer = new List<SimonColor>();
 
     private Coroutine _colorRoutine = null;

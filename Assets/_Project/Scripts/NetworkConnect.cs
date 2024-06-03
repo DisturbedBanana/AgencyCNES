@@ -13,6 +13,7 @@ using Unity.Services.Lobbies.Models;
 using System;
 using UnityEngine.Serialization;
 using Unity.XR.CoreUtils;
+using NaughtyAttributes;
 
 public class NetworkConnect : MonoBehaviour
 {
@@ -98,6 +99,7 @@ public class NetworkConnect : MonoBehaviour
         }
     }
 
+    [Button]
     public async void Create()
     {
         try
@@ -123,6 +125,7 @@ public class NetworkConnect : MonoBehaviour
         }
     }
 
+    [Button]
     public async void Join()
     {
         try

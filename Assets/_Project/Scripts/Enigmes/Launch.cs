@@ -20,11 +20,17 @@ public class Launch : NetworkBehaviour
         _timeBeforeDetach = 5f;
     }
 
+    private void Awake()
+    {
+        _canAttach = true;
+    }
+
     public void AttachPlayer()
     {
         if (!CanAttach)
             return;
 
+        Debug.Log("AttachPlayer");
         _playerController.GetComponent<Collider>().enabled = false;
         _playerController.LockMovement(true);
         _playerController.transform.position = _attach.position;
@@ -54,19 +60,13 @@ public class Launch : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void CheckLaunchServerRpc()
     {
-        try
-        {
             if (_playerIsLock.Value)
             {
                 GameState.instance.ChangeState(GameState.GAMESTATES.VALVES);
-                StartCoroutine(WaitBeforeDetach());
+                DetachPlayer();
                 _canAttach = false;
             }
-        }
-        catch(Exception e)
-        {
-            Debug.Log(e);
-        }
+        
         
     }
 
