@@ -996,6 +996,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cigarette_Interact
       objectReference: {fileID: 0}
+    - target: {fileID: 6274290212856146158, guid: b60c9e3ecaa95b2468a01577a1ae6205, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274290212856146158, guid: b60c9e3ecaa95b2468a01577a1ae6205, type: 3}
+      propertyPath: SizeBySpeedModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274290212856146158, guid: b60c9e3ecaa95b2468a01577a1ae6205, type: 3}
+      propertyPath: SizeBySpeedModule.range.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274290212856146158, guid: b60c9e3ecaa95b2468a01577a1ae6205, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274290212856146158, guid: b60c9e3ecaa95b2468a01577a1ae6205, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274290212856146158, guid: b60c9e3ecaa95b2468a01577a1ae6205, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: -0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 8233444346064319197, guid: b60c9e3ecaa95b2468a01577a1ae6205, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.4448

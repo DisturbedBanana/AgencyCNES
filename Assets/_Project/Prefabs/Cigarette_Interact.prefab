@@ -228,7 +228,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.8310023, y: 0.088503525, z: 0.09639569}
-  m_Center: {x: 0.03686731, y: -0.14469916, z: 0.028550083}
+  m_Center: {x: -0.29, y: 0, z: 0}
 --- !u!54 &4401096318327813383
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -665,7 +665,7 @@ ParticleSystem:
   m_GameObject: {fileID: 7566451314940912949}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -739,7 +739,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -792,7 +792,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1234,7 +1234,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -0.01
       minScalar: 0
       maxCurve:
         serializedVersion: 2
