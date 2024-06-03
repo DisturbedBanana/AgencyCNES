@@ -14,6 +14,7 @@ using System;
 using UnityEngine.Serialization;
 using Unity.XR.CoreUtils;
 using NaughtyAttributes;
+using System.Linq;
 
 public class NetworkConnect : MonoBehaviour
 {
@@ -26,12 +27,10 @@ public class NetworkConnect : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
 
-    [Header("Player spawn")]
-    [SerializeField] private GameObject _playerControllerFusee;
-    [SerializeField] private GameObject _playerControllerMissionControl;
-
+    [Header("Player Spawn")]
+    [SerializeField] private PlayerController _playerController;
     [SerializeField] private bool enableSpawnPosition;
-
+    [SerializeField] private List<PlayerSpawn> spawns;
 
     private async void Awake()
     {
@@ -75,11 +74,17 @@ public class NetworkConnect : MonoBehaviour
         DisplayText("A player connected");
         if (!enableSpawnPosition)
             return;
-        bool isHost = NetworkManager.Singleton.IsHost;
-        _playerControllerMissionControl.SetActive(isHost ? false : true);
-        _playerControllerFusee.SetActive(isHost ? true : false);
+
+        ChooseAMovementTypeToSpawnPlayer();
     }
 
+    private void ChooseAMovementTypeToSpawnPlayer()
+    {
+        bool isHost = NetworkManager.Singleton.IsHost;
+        PlayerSpawn playerSpawn = isHost ? spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.LAUNCHER)
+            : spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.MISSIONCONTROL);
+        _playerController.SpawnPlayer(playerSpawn);
+    }
 
     public async void JoinOrCreate()
     {
