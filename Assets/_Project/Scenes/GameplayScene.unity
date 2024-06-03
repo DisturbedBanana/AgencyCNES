@@ -19286,6 +19286,10 @@ PrefabInstance:
       value: 914520227
       objectReference: {fileID: 0}
     - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
       propertyPath: _spotLights.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -19317,6 +19321,94 @@ PrefabInstance:
       propertyPath: _spotLights.Array.data[6]
       value: 
       objectReference: {fileID: 1941568111}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _ambiantSpotLights.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[0].Color.b
+      value: 0.04547882
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[0].Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[0].Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[1].Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[1].Color.g
+      value: 0.001978302
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[1].Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[2].Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[2].Color.g
+      value: 0.71283245
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[3].Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[3].Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[3].Color.r
+      value: 0.935132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _ambiantSpotLights.Array.data[0]
+      value: 
+      objectReference: {fileID: 927152793}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _ambiantSpotLights.Array.data[1]
+      value: 
+      objectReference: {fileID: 70839072}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _ambiantSpotLights.Array.data[2]
+      value: 
+      objectReference: {fileID: 31887109}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _ambiantSpotLights.Array.data[3]
+      value: 
+      objectReference: {fileID: 1941568111}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _ambiantSpotLights.Array.data[4]
+      value: 
+      objectReference: {fileID: 1941568111}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _ambiantSpotLights.Array.data[5]
+      value: 
+      objectReference: {fileID: 1941568111}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _ambiantSpotLights.Array.data[6]
+      value: 
+      objectReference: {fileID: 1941568111}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[1].SimonColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[2].SimonColor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[3].SimonColor
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2763249440821711748, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3360871277
@@ -19444,6 +19536,10 @@ PrefabInstance:
     - target: {fileID: 3713085094343147852, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2889794795
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010800127726371273, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4810018567173622433, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
       propertyPath: m_LocalPosition.y

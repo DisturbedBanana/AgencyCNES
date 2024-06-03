@@ -159,8 +159,7 @@ public class GameState : NetworkBehaviour
                     
                     break;
             case GAMESTATES.SIMONSAYS:
-                    FindObjectOfType<Simon>().CanChooseColor = true;
-                    FindObjectOfType<Simon>().StartSimonClientRpc();
+                    FindObjectOfType<Simon>().StartState();
                     break;
                 case GAMESTATES.SEPARATION:
                 //Change control video (launch video)
