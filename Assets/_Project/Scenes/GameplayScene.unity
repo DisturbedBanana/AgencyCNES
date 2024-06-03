@@ -10959,7 +10959,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -11409,6 +11409,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 318700645665987269, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 1950855258122998597, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: xrOriginS
       value: 
@@ -11452,6 +11456,14 @@ PrefabInstance:
     - target: {fileID: 3532352816533165734, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068035848253987355, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
+      propertyPath: m_CameraYOffset
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068035848253987355, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
+      propertyPath: m_RequestedTrackingOriginMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4525309387044108579, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: m_AnchorMax.y
@@ -11508,6 +11520,10 @@ PrefabInstance:
     - target: {fileID: 4609468349531265945, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609468349531265946, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5233559803258819256, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: m_SizeDelta.x
@@ -21922,6 +21938,10 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1284730205621012207, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 1527252360550265536, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -22957,7 +22977,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -23926,7 +23946,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -24867,6 +24887,10 @@ PrefabInstance:
     - target: {fileID: 5329191558618092227, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Name
       value: Mug
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409016904981808814, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
