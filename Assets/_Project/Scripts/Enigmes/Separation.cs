@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,36 +19,41 @@ public class Separation : NetworkBehaviour
 
     public void LeverActivated(int playerNumber)
     {
-        NetworkVariable<bool> level = playerNumber == 0 ? _leverFuseeIsActivated : _leverMissionControlIsActivated;
-        level.Value = true;
+        ChangeLeverValueServerRpc(playerNumber, true);
+    }
+    public void LeverDeactivated(int playerNumber)
+    {
+        ChangeLeverValueServerRpc(playerNumber, false);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ChangeLeverValueServerRpc(int playerNumber, bool value)
+    {
+        GetPlayerLever(playerNumber).Value = value;
 
         if (GameState.instance.CurrentGameState == GameState.GAMESTATES.SEPARATION)
         {
             CheckSeparationLeverServerRpc(NetworkManager.Singleton.LocalClientId);
-            Debug.LogError("Clicked button" + NetworkManager.Singleton.LocalClientId);
         }
-
     }
 
-    public void LeverDeactivated(int playerNumber)
-    {
-        _leverFusee.value = false;
-
-        NetworkVariable<bool> level = playerNumber == 0 ? _leverFuseeIsActivated : _leverMissionControlIsActivated;
-        level.Value = false;
-    }
-
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc]
     public void CheckSeparationLeverServerRpc(ulong clientID)
     {
-        if (!_leverFuseeIsActivated.Value || !_leverMissionControlIsActivated.Value)
+        if (!AreBothLeverActivated())
             return;
 
         GameState.instance.ChangeState(GameState.GAMESTATES.WHACKAMOLE);
+        Debug.Log("Separation completed !");
 
         // TODO: ouvrir la porte de l'ATV
         OnSeparation.Invoke();
 
     }
+
+    private bool AreBothLeverActivated() => _leverFuseeIsActivated.Value && _leverMissionControlIsActivated.Value;
+    private NetworkVariable<bool> GetPlayerLever(int playerNumber) => playerNumber == 0 ? _leverFuseeIsActivated : _leverMissionControlIsActivated;
+
+
 
 }
