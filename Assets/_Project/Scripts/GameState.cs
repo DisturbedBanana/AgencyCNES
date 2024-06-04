@@ -69,8 +69,10 @@ public class GameState : NetworkBehaviour
                 ApplyStateChanges(GAMESTATES.SIMONSAYS);
                 break;
             case GAMESTATES.SIMONSAYS:
+                ApplyStateChanges(GAMESTATES.SIMONSAYS);
                 break;
             case GAMESTATES.SEPARATION:
+                ApplyStateChanges(GAMESTATES.SEPARATION);
                 break;
             case GAMESTATES.FUSES:
                 break;
@@ -81,6 +83,10 @@ public class GameState : NetworkBehaviour
             default:
                 break;
         }
+    }
+    public void GoToState(GAMESTATES state)
+    {
+        ApplyStateChanges(state);
     }
 
     private void Awake()
