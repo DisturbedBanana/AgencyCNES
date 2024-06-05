@@ -90,6 +90,9 @@ public class Frequency : NetworkBehaviour
 
     private void CheckTargetValues()
     {
+        if (GameState.instance.CurrentGameState != GameState.GAMESTATES.FREQUENCY)
+            return;
+
         if(Mathf.Abs(_targetFrequency - _frequency.Value) <= _targetDifference && Mathf.Abs(_targetAmplitude - _amplitude.Value) <= _targetDifference)
         {
             _myLineRenderer.startColor = _myLineRenderer.endColor = Color.green;
@@ -117,11 +120,12 @@ public class Frequency : NetworkBehaviour
 
     }
 
+    #region Amplitude
     public void ChangeAmplitude(float value)
     {
         if (value > _amplitude.Value && (_amplitude.Value + GetSensitivity()) < _maxAmplitude)
         {
-            ChangeAmplitudeServerRpc(_amplitude.Value + GetSensitivity()); 
+            ChangeAmplitudeServerRpc(_amplitude.Value + GetSensitivity());
         }
         else if (value < _amplitude.Value && (_amplitude.Value - GetSensitivity()) > _minAmplitude)
         {
@@ -135,7 +139,9 @@ public class Frequency : NetworkBehaviour
     {
         _amplitude.Value = amplitude;
     }
+    #endregion
 
+    #region Frequency
     public void ChangeFrequency(float value)
     {
         if (value > _frequency.Value && (_frequency.Value + GetSensitivity()) < _maxFrequency)
@@ -154,7 +160,7 @@ public class Frequency : NetworkBehaviour
     {
         _frequency.Value = frequency;
     }
-
+    #endregion
 
     #region Joystick
     public void ChangeAmplitudeJoystick(float value)
@@ -191,6 +197,5 @@ public class Frequency : NetworkBehaviour
         _sensitivity -= _sensitivitySteps;
     }
     #endregion
-
 
 }
