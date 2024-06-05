@@ -6,9 +6,13 @@ public class FuseSocket : MonoBehaviour
 {
     [SerializeField] int _ID;
 
-    public void AttachedFuse()
+    public void AttachFuse()
     {
-        Debug.LogError("Attached Fuse" + _ID);
-        //FuseManager.Instance.ActivateFuseLightRpc(_ID);
+        FuseManager.Instance.ActivateFuseLightRpc(_ID);
+    }
+
+    public void DetachFuse()
+    {
+        FuseManager.Instance.DeactivateFuseLightRpc(_ID);
     }
 }

@@ -82,7 +82,7 @@ public class NetworkConnect : MonoBehaviour
     {
         bool isHost = NetworkManager.Singleton.IsHost;
         PlayerSpawn playerSpawn = isHost ? spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.LAUNCHER)
-            : spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.MISSIONCONTROL);
+            : spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.LAUNCHER);
         _playerController.SpawnPlayer(playerSpawn);
     }
 

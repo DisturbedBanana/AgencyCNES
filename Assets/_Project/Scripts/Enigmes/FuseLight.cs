@@ -4,23 +4,71 @@ using UnityEngine;
 
 public class FuseLight : MonoBehaviour
 {
-    [SerializeField] Color _lightColor;
-    private Color _oldColor;
+    [SerializeField] AvailableColors _colorToChangeTo;
+
+    private Material _targetMaterial;
+    private Material _oldMaterial;
     MeshRenderer _mr;
+
+    public enum AvailableColors
+    {
+        Green,
+        Yellow,
+        Red
+    }
+
+    //private void OnValidate()
+    //{
+    //    _mr = GetComponent<MeshRenderer>();
+
+    //    switch (_colorToChangeTo)
+    //    {
+    //        case AvailableColors.Green:
+    //            _mr.material.color = Color.green;
+    //            break;
+    //        case AvailableColors.Yellow:
+    //            _mr.material.color = Color.yellow;
+    //            break;
+    //        case AvailableColors.Red:
+    //            _mr.material.color = Color.red;
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
 
     private void Awake()
     {
         _mr = GetComponent<MeshRenderer>();
+        _mr.material.color = Color.white;
+    }
+
+    private void Start()
+    {
+        switch (_colorToChangeTo)
+        {
+            case AvailableColors.Green:
+                _targetMaterial = FuseManager.Instance.GreenMat;
+                break;
+            case AvailableColors.Yellow:
+                _targetMaterial = FuseManager.Instance.YellowMat;
+                break;
+            case AvailableColors.Red:
+                _targetMaterial = FuseManager.Instance.RedMat;
+                break;
+            default:
+                break;
+        }
     }
 
     public void ActivateLight()
     {
-        _oldColor = _mr.material.color;
-        _mr.material.color = _lightColor;
+        _oldMaterial = _mr.material;
+        _mr.material = _targetMaterial;
     }
 
     public void DeactivateLight()
     {
-        _mr.material.color = _oldColor;
+        _mr.material = _oldMaterial;
     }
 }
