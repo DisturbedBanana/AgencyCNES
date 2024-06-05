@@ -7997,7 +7997,6 @@ MonoBehaviour:
   _launchButtons:
   - {fileID: 0}
   - {fileID: 0}
-  _videoObject: {fileID: 4943959}
   _notifText: {fileID: 873585124}
 --- !u!114 &714619398
 MonoBehaviour:
@@ -13527,6 +13526,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
+      propertyPath: _launchVideo
+      value: 
+      objectReference: {fileID: 4943959}
     - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: _playerController
       value: 

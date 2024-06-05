@@ -14,10 +14,8 @@ public class Separation : NetworkBehaviour
     [SerializeField] private XRLever _leverMissionControl;
     private NetworkVariable<bool> _leverMissionControlIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-
-    [Header("Separation")]
-    public UnityEvent OnSeparation;
-
+    [Header("Events")]
+    public UnityEvent OnComplete;
     public void LeverActivated(int playerNumber)
     {
         ChangeLeverValueServerRpc(playerNumber, true);
@@ -45,10 +43,8 @@ public class Separation : NetworkBehaviour
             return;
 
         GameState.instance.ChangeState(GameState.GAMESTATES.WHACKAMOLE);
-        Debug.Log("Separation completed !");
 
-        // TODO: ouvrir la porte de l'ATV
-        OnSeparation.Invoke();
+        OnComplete?.Invoke();// TODO: ouvrir la porte de l'ATV
 
     }
 

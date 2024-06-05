@@ -8150,7 +8150,6 @@ MonoBehaviour:
   _launchButtons:
   - {fileID: 0}
   - {fileID: 0}
-  _videoObject: {fileID: 4943959}
   _notifText: {fileID: 873585124}
 --- !u!114 &714619398
 MonoBehaviour:
@@ -8200,7 +8199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fcdee9378d94b41884cc02ed529bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateToGo: 7
+  stateToGo: 2
 --- !u!1 &817519278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2397425259952709508, guid: fa5ef3b56cfeb4f4ba855cdf2610a578, type: 3}
@@ -10521,10 +10520,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 318700645665987269, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 1950855258122998597, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: xrOriginS
       value: 
@@ -10568,14 +10563,6 @@ PrefabInstance:
     - target: {fileID: 3532352816533165734, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4068035848253987355, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
-      propertyPath: m_CameraYOffset
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4068035848253987355, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
-      propertyPath: m_RequestedTrackingOriginMode
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4525309387044108579, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: m_AnchorMax.y
@@ -13670,12 +13657,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
+      propertyPath: _launchVideo
+      value: 
+      objectReference: {fileID: 4943959}
+    - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
+      propertyPath: _timeCountdown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: _playerController
       value: 
       objectReference: {fileID: 1070170747}
     - target: {fileID: 4680410589594748202, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3920012186
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680410589594748202, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 128439214
       objectReference: {fileID: 0}
     - target: {fileID: 6204732140543960747, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13744,6 +13743,10 @@ PrefabInstance:
     - target: {fileID: 6691897478263204803, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 4135829975
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691897478263204803, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 128439214
       objectReference: {fileID: 0}
     - target: {fileID: 7642788551147008918, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: m_Name
@@ -22317,6 +22320,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrequenciesCheck
       objectReference: {fileID: 0}
+    - target: {fileID: 2794355654134988016, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794355654134988016, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794355654134988016, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4280977154615851804, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -22361,13 +22376,25 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 1733992051
       objectReference: {fileID: 0}
+    - target: {fileID: 6573806381638908774, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 2368454515
+      objectReference: {fileID: 0}
     - target: {fileID: 8273284761348017144, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2036102735
       objectReference: {fileID: 0}
+    - target: {fileID: 8273284761348017144, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 2368454515
+      objectReference: {fileID: 0}
     - target: {fileID: 9222090172101201566, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1074398802
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222090172101201566, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 2368454515
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
