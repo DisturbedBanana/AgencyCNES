@@ -6,6 +6,7 @@ using System.Linq;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Serialization;
 
@@ -55,6 +56,9 @@ public class Simon : NetworkBehaviour
 
     private NetworkVariable<bool> _canChooseColor = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public bool CanChooseColor { get => _canChooseColor.Value; set => _canChooseColor.Value = value; }
+
+    [Header("Events")]
+    public UnityEvent OnComplete;
 
     private void Reset()
     {
@@ -118,8 +122,11 @@ public class Simon : NetworkBehaviour
         } 
         else if (isOrderCorrect && _currentLevel >= (_levelList.Count - 1))
         {
+            _canChooseColor.Value = false;
+            GameState.instance.ChangeState(GameState.GAMESTATES.FUSES);
             EndSimonClientRpc();
-            
+            OnComplete?.Invoke();
+
         }
         else if (!isOrderCorrect)
         {
@@ -186,12 +193,7 @@ public class Simon : NetworkBehaviour
     {
         StopSimonRoutine();
         Debug.Log("It was the last level");
-        if (NetworkManager.Singleton.IsHost)
-        {
-            _canChooseColor.Value = false;
-            GameState.instance.ChangeState(GameState.GAMESTATES.FUSES);
-            ChangeAmbiantLights(changeToDimLights: false);
-        }
+        ChangeAmbiantLights(changeToDimLights: false);
     }
 
     private IEnumerator DisplayColorRoutine(int level)

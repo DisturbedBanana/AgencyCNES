@@ -10,8 +10,10 @@ public class Frequency : NetworkBehaviour
     [Header("Line renderer")]
     [SerializeField] private LineRenderer _myLineRenderer;
     [SerializeField, Range(0.001f, 0.02f)] private float _lineWidth;
-
     [SerializeField] private int _pointsMultiplicator;
+    [SerializeField] private Vector2 _xLimits;
+    [SerializeField] private float _movementSpeed;
+    [SerializeField, Range(0, 2 * Mathf.PI)] private float _radians;
 
     [Header("Sensitivity")]
     [SerializeField] private float _sensitivity;
@@ -21,21 +23,15 @@ public class Frequency : NetworkBehaviour
 
     [Header("Amplitude")]
     [SerializeField] private NetworkVariable<float> _amplitude = new NetworkVariable<float>(0.5f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    //[SerializeField] private float _amplitude;
     [SerializeField] private float _maxAmplitude;
     [SerializeField] private float _minAmplitude;
 
     [Header("Frequence")]
     [SerializeField] private NetworkVariable<float> _frequency = new NetworkVariable<float>(0.5f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    //[SerializeField] private float _frequency;
     [SerializeField] private float _maxFrequency;
     [SerializeField] private float _minFrequency;
 
-    [SerializeField] private Vector2 _xLimits;
-    [SerializeField] private float _movementSpeed;
-    [SerializeField, Range(0, 2 * Mathf.PI)] private float _radians;
-
-    [Header("Objectif Validation")]
+    [Header("Target Objectif")]
     [SerializeField] private float _targetDifference;
     [SerializeField] private float _targetFrequency;
     [SerializeField] private float _targetAmplitude;
