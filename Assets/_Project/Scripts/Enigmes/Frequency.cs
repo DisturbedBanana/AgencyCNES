@@ -95,29 +95,32 @@ public class Frequency : NetworkBehaviour
 
         if(Mathf.Abs(_targetFrequency - _frequency.Value) <= _targetDifference && Mathf.Abs(_targetAmplitude - _amplitude.Value) <= _targetDifference)
         {
-            _myLineRenderer.startColor = _myLineRenderer.endColor = Color.green;
-
             if (_isTargetFrequency.Value != true)
-                ChangeNetworkVariableValueServerRpc(true);
+                ChangeTargetValueServerRpc(true);
         }
         else
         {
-            _myLineRenderer.startColor = _myLineRenderer.endColor = Color.white;
-
             if (_isTargetFrequency.Value != false)
-                ChangeNetworkVariableValueServerRpc(false);
+                ChangeTargetValueServerRpc(false);
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void ChangeNetworkVariableValueServerRpc(bool value)
+    private void ChangeTargetValueServerRpc(bool value)
     {
         _isTargetFrequency.Value = value;
-        if(value && transform.parent.TryGetComponent(out FrequenciesCheck fcheck))
+        ChangeLineColorClientRpc(value);
+        if (value && transform.parent.TryGetComponent(out FrequenciesCheck fcheck))
         {
             fcheck.CheckFrequenciesServerRpc();
         } 
 
+    }
+
+    [ClientRpc]
+    private void ChangeLineColorClientRpc(bool isTarget)
+    {
+        _myLineRenderer.startColor = _myLineRenderer.endColor = isTarget ? Color.green : Color.white;
     }
 
     #region Amplitude
