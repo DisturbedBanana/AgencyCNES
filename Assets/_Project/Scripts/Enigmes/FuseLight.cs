@@ -17,6 +17,7 @@ public class FuseLight : MonoBehaviour
         Red
     }
 
+    /*Material Leak DO NOT UNCOMMENT*/
     //private void OnValidate()
     //{
     //    _mr = GetComponent<MeshRenderer>();
@@ -36,6 +37,11 @@ public class FuseLight : MonoBehaviour
     //            break;
     //    }
     //}
+
+    public AvailableColors FuseLightColor
+    {
+        get { return _colorToChangeTo; }
+    }
 
     private void Awake()
     {

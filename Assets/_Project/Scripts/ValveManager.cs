@@ -36,7 +36,7 @@ public class ValveManager : NetworkBehaviour
         }
 
         _isSolved = true;
-        GameState.instance.ChangeState(GameState.GAMESTATES.LAUNCH);
+        GameState.Instance.ChangeState(GameState.GAMESTATES.LAUNCH);
         Debug.LogError("Valve puzzle solved!");
     }
 }

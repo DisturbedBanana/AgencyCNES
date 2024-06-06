@@ -62,7 +62,7 @@ public class Launch : NetworkBehaviour
     {
             if (_playerIsLock.Value)
             {
-                GameState.instance.ChangeState(GameState.GAMESTATES.VALVES);
+                GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
                 DetachPlayer();
                 _canAttach = false;
             }

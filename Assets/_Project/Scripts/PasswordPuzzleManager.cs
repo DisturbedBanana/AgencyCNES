@@ -86,7 +86,7 @@ public class PasswordPuzzleManager : MonoBehaviour
                 }
             }
             //Correct Password
-            GameState.instance.ChangeState(GameState.GAMESTATES.LAUNCH);
+            GameState.Instance.ChangeState(GameState.GAMESTATES.LAUNCH);
             _currentPassword.Clear();
             StartCoroutine(FlashingLightCoroutine(true));
         }

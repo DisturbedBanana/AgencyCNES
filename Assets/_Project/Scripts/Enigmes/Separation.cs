@@ -24,7 +24,7 @@ public class Separation : NetworkBehaviour
         NetworkVariable<bool> level = playerNumber == 0 ? _leverFuseeIsActivated : _leverMissionControlIsActivated;
         level.Value = true;
 
-        if (GameState.instance.CurrentGameState == GameState.GAMESTATES.SEPARATION)
+        if (GameState.Instance.CurrentGameState == GameState.GAMESTATES.SEPARATION)
         {
             CheckSeparationLeverServerRpc(NetworkManager.Singleton.LocalClientId);
             Debug.LogError("Clicked button" + NetworkManager.Singleton.LocalClientId);
@@ -46,7 +46,7 @@ public class Separation : NetworkBehaviour
         if (!_leverFuseeIsActivated.Value || !_leverMissionControlIsActivated.Value)
             return;
 
-        GameState.instance.ChangeState(GameState.GAMESTATES.WHACKAMOLE);
+        GameState.Instance.ChangeState(GameState.GAMESTATES.WHACKAMOLE);
 
         // TODO: ouvrir la porte de l'ATV
         OnSeparation.Invoke();

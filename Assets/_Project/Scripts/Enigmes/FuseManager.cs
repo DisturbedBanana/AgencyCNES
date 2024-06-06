@@ -17,8 +17,9 @@ public class FuseManager : NetworkBehaviour
     [Header("Other Parameters")]
     [SerializeField] List<FuseLight> _fuseLightList = new List<FuseLight>();
     [SerializeField] List<GameObject> _lightsOnFuseBox = new List<GameObject>();
-    private int _greenLightAmountRequired = 4;
-    private int _currentGreenLightAmount;
+    private int _currentGreenFusesActivated;
+    private int _currentConnectedFuses;
+    private bool _areFusesSolved = false;
 
     #region PROPERTIES
     public Material GreenMat
@@ -48,27 +49,54 @@ public class FuseManager : NetworkBehaviour
         }
     }
 
-    //[Rpc(SendTo.Everyone)]
+    [Rpc(SendTo.Everyone)]
     public void ActivateFuseLightRpc(int ID)
     {
         _fuseLightList[ID].ActivateLight();
-        _currentGreenLightAmount++;
+        Debug.LogError("Activated light number: " + ID);
+        _currentConnectedFuses++;
         UpdateFuseBoxLights(true);
+
+        if (_fuseLightList[ID].FuseLightColor != FuseLight.AvailableColors.Green)
+            return;
+
+        _currentGreenFusesActivated++;
     }
 
-    //[Rpc(SendTo.Everyone)]
+    [Rpc(SendTo.Everyone)]
     public void DeactivateFuseLightRpc(int ID)
     {
         _fuseLightList[ID].DeactivateLight();
         UpdateFuseBoxLights(false);
-        _currentGreenLightAmount--;
+
+        if (_fuseLightList[ID].FuseLightColor != FuseLight.AvailableColors.Green)
+            return;
+
+        if(_currentGreenFusesActivated > 0)
+        {
+            _currentConnectedFuses--;
+            _currentGreenFusesActivated--;
+        }
     }
 
-    public void UpdateFuseBoxLights(bool shouldAddLight)
+    private void UpdateFuseBoxLights(bool shouldAddLight)
     {
         if (shouldAddLight)
-            _lightsOnFuseBox[_currentGreenLightAmount - 1].SetActive(true);
+            _lightsOnFuseBox[_currentConnectedFuses - 1].SetActive(true);
         else
-            _lightsOnFuseBox[_currentGreenLightAmount - 1].SetActive(false);
+            _lightsOnFuseBox[_currentConnectedFuses - 1].SetActive(false);
+    }
+
+    public void ValidatePuzzle()
+    {
+        if (!AreFusesSolved())
+            return;
+
+        GameState.Instance.ChangeState(GameState.GAMESTATES.SEPARATION);
+    }
+
+    private bool AreFusesSolved()
+    {
+        return _currentGreenFusesActivated >= 4;
     }
 }

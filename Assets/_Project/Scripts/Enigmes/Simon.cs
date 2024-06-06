@@ -189,7 +189,7 @@ public class Simon : NetworkBehaviour
         if (NetworkManager.Singleton.IsHost)
         {
             _canChooseColor.Value = false;
-            GameState.instance.ChangeState(GameState.GAMESTATES.FUSES);
+            GameState.Instance.ChangeState(GameState.GAMESTATES.FUSES);
             ChangeAmbiantLights(changeToDimLights: false);
         }
     }

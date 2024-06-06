@@ -11,7 +11,7 @@ using NaughtyAttributes;
 
 public class GameState : NetworkBehaviour
 {
-    public static GameState instance;
+    public static GameState Instance;
 
     [Header("Variables")]
     [SerializeField] int _launchButtonTimingTolerance;
@@ -52,6 +52,11 @@ public class GameState : NetworkBehaviour
     #endregion
 
 
+    public void StateForce(GAMESTATES state) 
+    {
+        CurrentGameState = state;
+    }
+
     [Button]
     public void NextStateForce()
     {
@@ -86,9 +91,9 @@ public class GameState : NetworkBehaviour
     private void Awake()
     {
         
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
