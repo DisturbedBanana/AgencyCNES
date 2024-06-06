@@ -11,16 +11,14 @@ using NaughtyAttributes;
 
 public class GameState : NetworkBehaviour
 {
-    public static GameState instance;
+    public static GameState Instance;
 
     [Header("Variables")]
     [SerializeField] int _launchButtonTimingTolerance;
 
     [Header("References")]
     [SerializeField] List<GameObject> _launchButtons = new List<GameObject>();
-    [SerializeField] VideoPlayer _videoObject;
 
-    VideoPlayer _video;
     ulong _firstClientToPushButtonID = 150;
     DateTime _firstButtonPressTime;
     Coroutine _toleranceCoroutine = null;
@@ -38,6 +36,7 @@ public class GameState : NetworkBehaviour
         FUSES, //Control player activates fuses according to ship player's  instructions
         FREQUENCY, //Both players tune frequency to match other's instructions (easier for ship player)
         DODGE, //Control player controls ship to dodge asteroids, but is guided by ship player (30s)
+        WHACKAMOLE, //whack-a-mole game
     }
 
     #region PROPERTIES
@@ -50,6 +49,11 @@ public class GameState : NetworkBehaviour
     }
     #endregion
 
+
+    public void StateForce(GAMESTATES state) 
+    {
+        CurrentGameState = state;
+    }
 
     [Button]
     public void NextStateForce()
@@ -68,8 +72,10 @@ public class GameState : NetworkBehaviour
                 ApplyStateChanges(GAMESTATES.SIMONSAYS);
                 break;
             case GAMESTATES.SIMONSAYS:
+                ApplyStateChanges(GAMESTATES.SIMONSAYS);
                 break;
             case GAMESTATES.SEPARATION:
+                ApplyStateChanges(GAMESTATES.SEPARATION);
                 break;
             case GAMESTATES.FUSES:
                 break;
@@ -81,13 +87,17 @@ public class GameState : NetworkBehaviour
                 break;
         }
     }
+    public void GoToState(GAMESTATES state)
+    {
+        ApplyStateChanges(state);
+    }
 
     private void Awake()
     {
         
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -126,15 +136,6 @@ public class GameState : NetworkBehaviour
     }
 
 
-    private void PlayVideo()
-    {
-        if (CurrentGameState == GAMESTATES.LAUNCH)
-        {
-            _videoObject.gameObject.SetActive(true);
-            _videoObject.Play();
-        }
-    }
-
     public void ApplyStateChanges(GAMESTATES state)
     {
         CurrentGameState = state;
@@ -149,22 +150,23 @@ public class GameState : NetworkBehaviour
                     break;
                 case GAMESTATES.LAUNCH:
                     FindObjectOfType<Launch>().CanAttach = true;
-                    break;
+                    foreach (GameObject item in _launchButtons)
+                    {
+                        item.GetComponent<VideoPlayerButton>().CanLaunch = true;
+                    }
+                break;
                 case GAMESTATES.VALVES:
                     
                     break;
             case GAMESTATES.SIMONSAYS:
-                    FindObjectOfType<Simon>().CanChooseColor = true;
-                    FindObjectOfType<Simon>().StartSimonClientRpc();
+                    FindObjectOfType<Simon>().StartState();
                     break;
                 case GAMESTATES.SEPARATION:
-                foreach (GameObject item in _launchButtons)
-                {
-                    item.GetComponent<VideoPlayerButton>().CanLaunch = true;
-                }
                 //Change control video (launch video)
                 //When harness is attached and button pressed -> valves (coroutine for timer?)
                 break;
+                case GAMESTATES.WHACKAMOLE:
+                    break;
                 case GAMESTATES.FUSES:
                     break;
                 case GAMESTATES.FREQUENCY:
@@ -224,7 +226,6 @@ public class GameState : NetworkBehaviour
                 Debug.LogError("First time: " + _firstButtonPressTime+ "\nSecond time: " + givenTime);
                 if (givenTime.Subtract(_firstButtonPressTime).TotalMilliseconds <= _launchButtonTimingTolerance)
                 {
-                    PlayVideo();
                     ChangeState(GAMESTATES.SIMONSAYS);
                 }
                 

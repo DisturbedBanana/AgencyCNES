@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +6,7 @@ using System.Linq;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Serialization;
 
@@ -36,10 +38,16 @@ public class Simon : NetworkBehaviour
 
     [SerializeField] private List<SimonLevel> _levelList = new List<SimonLevel>();
 
-    [SerializeField] private List<SimonSpotLight> _colorsSpotLights = new List<SimonSpotLight>(4);
-    [SerializeField] private List<Light> _spotLights = new List<Light>();
+    [SerializeField] private List<SimonSpotLight> _colors = new List<SimonSpotLight>(4);
+    [SerializeField] private List<Light> _colorSpotLights = new List<Light>();
+
+    [Header("Ambiant light")]
+    [SerializeField] private List<Light> _ambiantSpotLights = new List<Light>();
+    private float _ambiantSpotLightIntensity;
+    [SerializeField] private float _dimAmbiantIntensity;
 
     private int _currentLevel = 0;
+
     private List<SimonColor> _colorsStackEnteredByPlayer = new List<SimonColor>();
 
     private Coroutine _colorRoutine = null;
@@ -49,6 +57,18 @@ public class Simon : NetworkBehaviour
     private NetworkVariable<bool> _canChooseColor = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public bool CanChooseColor { get => _canChooseColor.Value; set => _canChooseColor.Value = value; }
 
+    [Header("Events")]
+    public UnityEvent OnComplete;
+
+    private void Reset()
+    {
+        _dimAmbiantIntensity = 0.5f;
+    }
+
+    private void Start()
+    {
+        _ambiantSpotLightIntensity = _ambiantSpotLights.Count == 0 ? 1f : _ambiantSpotLights[0].intensity;
+    }
 
     public void PushButton(string color)
     {
@@ -102,8 +122,11 @@ public class Simon : NetworkBehaviour
         } 
         else if (isOrderCorrect && _currentLevel >= (_levelList.Count - 1))
         {
+            _canChooseColor.Value = false;
+            GameState.instance.ChangeState(GameState.GAMESTATES.FUSES);
             EndSimonClientRpc();
-            
+            OnComplete?.Invoke();
+
         }
         else if (!isOrderCorrect)
         {
@@ -129,6 +152,7 @@ public class Simon : NetworkBehaviour
     public void StartSimon()
     {
         _canChooseColor.Value = true;
+        ChangeAmbiantLights(true);
         StartSimonClientRpc();
     }
 
@@ -138,6 +162,21 @@ public class Simon : NetworkBehaviour
         StopSimonRoutine();
         if(_colorRoutine == null)
             _colorRoutine = StartCoroutine(DisplayColorRoutine(_currentLevel));
+    }
+
+    public void StartState()
+    {
+        CanChooseColor = true;
+        ChangeAmbiantLights(true);
+        StartSimonClientRpc();
+    }
+
+    private void ChangeAmbiantLights(bool changeToDimLights)
+    {
+        foreach (var spotLight in _ambiantSpotLights)
+        {
+            spotLight.intensity = changeToDimLights ? _dimAmbiantIntensity : _ambiantSpotLightIntensity;
+        }
     }
 
     private void StopSimonRoutine()
@@ -154,11 +193,7 @@ public class Simon : NetworkBehaviour
     {
         StopSimonRoutine();
         Debug.Log("It was the last level");
-        if (NetworkManager.Singleton.IsHost)
-        {
-            _canChooseColor.Value = false;
-            GameState.instance.ChangeState(GameState.GAMESTATES.FUSES);
-        }
+        ChangeAmbiantLights(changeToDimLights: false);
     }
 
     private IEnumerator DisplayColorRoutine(int level)
@@ -181,19 +216,19 @@ public class Simon : NetworkBehaviour
     [ClientRpc]
     private void DisableAllLightsClientRpc()
     {
-        foreach (var item in _spotLights)
+        foreach (var item in _colorSpotLights)
         {
-            item.color = Color.white;
+            item.color = new Color(0,0,0,0);
         }
     }
 
-    private Color ChooseColor(SimonColor simon) => _colorsSpotLights.First(spotLight => spotLight.SimonColor.Equals(simon)).Color;
+    private Color ChooseColor(SimonColor simon) => _colors.First(spotLight => spotLight.SimonColor.Equals(simon)).Color;
 
     private void ChangeSpotLightsColor(SimonColor simonColor)
     {
-        for (int i = 0; i < _spotLights.Count; i++)
+        for (int i = 0; i < _colorSpotLights.Count; i++)
         {
-            _spotLights[i].color = ChooseColor(simonColor);
+            _colorSpotLights[i].color = ChooseColor(simonColor);
         }
     }
 }

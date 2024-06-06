@@ -113,6 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxConnections: 5
-  transport: {fileID: 2575503940955467999}
-  prefabObjects: {fileID: 1120171927657390916, guid: 9659511a6051c3b4e862c4e4374c9357, type: 3}
+  _unityTransport: {fileID: 2575503940955467999}
   m_TextMeshProUGUI: {fileID: 0}
+  _playerController: {fileID: 0}
+  enableSpawnPosition: 0
+  spawns: []

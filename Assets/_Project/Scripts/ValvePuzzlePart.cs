@@ -60,7 +60,7 @@ public class ValvePuzzlePart : NetworkBehaviour
             _needle.localEulerAngles = new Vector3(Mathf.Lerp(-90, 90, (CurrentValue - _minValue) / (_maxValue - _minValue)), 0, 0);
         }
 
-        if (GameState.instance.CurrentGameState != GameState.GAMESTATES.VALVES)
+        if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.VALVES)
             return;
            
         if (AreValuesRoughlyEqual())
@@ -98,7 +98,7 @@ public class ValvePuzzlePart : NetworkBehaviour
     
     public void LetGoOfHandle() 
     {
-        if (GameState.instance.CurrentGameState != GameState.GAMESTATES.VALVES)
+        if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.VALVES)
             return;
         
         if (AreValuesRoughlyEqual())
