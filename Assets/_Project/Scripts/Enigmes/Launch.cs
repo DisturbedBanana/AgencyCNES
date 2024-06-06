@@ -53,7 +53,7 @@ public class Launch : NetworkBehaviour
 
     public void PlayerPushedButton()
     {
-        if (GameState.instance.CurrentGameState != GameState.GAMESTATES.LAUNCH)
+        if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.LAUNCH)
             return;
 
         CountdownClientRpc();
@@ -65,7 +65,7 @@ public class Launch : NetworkBehaviour
         if (_playerIsLock.Value)
         {
             PlayVideoClientRpc();
-            GameState.instance.ChangeState(GameState.GAMESTATES.VALVES);
+            GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
             DetachPlayer();
             OnComplete?.Invoke();
         }

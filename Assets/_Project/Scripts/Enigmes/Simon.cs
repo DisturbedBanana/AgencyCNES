@@ -123,7 +123,7 @@ public class Simon : NetworkBehaviour
         else if (isOrderCorrect && _currentLevel >= (_levelList.Count - 1))
         {
             _canChooseColor.Value = false;
-            GameState.instance.ChangeState(GameState.GAMESTATES.FUSES);
+            GameState.Instance.ChangeState(GameState.GAMESTATES.FUSES);
             EndSimonClientRpc();
             OnComplete?.Invoke();
 

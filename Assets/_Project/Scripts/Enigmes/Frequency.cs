@@ -86,7 +86,7 @@ public class Frequency : NetworkBehaviour
 
     private void CheckTargetValues()
     {
-        if (GameState.instance.CurrentGameState != GameState.GAMESTATES.FREQUENCY)
+        if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.FREQUENCY)
             return;
 
         if(Mathf.Abs(_targetFrequency - _frequency.Value) <= _targetDifference && Mathf.Abs(_targetAmplitude - _amplitude.Value) <= _targetDifference)
