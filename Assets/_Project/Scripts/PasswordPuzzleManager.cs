@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -50,7 +51,9 @@ public class PasswordPuzzleManager : MonoBehaviour
     [SerializeField] List<PasswordSprites> passwordsSprites = new List<PasswordSprites>(12);
     [SerializeField] Transform _computerSpritesParent;
     [SerializeField] Sprite _spriteBarre;
-    
+
+    [Header("Events")]
+    public UnityEvent OnComplete;
 
     private void Start()
     {
@@ -89,6 +92,7 @@ public class PasswordPuzzleManager : MonoBehaviour
             GameState.Instance.ChangeState(GameState.GAMESTATES.LAUNCH);
             _currentPassword.Clear();
             StartCoroutine(FlashingLightCoroutine(true));
+            OnComplete?.Invoke();
         }
     }
 

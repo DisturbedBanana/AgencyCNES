@@ -18,9 +18,7 @@ public class GameState : NetworkBehaviour
 
     [Header("References")]
     [SerializeField] List<GameObject> _launchButtons = new List<GameObject>();
-    [SerializeField] VideoPlayer _videoObject;
 
-    VideoPlayer _video;
     ulong _firstClientToPushButtonID = 150;
     DateTime _firstButtonPressTime;
     Coroutine _toleranceCoroutine = null;
@@ -74,8 +72,10 @@ public class GameState : NetworkBehaviour
                 ApplyStateChanges(GAMESTATES.SIMONSAYS);
                 break;
             case GAMESTATES.SIMONSAYS:
+                ApplyStateChanges(GAMESTATES.SIMONSAYS);
                 break;
             case GAMESTATES.SEPARATION:
+                ApplyStateChanges(GAMESTATES.SEPARATION);
                 break;
             case GAMESTATES.FUSES:
                 break;
@@ -86,6 +86,10 @@ public class GameState : NetworkBehaviour
             default:
                 break;
         }
+    }
+    public void GoToState(GAMESTATES state)
+    {
+        ApplyStateChanges(state);
     }
 
     private void Awake()
@@ -131,15 +135,6 @@ public class GameState : NetworkBehaviour
         Debug.LogError("Enum"+ state.ToUpper() + " value found in " + typeof(GAMESTATES));
     }
 
-
-    private void PlayVideo()
-    {
-        if (CurrentGameState == GAMESTATES.LAUNCH)
-        {
-            _videoObject.gameObject.SetActive(true);
-            _videoObject.Play();
-        }
-    }
 
     public void ApplyStateChanges(GAMESTATES state)
     {
@@ -231,7 +226,6 @@ public class GameState : NetworkBehaviour
                 Debug.LogError("First time: " + _firstButtonPressTime+ "\nSecond time: " + givenTime);
                 if (givenTime.Subtract(_firstButtonPressTime).TotalMilliseconds <= _launchButtonTimingTolerance)
                 {
-                    PlayVideo();
                     ChangeState(GAMESTATES.SIMONSAYS);
                 }
                 
