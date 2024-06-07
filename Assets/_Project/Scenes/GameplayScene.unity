@@ -8097,9 +8097,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _launchButtonTimingTolerance: 10000
-  _launchButtons:
-  - {fileID: 0}
-  - {fileID: 0}
   _notifText: {fileID: 873585124}
 --- !u!114 &714619398
 MonoBehaviour:
@@ -13637,6 +13634,10 @@ PrefabInstance:
       propertyPath: _launchVideo
       value: 
       objectReference: {fileID: 4943959}
+    - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
+      propertyPath: _timeCountdown
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: _playerController
       value: 

@@ -16,12 +16,6 @@ public class GameState : NetworkBehaviour
     [Header("Variables")]
     [SerializeField] int _launchButtonTimingTolerance;
 
-    [Header("References")]
-    [SerializeField] List<GameObject> _launchButtons = new List<GameObject>();
-
-    ulong _firstClientToPushButtonID = 150;
-    DateTime _firstButtonPressTime;
-    Coroutine _toleranceCoroutine = null;
 
     [SerializeField] TextMeshProUGUI _notifText;
 
@@ -78,8 +72,10 @@ public class GameState : NetworkBehaviour
                 ApplyStateChanges(GAMESTATES.SEPARATION);
                 break;
             case GAMESTATES.FUSES:
+                ApplyStateChanges(GAMESTATES.FUSES);
                 break;
             case GAMESTATES.FREQUENCY:
+                ApplyStateChanges(GAMESTATES.FREQUENCY);
                 break;
             case GAMESTATES.DODGE:
                 break;
@@ -103,10 +99,6 @@ public class GameState : NetworkBehaviour
         {
             Destroy(gameObject);
         }
-
-        //_video = _videoObject.GetComponent<VideoPlayer>();
-        //_video.Stop();
-        //_videoObject.SetActive(false);
     }
 
     public void ChangeState(GAMESTATES state)
@@ -139,8 +131,8 @@ public class GameState : NetworkBehaviour
     public void ApplyStateChanges(GAMESTATES state)
     {
         CurrentGameState = state;
-        Debug.Log(CurrentGameState);
-        
+        Debug.LogError(CurrentGameState);
+
         switch (state)
             {
                 case GAMESTATES.PASSWORD:
@@ -150,10 +142,6 @@ public class GameState : NetworkBehaviour
                     break;
                 case GAMESTATES.LAUNCH:
                     FindObjectOfType<Launch>().CanAttach = true;
-                    foreach (GameObject item in _launchButtons)
-                    {
-                        item.GetComponent<VideoPlayerButton>().CanLaunch = true;
-                    }
                 break;
                 case GAMESTATES.VALVES:
                     
@@ -177,7 +165,6 @@ public class GameState : NetworkBehaviour
                     break;
             }
         
-        Debug.LogError(CurrentGameState);
         _notifText.text += "ChangeState to: " + CurrentGameState;
     }
 
@@ -199,50 +186,4 @@ public class GameState : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.Everyone)]
-    public void CheckLaunchButtonTimingRpc(DateTime givenTime, ulong clientID)
-    {
-        
-        if (DateTime.Equals(_firstButtonPressTime, DateTime.MinValue))
-        {
-            if (_toleranceCoroutine == null)
-                _toleranceCoroutine = StartCoroutine(ButtonPushedCoroutine());
-
-            _firstClientToPushButtonID = clientID;
-            _firstButtonPressTime = givenTime;
-        }
-        else
-        {
-            if (clientID == _firstClientToPushButtonID)
-            {
-                Debug.LogError("Same Client called twice");
-                _firstClientToPushButtonID = 150;
-                _firstButtonPressTime = DateTime.MinValue;
-                StopCoroutine(_toleranceCoroutine);
-                _toleranceCoroutine = null;
-            }
-            else
-            {
-                Debug.LogError("First time: " + _firstButtonPressTime+ "\nSecond time: " + givenTime);
-                if (givenTime.Subtract(_firstButtonPressTime).TotalMilliseconds <= _launchButtonTimingTolerance)
-                {
-                    ChangeState(GAMESTATES.SIMONSAYS);
-                }
-                
-                _firstClientToPushButtonID = 150;
-                _firstButtonPressTime = DateTime.MinValue;
-                StopCoroutine(_toleranceCoroutine);
-                _toleranceCoroutine = null;
-            }
-
-        }
-    }
-
-    private IEnumerator ButtonPushedCoroutine()
-    {
-        yield return new WaitForSeconds(_launchButtonTimingTolerance / 1000);
-        _firstClientToPushButtonID = 150;
-        _firstButtonPressTime = DateTime.MinValue;
-        yield return null;
-    }
 }
