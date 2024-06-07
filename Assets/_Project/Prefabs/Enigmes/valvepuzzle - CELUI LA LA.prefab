@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 612514400
+  GlobalObjectIdHash: 4229267821
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -488,15 +488,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020751628588466614}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16866285, y: 0.16866285, z: 0.68669707, w: 0.68669707}
-  m_LocalPosition: {x: 0.08, y: 14.58, z: 34.65}
+  m_LocalRotation: {x: -0.6830358, y: -0.6830358, z: 0.18292665, w: 0.18292665}
+  m_LocalPosition: {x: 13.1058, y: 22.783, z: 56.7284}
   m_LocalScale: {x: 1.5657, y: 1.5657, z: 1.5657}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8644384719566073305}
   - {fileID: 2101823090757171658}
   m_Father: {fileID: 8620138557108745431}
-  m_LocalEulerAnglesHint: {x: 0, y: 27.599, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: -150.014, z: 90}
 --- !u!114 &811784022312390379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1609896305
+  GlobalObjectIdHash: 2963841848
   InScenePlacedSourceGlobalObjectIdHash: 1227921640
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1947585364
+  GlobalObjectIdHash: 4236598243
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1743,7 +1743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 641700949
+  GlobalObjectIdHash: 2388317862
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2113,15 +2113,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5712249169758450382}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.039432164, y: -0.039432164, z: 0.70600647, w: 0.70600647}
-  m_LocalPosition: {x: -22.52, y: 14.51, z: 28.4}
+  m_LocalRotation: {x: -0.11684653, y: -0.11684653, z: 0.6973858, w: 0.6973858}
+  m_LocalPosition: {x: -19.757, y: 15.974, z: 54.927}
   m_LocalScale: {x: 1.5657, y: 1.5657, z: 1.5657}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4495556193939146409}
   - {fileID: 5338234057969382013}
   m_Father: {fileID: 1306407658493488202}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: -19.023, z: 90}
 --- !u!114 &5976730968956828468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2436,7 +2436,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2358970610526868735}
   - component: {fileID: 65546193763880795}
-  - component: {fileID: 4480819930170394474}
   - component: {fileID: 3930942105840931993}
   m_Layer: 0
   m_Name: ValvesPuzzlePart3
@@ -2454,7 +2453,7 @@ Transform:
   m_GameObject: {fileID: 6042112095646332177}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.29231003, z: -0, w: 0.9563237}
-  m_LocalPosition: {x: 2.788, y: -0.34599996, z: -1.6659999}
+  m_LocalPosition: {x: 2.726, y: -1.134, z: 1.5910006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2480,41 +2479,10 @@ MonoBehaviour:
   _currentValue: 0.043
   _targetValue: 50
   _correctValue: -55.273315
-  _speed: 15
+  _speed: 50
   _isSolved: 0
   _needle: {fileID: 5034858914073313296}
   _knob: {fileID: 6032921672369147211}
---- !u!114 &4480819930170394474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6042112095646332177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnreliableDeltas: 0
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  Interpolate: 1
-  SlerpPosition: 0
 --- !u!114 &3930942105840931993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2527,7 +2495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 732497271
+  GlobalObjectIdHash: 2778859144
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2582,7 +2550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2198426972
+  GlobalObjectIdHash: 427372692
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2804,7 +2772,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1306407658493488202}
   - component: {fileID: 5034693723909544071}
-  - component: {fileID: 5686831393095967342}
   - component: {fileID: 2950357730332107584}
   m_Layer: 0
   m_Name: ValvesPuzzlePart2
@@ -2822,7 +2789,7 @@ Transform:
   m_GameObject: {fileID: 7418667443584522930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.29231003, z: -0, w: 0.9563237}
-  m_LocalPosition: {x: 2.788, y: -0.34599996, z: -1.666}
+  m_LocalPosition: {x: 2.726, y: -1.134, z: 1.5910004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2848,41 +2815,10 @@ MonoBehaviour:
   _currentValue: 0.043
   _targetValue: 0
   _correctValue: 79.78107
-  _speed: 15
+  _speed: 50
   _isSolved: 0
   _needle: {fileID: 7030870634217305918}
   _knob: {fileID: 5976730968956828468}
---- !u!114 &5686831393095967342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7418667443584522930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnreliableDeltas: 0
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  Interpolate: 1
-  SlerpPosition: 0
 --- !u!114 &2950357730332107584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2895,7 +2831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 77494762
+  GlobalObjectIdHash: 470480470
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -3015,7 +2951,7 @@ Transform:
   m_GameObject: {fileID: 7471280710116994315}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -0.415, z: 0.45}
+  m_LocalPosition: {x: 0.178, y: -1.203, z: 3.707}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3036,7 +2972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3421724631
+  GlobalObjectIdHash: 1300035189
   InScenePlacedSourceGlobalObjectIdHash: 1227921640
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -3062,7 +2998,7 @@ MonoBehaviour:
   _currentValue: 0.043
   _targetValue: 0
   _correctValue: -49.171352
-  _speed: 15
+  _speed: 50
   _isSolved: 0
   _needle: {fileID: 7886597979846042259}
   _knob: {fileID: 811784022312390379}
@@ -3073,7 +3009,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7471280710116994315}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
@@ -3205,15 +3141,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7863303626008509797}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.039432164, y: -0.039432164, z: 0.70600647, w: 0.70600647}
-  m_LocalPosition: {x: -22.44, y: 14.51, z: 27.67}
+  m_LocalRotation: {x: 0.25505164, y: 0.36447823, z: 0.52996135, w: 0.7219732}
+  m_LocalPosition: {x: -21.279, y: 19.366, z: 51.767}
   m_LocalScale: {x: 1.5657, y: 1.5657, z: 1.5657}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5759796787414966218}
   - {fileID: 7170212751926050380}
   m_Father: {fileID: 2358970610526868735}
-  m_LocalEulerAnglesHint: {x: 0, y: 151.951, z: 90}
+  m_LocalEulerAnglesHint: {x: -1.034, y: 52.821, z: 72.047}
 --- !u!114 &6032921672369147211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3778,7 +3714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1029236223
+  GlobalObjectIdHash: 10799376
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -3803,6 +3739,9 @@ MonoBehaviour:
   - {fileID: 7669865304713052046}
   - {fileID: 5034693723909544071}
   - {fileID: 65546193763880795}
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8541001878127907007
 GameObject:
   m_ObjectHideFlags: 0

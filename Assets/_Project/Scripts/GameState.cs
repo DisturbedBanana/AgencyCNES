@@ -60,27 +60,27 @@ public class GameState : NetworkBehaviour
         switch (CurrentGameState)
         {
             case GAMESTATES.PASSWORD:
-                ApplyStateChanges(GAMESTATES.LAUNCH);
+                ApplyStateChangesRpc(GAMESTATES.LAUNCH);
                 break;
             case GAMESTATES.CALIBRATE:
                 break;
             case GAMESTATES.LAUNCH:
-                ApplyStateChanges(GAMESTATES.VALVES);
+                ApplyStateChangesRpc(GAMESTATES.VALVES);
                 break;
             case GAMESTATES.VALVES:
-                ApplyStateChanges(GAMESTATES.SIMONSAYS);
+                ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
                 break;
             case GAMESTATES.SIMONSAYS:
-                ApplyStateChanges(GAMESTATES.SIMONSAYS);
+                ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
                 break;
             case GAMESTATES.SEPARATION:
-                ApplyStateChanges(GAMESTATES.SEPARATION);
+                ApplyStateChangesRpc(GAMESTATES.SEPARATION);
                 break;
             case GAMESTATES.FUSES:
-                ApplyStateChanges(GAMESTATES.FUSES);
+                ApplyStateChangesRpc(GAMESTATES.FUSES);
                 break;
             case GAMESTATES.FREQUENCY:
-                ApplyStateChanges(GAMESTATES.FREQUENCY);
+                ApplyStateChangesRpc(GAMESTATES.FREQUENCY);
                 break;
             case GAMESTATES.DODGE:
                 break;
@@ -90,7 +90,7 @@ public class GameState : NetworkBehaviour
     }
     public void GoToState(GAMESTATES state)
     {
-        ApplyStateChanges(state);
+        ApplyStateChangesRpc(state);
     }
 
     private void Awake()
@@ -117,7 +117,7 @@ public class GameState : NetworkBehaviour
             AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>(),state);
         }
 
-        ApplyStateChanges(state);
+        ApplyStateChangesRpc(state);
     }
 
     public void ChangeState(string state)
@@ -133,7 +133,8 @@ public class GameState : NetworkBehaviour
     }
 
 
-    public void ApplyStateChanges(GAMESTATES state)
+    [Rpc(SendTo.Everyone)]
+    public void ApplyStateChangesRpc(GAMESTATES state)
     {
         CurrentGameState = state;
         Debug.LogError(CurrentGameState);
@@ -178,7 +179,7 @@ public class GameState : NetworkBehaviour
     {
         if (networkObjectRef.TryGet(out NetworkObject networkObject2))
         {
-            networkObject2.GetComponent<GameState>().ApplyStateChanges(state);
+            networkObject2.GetComponent<GameState>().ApplyStateChangesRpc(state);
         }
     }
 
@@ -187,7 +188,7 @@ public class GameState : NetworkBehaviour
     {
         if (networkObjectRef.TryGet(out NetworkObject networkObject2))
         {
-            networkObject2.GetComponent<GameState>().ApplyStateChanges(state);
+            networkObject2.GetComponent<GameState>().ApplyStateChangesRpc(state);
         }
     }
 
