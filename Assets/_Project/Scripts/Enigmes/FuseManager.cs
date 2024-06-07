@@ -68,13 +68,13 @@ public class FuseManager : NetworkBehaviour
     {
         _fuseLightList[ID].DeactivateLight();
         UpdateFuseBoxLights(false);
+        _currentConnectedFuses--;
 
         if (_fuseLightList[ID].FuseLightColor != FuseLight.AvailableColors.Green)
             return;
 
         if(_currentGreenFusesActivated > 0)
         {
-            _currentConnectedFuses--;
             _currentGreenFusesActivated--;
         }
     }
