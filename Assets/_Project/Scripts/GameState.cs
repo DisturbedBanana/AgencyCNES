@@ -147,7 +147,7 @@ public class GameState : NetworkBehaviour
                     //Activate all elements related to calibrating
                     break;
                 case GAMESTATES.LAUNCH:
-                    FindObjectOfType<Launch>().LaunchCountdownForSitting();
+                    FindObjectOfType<Launch>().StartLaunchState();
                 break;
                 case GAMESTATES.VALVES:
                     

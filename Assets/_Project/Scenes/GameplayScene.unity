@@ -2835,6 +2835,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3354040157
       objectReference: {fileID: 0}
+    - target: {fileID: 1593446120725130102, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 4088412769
+      objectReference: {fileID: 0}
     - target: {fileID: 2350605870636941054, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
       propertyPath: _fuseLightList.Array.data[0]
       value: 
@@ -2899,6 +2903,34 @@ PrefabInstance:
       propertyPath: _lightsOnFuseBox.Array.data[3]
       value: 
       objectReference: {fileID: 1333987194}
+    - target: {fileID: 2350605870636941054, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350605870636941054, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350605870636941054, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1333987198}
+    - target: {fileID: 2350605870636941054, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350605870636941054, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350605870636941054, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350605870636941054, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8644111642286714735, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
       propertyPath: m_Name
       value: FuseManager
@@ -14048,6 +14080,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FuseBox
       objectReference: {fileID: 0}
+    - target: {fileID: 4339583368844637440, guid: 445e59ee4bab79241b8f24caea223158, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14071,6 +14107,11 @@ GameObject:
 --- !u!1 &1333987197 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5996731807046979618, guid: 445e59ee4bab79241b8f24caea223158, type: 3}
+  m_PrefabInstance: {fileID: 1333987193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1333987198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4339583368844637440, guid: 445e59ee4bab79241b8f24caea223158, type: 3}
   m_PrefabInstance: {fileID: 1333987193}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &1344350187
@@ -14456,9 +14497,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4943959}
     - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
+      propertyPath: _textCountdown
+      value: 
+      objectReference: {fileID: 1892301320}
+    - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: _timeCountdown
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
+      propertyPath: _layoutPassword
+      value: 
+      objectReference: {fileID: 1776547578}
     - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: _playerController
       value: 
@@ -17971,6 +18020,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1776547578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3301903337254976575, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+  m_PrefabInstance: {fileID: 1892301317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1797667806
 GameObject:
   m_ObjectHideFlags: 0
@@ -18801,18 +18855,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2306279074365322213, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.8624
-      objectReference: {fileID: 0}
-    - target: {fileID: 2306279074365322213, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 264.55887
-      objectReference: {fileID: 0}
-    - target: {fileID: 2306279074365322213, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 154.67787
-      objectReference: {fileID: 0}
     - target: {fileID: 2537240766853408742, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -18932,6 +18974,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: daae8b8d171f7404b85595b7400a7588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1892301320 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5333019684125644003, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+  m_PrefabInstance: {fileID: 1892301317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1895790518
