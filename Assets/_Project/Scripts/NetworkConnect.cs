@@ -26,6 +26,24 @@ public class NetworkConnect : MonoBehaviour
     private float _heartBeatTimer;
 
     [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
+    [SerializeField] private string _LobbyCode;
+
+    [Button]
+    public async void JoinWithCode()
+    {
+        try
+        {
+            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(_LobbyCode);
+            _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
+
+            NetworkManager.Singleton.StartClient();
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+
+        }
+    }
 
     [Header("Player Spawn")]
     [SerializeField] private PlayerController _playerController;
@@ -69,9 +87,16 @@ public class NetworkConnect : MonoBehaviour
         m_TextMeshProUGUI.text += $"{text}\n";
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void SendInfoToServerRpc(string text)
+    {
+        Debug.Log("Server info: " + text);
+    }
+
     private void PlayerConnected(ulong id)
     {
-        DisplayText("A player connected");
+        //DisplayText("A player connected");
+        SendInfoToServerRpc($"Client {NetworkManager.Singleton.LocalClientId} connected");
         if (!enableSpawnPosition)
             return;
 
@@ -82,7 +107,7 @@ public class NetworkConnect : MonoBehaviour
     {
         bool isHost = NetworkManager.Singleton.IsHost;
         PlayerSpawn playerSpawn = isHost ? spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.LAUNCHER)
-            : spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.LAUNCHER);
+            : spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.MISSIONCONTROL);
         _playerController.SpawnPlayer(playerSpawn);
     }
 
@@ -121,7 +146,7 @@ public class NetworkConnect : MonoBehaviour
 
             _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Lobby Name", maxConnections, lobbyOptions);
             NetworkManager.Singleton.StartHost();
-            Debug.LogError("Lobby created");
+            Debug.LogError($"Lobby created with code {newJoinCode}");
         }
         catch (Exception e)
         {
