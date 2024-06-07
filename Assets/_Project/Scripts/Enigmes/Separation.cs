@@ -42,7 +42,7 @@ public class Separation : NetworkBehaviour
         if (!AreBothLeverActivated())
             return;
 
-        GameState.Instance.ChangeState(GameState.GAMESTATES.WHACKAMOLE);
+        GameState.Instance.ChangeState(GameState.GAMESTATES.FREQUENCY);
 
         OnComplete?.Invoke();// TODO: ouvrir la porte de l'ATV
 
