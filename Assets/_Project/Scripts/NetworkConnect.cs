@@ -101,6 +101,7 @@ public class NetworkConnect : MonoBehaviour
             return;
 
         ChooseAMovementTypeToSpawnPlayer();
+        GameState.Instance.StartWithState();
     }
 
     private void ChooseAMovementTypeToSpawnPlayer()

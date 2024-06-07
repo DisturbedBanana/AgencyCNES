@@ -11,6 +11,7 @@ using UnityEngine.XR.Content.Interaction;
 public class Launch : NetworkBehaviour
 {
     private bool _canAttach;
+    private bool _canPushButton;
     public bool CanAttach { get => _canAttach; set => _canAttach = value; }
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private Transform _attach;
@@ -20,7 +21,7 @@ public class Launch : NetworkBehaviour
 
     private NetworkVariable<bool> _playerIsLock = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    [SerializeField, ReadOnly] private float _countdown;
+    [ReadOnly] public float _countdown;
 
     [Header("Events")]
     public UnityEvent OnComplete;
@@ -29,6 +30,13 @@ public class Launch : NetworkBehaviour
     {
         _canAttach = false;
         _timeCountdown = 10f;
+    }
+
+    private void Start()
+    {
+        _canAttach = false;
+        _canPushButton = false;
+        countdownRoutine = null;
     }
 
     public void AttachPlayer()
@@ -51,12 +59,9 @@ public class Launch : NetworkBehaviour
     }
 
 
-    public void PlayerPushedButton()
+    public void LaunchCountdownForSitting()
     {
-        if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.LAUNCH)
-            return;
-
-        CountdownClientRpc();
+        CountdownRpc();
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -64,7 +69,7 @@ public class Launch : NetworkBehaviour
     {
         if (_playerIsLock.Value)
         {
-            PlayVideoClientRpc();
+            PlayVideoRpc();
             GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
             DetachPlayer();
             OnComplete?.Invoke();
@@ -76,8 +81,8 @@ public class Launch : NetworkBehaviour
         _canAttach = false;
     }
 
-    [ClientRpc]
-    private void PlayVideoClientRpc()
+    [Rpc(SendTo.Everyone)]
+    private void PlayVideoRpc()
     {
         _launchVideo.gameObject.SetActive(true);
         _launchVideo.Play();
@@ -85,31 +90,86 @@ public class Launch : NetworkBehaviour
 
 
 
-    [ClientRpc]
-    private void CountdownClientRpc()
+    [Rpc(SendTo.Everyone)]
+    private void CountdownRpc()
     {
+        Debug.Log("CountdownRpc");
         _canAttach = true;
 
-        if(countdownRoutine == null)
-            countdownRoutine = Countdown();
+        if (countdownRoutine == null)
+            countdownRoutine = StartCoroutine(Countdown());
     }
-    IEnumerator countdownRoutine;
+    Coroutine countdownRoutine;
     private IEnumerator Countdown()
     {
+        Debug.Log("Countdown routine");
         PlayVoiceOffClientRpc(0);
         _countdown = _timeCountdown;
         while(_countdown > 0)
         {
-            _countdown -= Time.deltaTime;
+            if (_playerIsLock.Value)
+            {
+                Debug.Log("Player is lock");
+                break;
+            }
             Debug.Log(_countdown);
-            yield return null;
+            _countdown--;
+            yield return new WaitForSeconds(1);
         }
 
         if (NetworkManager.Singleton.IsHost)
-            CheckLaunchServerRpc();
+            CheckPlayerLockServerRpc();
 
-        countdownRoutine = null; 
+        countdownRoutine = null;
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void CheckPlayerLockServerRpc()
+    {
+        if (_playerIsLock.Value)
+        {
+            CountdownButtonRpc();
+        }
+        else
+        {
+            PlayVoiceOffClientRpc(1);
+        }
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void CountdownButtonRpc()
+    {
+        Debug.Log("CountdownButtonRpc");
+        _canPushButton = true;
+        if(countdownRoutine == null)
+            countdownRoutine = StartCoroutine(CountdownButton());
+    }
+
+    private IEnumerator CountdownButton()
+    {
+        PlayVoiceOffClientRpc(0);
+        _countdown = 10;
+        while (_countdown > 0)
+        {
+            Debug.Log(_countdown);
+            _countdown--;
+            yield return new WaitForSeconds(1);
+        }
+
+        _canPushButton = true;
+
+        countdownRoutine = null;
+    }
+
+
+    public void PlayerPushedButton()
+    {
+        if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.LAUNCH || !_playerIsLock.Value || !_canPushButton)
+            return;
+
+        CheckLaunchServerRpc();
+    }
+
 
     [ClientRpc]
     private void PlayVoiceOffClientRpc(int value)

@@ -8,6 +8,7 @@ using System;
 using UnityEngine.Video;
 using TMPro;
 using NaughtyAttributes;
+using System.Security.Cryptography;
 
 public class GameState : NetworkBehaviour
 {
@@ -18,6 +19,7 @@ public class GameState : NetworkBehaviour
 
 
     [SerializeField] TextMeshProUGUI _notifText;
+    [SerializeField] private GAMESTATES _StartWithState;
 
     public enum GAMESTATES
     {
@@ -43,7 +45,10 @@ public class GameState : NetworkBehaviour
     }
     #endregion
 
-
+    public void StartWithState()
+    {
+        GoToState(_StartWithState);
+    }
     public void StateForce(GAMESTATES state) 
     {
         CurrentGameState = state;
@@ -141,7 +146,7 @@ public class GameState : NetworkBehaviour
                     //Activate all elements related to calibrating
                     break;
                 case GAMESTATES.LAUNCH:
-                    FindObjectOfType<Launch>().CanAttach = true;
+                    FindObjectOfType<Launch>().LaunchCountdownForSitting();
                 break;
                 case GAMESTATES.VALVES:
                     

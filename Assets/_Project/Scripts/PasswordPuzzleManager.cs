@@ -62,7 +62,7 @@ public class PasswordPuzzleManager : MonoBehaviour
 
     public void AddKey(PASSWORDKEYS key)
     {
-        if (_isCoroutineRunning)
+        if (_isCoroutineRunning || GameState.Instance.CurrentGameState!= GameState.GAMESTATES.PASSWORD)
             return;
 
 
