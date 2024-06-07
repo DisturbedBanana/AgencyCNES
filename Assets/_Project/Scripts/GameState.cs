@@ -160,7 +160,8 @@ public class GameState : NetworkBehaviour
                 //When harness is attached and button pressed -> valves (coroutine for timer?)
                 break;
                 case GAMESTATES.FUSES:
-                    break;
+                FindObjectOfType<FuseManager>().StartState();
+                break;
                 case GAMESTATES.FREQUENCY:
                     break;
                 case GAMESTATES.DODGE:
