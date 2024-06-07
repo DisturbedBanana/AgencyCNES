@@ -18,6 +18,7 @@ public class ValvePuzzlePart : NetworkBehaviour
     [SerializeField] float _correctValue;
     [SerializeField] float _speed = 1;
     [SerializeField] bool _isSolved = false;
+    [SerializeField] private float _targetDifference;
 
     [Header("References")]
     [SerializeField] Transform _needle;
@@ -89,6 +90,8 @@ public class ValvePuzzlePart : NetworkBehaviour
         return Mathf.Abs(_currentValue - _correctValue) <= (_maxValue - _minValue) * 0.01f;
     }
 
+    private bool isCorrectValue() => Mathf.Abs(_correctValue - _currentValue) <= _targetDifference;
+
     public void ChangeTargetValue()
     {
         _angle.Value = _knob.value;
@@ -101,7 +104,7 @@ public class ValvePuzzlePart : NetworkBehaviour
         if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.VALVES)
             return;
         
-        if (AreValuesRoughlyEqual())
+        if (isCorrectValue())
             IsSolved = true;
         else
             IsSolved = false;
