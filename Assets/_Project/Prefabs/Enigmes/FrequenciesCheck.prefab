@@ -68,8 +68,8 @@ MonoBehaviour:
   _maxFrequency: 1
   _minFrequency: 0.01
   _targetDifference: 0.05
-  _targetFrequency: 1
-  _targetAmplitude: 1
+  _targetFrequency: 0.97
+  _targetAmplitude: 0.07
   _isTargetFrequency:
     m_InternalValue: 0
 --- !u!120 &7701117528085276238
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3470523878
+  GlobalObjectIdHash: 306715093
   InScenePlacedSourceGlobalObjectIdHash: 2368454515
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -419,8 +419,8 @@ MonoBehaviour:
   _maxFrequency: 1
   _minFrequency: 0.01
   _targetDifference: 0.1
-  _targetFrequency: 1
-  _targetAmplitude: 1
+  _targetFrequency: 0.37
+  _targetAmplitude: 0.16
   _isTargetFrequency:
     m_InternalValue: 0
 --- !u!120 &2746737213300160801
@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3470523878
+  GlobalObjectIdHash: 2361164341
   InScenePlacedSourceGlobalObjectIdHash: 2368454515
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3470523878
+  GlobalObjectIdHash: 2368454515
   InScenePlacedSourceGlobalObjectIdHash: 2368454515
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
