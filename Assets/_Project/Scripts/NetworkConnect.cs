@@ -157,8 +157,7 @@ public class NetworkConnect : MonoBehaviour
         if(_heartBeatTimer > 15)
         {
             _heartBeatTimer -= 15;
-
-            if (_currentLobby != null && _currentLobby.HostId == AuthenticationService.Instance.PlayerId)
+            if(NetworkManager.Singleton.IsHost)
                 LobbyService.Instance.SendHeartbeatPingAsync(_currentLobby.Id);
         }
 
