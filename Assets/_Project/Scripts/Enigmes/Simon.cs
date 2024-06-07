@@ -130,7 +130,6 @@ public class Simon : NetworkBehaviour
         }
         else if (!isOrderCorrect)
         {
-            ChangeLevelClientRpc(0);
             StartSimonClientRpc();
         }
 
