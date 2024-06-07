@@ -7,6 +7,10 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class Frequency : NetworkBehaviour
 {
+    [Header("Target Line renderer")]
+    [SerializeField] private LineRenderer _targetLineRenderer;
+    [SerializeField] private Color _targetColor;
+
     [Header("Line renderer")]
     [SerializeField] private LineRenderer _myLineRenderer;
     [SerializeField, Range(0.001f, 0.02f)] private float _lineWidth;
@@ -59,11 +63,15 @@ public class Frequency : NetworkBehaviour
     private void Start()
     {
         _myLineRenderer.startWidth = _myLineRenderer.endWidth = _lineWidth;
+
+        _targetLineRenderer.startWidth = _targetLineRenderer.endWidth = _lineWidth;
+        _targetLineRenderer.startColor = _targetLineRenderer.endColor = _targetColor;
     }
 
     private void Update()
     {
         Draw();
+        DrawTargetLine();
     }
     private void Draw()
     {
@@ -80,6 +88,24 @@ public class Frequency : NetworkBehaviour
             Vector3 newBeginPos = transform.localToWorldMatrix * new Vector4(x, y, 0, 1);
 
             _myLineRenderer.SetPosition(currentPoint, newBeginPos);
+
+        }
+    }
+    private void DrawTargetLine()
+    {
+        float xStart = _xLimits.x;
+        float Tau = 2 * Mathf.PI;
+        float xFinish = _xLimits.y;
+
+        _targetLineRenderer.positionCount = _pointsMultiplicator;
+        for (int currentPoint = 0; currentPoint < _targetLineRenderer.positionCount; currentPoint++)
+        {
+            float progress = (float)currentPoint / (_targetLineRenderer.positionCount - 1);
+            float x = Mathf.Lerp(xStart, xFinish, progress);
+            float y = _targetAmplitude * Mathf.Sin((Tau * _targetFrequency * x) + (Time.timeSinceLevelLoad * _movementSpeed)) ;
+            Vector3 newBeginPos = transform.localToWorldMatrix * new Vector4(x, y, 0, 1);
+
+            _targetLineRenderer.SetPosition(currentPoint, newBeginPos);
 
         }
     }
