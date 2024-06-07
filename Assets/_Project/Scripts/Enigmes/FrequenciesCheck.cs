@@ -17,7 +17,7 @@ public class FrequenciesCheck : NetworkBehaviour
     {
         if (_frequencyLauncher.IsTargetFrequency.Value && _frequencyMissionControl.IsTargetFrequency.Value)
         {
-            GameState.Instance.ChangeState(GameState.GAMESTATES.DODGE);
+            GameState.Instance.ChangeState(GameState.GAMESTATES.SIMONSAYS);
             OnComplete?.Invoke();
         }
     }

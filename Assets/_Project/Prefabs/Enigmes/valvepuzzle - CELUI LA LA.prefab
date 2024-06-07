@@ -302,8 +302,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5034858914073313296}
-  - component: {fileID: 511843376387886227}
-  - component: {fileID: 8651809285511243174}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -327,58 +325,6 @@ Transform:
   - {fileID: 3659152698728007637}
   m_Father: {fileID: 2358970610526868735}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &511843376387886227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231356995566701875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4229267821
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
---- !u!114 &8651809285511243174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231356995566701875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnreliableDeltas: 0
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  Interpolate: 1
-  SlerpPosition: 0
 --- !u!1 &430643047195340734
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +789,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7886597979846042259}
-  - component: {fileID: 7687025430195011691}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -867,27 +812,6 @@ Transform:
   - {fileID: 7296239397018738568}
   m_Father: {fileID: 8620138557108745431}
   m_LocalEulerAnglesHint: {x: 0, y: 33.993, z: 0}
---- !u!114 &7687025430195011691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2564033676994197463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2963841848
-  InScenePlacedSourceGlobalObjectIdHash: 1227921640
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &3807751958024866832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,6 +2405,7 @@ MonoBehaviour:
   _correctValue: -55.273315
   _speed: 50
   _isSolved: 0
+  _targetDifference: 0
   _needle: {fileID: 5034858914073313296}
   _knob: {fileID: 6032921672369147211}
 --- !u!114 &3930942105840931993
@@ -2513,8 +2438,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7030870634217305918}
-  - component: {fileID: 3902392713651588357}
-  - component: {fileID: 4286399254839644095}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -2538,58 +2461,6 @@ Transform:
   - {fileID: 2520060144247628814}
   m_Father: {fileID: 1306407658493488202}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &3902392713651588357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7083136872701634982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 427372692
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
---- !u!114 &4286399254839644095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7083136872701634982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnreliableDeltas: 0
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  Interpolate: 1
-  SlerpPosition: 0
 --- !u!1 &7102704315141575957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2817,6 +2688,7 @@ MonoBehaviour:
   _correctValue: 79.78107
   _speed: 50
   _isSolved: 0
+  _targetDifference: 0
   _needle: {fileID: 7030870634217305918}
   _knob: {fileID: 5976730968956828468}
 --- !u!114 &2950357730332107584
@@ -2934,7 +2806,6 @@ GameObject:
   - component: {fileID: 8620138557108745431}
   - component: {fileID: 4521275507743020791}
   - component: {fileID: 7669865304713052046}
-  - component: {fileID: 7680126087885008823}
   m_Layer: 0
   m_Name: ValvesPuzzlePart1
   m_TagString: Untagged
@@ -3000,39 +2871,9 @@ MonoBehaviour:
   _correctValue: -49.171352
   _speed: 50
   _isSolved: 0
+  _targetDifference: 0
   _needle: {fileID: 7886597979846042259}
   _knob: {fileID: 811784022312390379}
---- !u!114 &7680126087885008823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7471280710116994315}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnreliableDeltas: 0
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  Interpolate: 1
-  SlerpPosition: 0
 --- !u!1 &7574171433424681724
 GameObject:
   m_ObjectHideFlags: 0

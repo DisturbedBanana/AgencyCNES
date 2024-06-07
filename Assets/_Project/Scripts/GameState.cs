@@ -159,8 +159,6 @@ public class GameState : NetworkBehaviour
                 //Change control video (launch video)
                 //When harness is attached and button pressed -> valves (coroutine for timer?)
                 break;
-                case GAMESTATES.WHACKAMOLE:
-                    break;
                 case GAMESTATES.FUSES:
                     break;
                 case GAMESTATES.FREQUENCY:
