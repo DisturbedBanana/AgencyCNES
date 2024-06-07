@@ -23,6 +23,10 @@ public class Launch : NetworkBehaviour
 
     [ReadOnly] public float _countdown;
 
+    [Header("Ceintures")]
+    [SerializeField] private GameObject _ceintureOpen;
+    [SerializeField] private GameObject _ceintureClosed;
+
     [Header("Events")]
     public UnityEvent OnComplete;
 
@@ -37,6 +41,8 @@ public class Launch : NetworkBehaviour
         _canAttach = false;
         _canPushButton = false;
         countdownRoutine = null;
+        _ceintureOpen.SetActive(true);
+        _ceintureClosed.SetActive(false);
     }
 
     public void AttachPlayer()
@@ -51,11 +57,17 @@ public class Launch : NetworkBehaviour
 
         if(IsOwner)
             _playerIsLock.Value = true;
+
+
+        _ceintureOpen.SetActive(false);
+        _ceintureClosed.SetActive(true);
     }
     public void DetachPlayer()
     {
         _playerController.GetComponent<Collider>().enabled = true;
         _playerController.LockMovement(false);
+        _ceintureOpen.SetActive(true);
+        _ceintureClosed.SetActive(false);
     }
 
 
