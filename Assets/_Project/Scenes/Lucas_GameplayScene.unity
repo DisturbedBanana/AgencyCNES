@@ -8101,7 +8101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _launchButtonTimingTolerance: 10000
   _notifText: {fileID: 873585124}
-  _StartWithState: 0
+  _StartWithState: 3
 --- !u!114 &714619398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18190,6 +18190,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1716274551}
     m_Modifications:
+    - target: {fileID: 65546193763880795, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
+      propertyPath: _correctValue
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 511843376387886227, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3199204169
@@ -18353,6 +18357,14 @@ PrefabInstance:
     - target: {fileID: 4727130917665378326, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -19.023
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034693723909544071, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
+      propertyPath: _correctValue
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669865304713052046, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
+      propertyPath: _correctValue
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7687025430195011691, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
       propertyPath: GlobalObjectIdHash

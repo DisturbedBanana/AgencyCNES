@@ -47,7 +47,7 @@ public class ValvePuzzlePart : NetworkBehaviour
 
     private void Start()
     {
-        RollRandomValues();
+        //RollRandomValues();
         _needle.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         CurrentValue = TargetValue;
 
