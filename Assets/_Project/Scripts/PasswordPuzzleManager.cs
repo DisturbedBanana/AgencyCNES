@@ -38,6 +38,7 @@ public class PasswordPuzzleManager : MonoBehaviour
     [Header("Password")]
     [SerializeField] List<PASSWORDKEYS> _correctPassword = new List<PASSWORDKEYS>();
     public List<PASSWORDKEYS> _currentPassword = new List<PASSWORDKEYS>();
+    [SerializeField] private float _clearPasswordAfter;
 
     [Header("Keyboard")]
     [SerializeField] GameObject _keyboardToActivate;
@@ -84,13 +85,14 @@ public class PasswordPuzzleManager : MonoBehaviour
                 {
                     //Wrong password
                     _currentPassword.Clear();
+                    StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
                     StartCoroutine(FlashingLightCoroutine(false));
                     return;
                 }
             }
             //Correct Password
             GameState.Instance.ChangeState(GameState.GAMESTATES.LAUNCH);
-            _currentPassword.Clear();
+            StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
             StartCoroutine(FlashingLightCoroutine(true));
             OnComplete?.Invoke();
         }
@@ -99,6 +101,13 @@ public class PasswordPuzzleManager : MonoBehaviour
     public void WrongPasswordVisualFeedback(bool success)
     {
         StartCoroutine(FlashingLightCoroutine(success));
+    }
+
+    private IEnumerator ClearPasswordAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        _currentPassword.Clear();
+        ClearDisplayPasswordOnComputer();
     }
 
     private IEnumerator FlashingLightCoroutine(bool success = false)
@@ -139,7 +148,6 @@ public class PasswordPuzzleManager : MonoBehaviour
             yield return null;
         }
 
-        ClearDisplayPasswordOnComputer();
         _isCoroutineRunning = false;
     }
 
