@@ -10490,6 +10490,14 @@ PrefabInstance:
       propertyPath: xrOriginS
       value: 
       objectReference: {fileID: 1074745986}
+    - target: {fileID: 3444124649179607500, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
+      propertyPath: m_Height
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444124649179607500, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
+      propertyPath: m_Center.y
+      value: 0.74
+      objectReference: {fileID: 0}
     - target: {fileID: 3479291076419306589, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: m_Name
       value: Player
@@ -10532,7 +10540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4068035848253987355, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: m_CameraYOffset
-      value: 1.7
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 4068035848253987355, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: m_RequestedTrackingOriginMode
@@ -17454,6 +17462,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3819003230
       objectReference: {fileID: 0}
+    - target: {fileID: 4480819930170394474, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4521275507743020791, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 489254176
@@ -17489,6 +17501,14 @@ PrefabInstance:
     - target: {fileID: 4727130917665378326, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -19.023
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686831393095967342, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680126087885008823, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7687025430195011691, guid: 705befb546cc49a4a9295d6c40993d48, type: 3}
       propertyPath: GlobalObjectIdHash

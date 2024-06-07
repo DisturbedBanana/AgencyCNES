@@ -96,7 +96,7 @@ public class NetworkConnect : MonoBehaviour
     private void PlayerConnected(ulong id)
     {
         //DisplayText("A player connected");
-        SendInfoToServerRpc($"Client {NetworkManager.Singleton.LocalClientId} connected");
+        SendInfoToServerRpc($"Client {NetworkManager.Singleton.LocalClient.ClientId} connected");
         if (!enableSpawnPosition)
             return;
 

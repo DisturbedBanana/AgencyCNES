@@ -90,7 +90,7 @@ public class Launch : NetworkBehaviour
     {
         _canAttach = true;
 
-        if(countdownRoutine != null)
+        if(countdownRoutine == null)
             countdownRoutine = Countdown();
     }
     IEnumerator countdownRoutine;
@@ -101,6 +101,7 @@ public class Launch : NetworkBehaviour
         while(_countdown > 0)
         {
             _countdown -= Time.deltaTime;
+            Debug.Log(_countdown);
             yield return null;
         }
 
