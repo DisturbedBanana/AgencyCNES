@@ -10,6 +10,12 @@ using UnityEngine.Events;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Serialization;
 
+public enum EnigmaEvents
+{
+    ONSUCCEED = 0,
+    ONFAILED = 1,
+    ONCOMPLETE = 2
+}
 public class Simon : NetworkBehaviour
 {
     #region Structs
@@ -58,6 +64,8 @@ public class Simon : NetworkBehaviour
     public bool CanChooseColor { get => _canChooseColor.Value; set => _canChooseColor.Value = value; }
 
     [Header("Events")]
+    public UnityEvent OnLevelSucceed;
+    public UnityEvent OnLevelFailed;
     public UnityEvent OnComplete;
 
     private void Reset()
@@ -110,6 +118,8 @@ public class Simon : NetworkBehaviour
         }
         Debug.Log(isOrderCorrect ? "Order correct!" : "Order is not good!");
 
+        PlayEventClientRpc(isOrderCorrect ? EnigmaEvents.ONSUCCEED : EnigmaEvents.ONFAILED);
+
         ClearPlayerColorsClientRpc();
         DisableAllLightsClientRpc();
 
@@ -125,7 +135,7 @@ public class Simon : NetworkBehaviour
             _canChooseColor.Value = false;
             GameState.Instance.ChangeState(GameState.GAMESTATES.FUSES);
             EndSimonClientRpc();
-            OnComplete?.Invoke();
+            PlayEventClientRpc(EnigmaEvents.ONFAILED);
 
         }
         else if (!isOrderCorrect)
@@ -134,9 +144,28 @@ public class Simon : NetworkBehaviour
             StartSimonClientRpc();
         }
 
-        //_canChooseColor = currentLevel < (_levelList.Count - 1);
     }
-    
+
+    [ClientRpc]
+    private void PlayEventClientRpc(EnigmaEvents eventNumber)
+    {
+        Debug.Log("Event: " + eventNumber);
+
+        switch (eventNumber) {
+            
+            case EnigmaEvents.ONSUCCEED:
+                OnLevelSucceed?.Invoke();
+                break;
+            case EnigmaEvents.ONFAILED:
+                OnLevelFailed?.Invoke();
+                break;
+            case EnigmaEvents.ONCOMPLETE:
+                OnComplete?.Invoke();
+                break;
+
+        }
+    }
+
     [ClientRpc]
     private void ChangeLevelClientRpc(int level)
     {

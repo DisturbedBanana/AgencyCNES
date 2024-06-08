@@ -38,7 +38,7 @@ public class PasswordPuzzleManager : MonoBehaviour
     [Header("Password")]
     [SerializeField] List<PASSWORDKEYS> _correctPassword = new List<PASSWORDKEYS>();
     public List<PASSWORDKEYS> _currentPassword = new List<PASSWORDKEYS>();
-    [SerializeField] private float _clearPasswordAfter;
+    [SerializeField, Range(0, 5f)] private float _clearPasswordAfter;
 
     [Header("Keyboard")]
     [SerializeField] GameObject _keyboardToActivate;
@@ -54,6 +54,9 @@ public class PasswordPuzzleManager : MonoBehaviour
     [SerializeField] Sprite _spriteBarre;
 
     [Header("Events")]
+    public UnityEvent OnKeyboardPlacedOnSocket;
+    public UnityEvent OnKeyUsed;
+    public UnityEvent OnFailedPassword;
     public UnityEvent OnComplete;
 
     private void Start()
@@ -76,7 +79,9 @@ public class PasswordPuzzleManager : MonoBehaviour
         _currentPassword.Add(key);
         DisplayKeyOnComputer(key);
         Debug.Log(key);
-        
+        OnKeyUsed?.Invoke();
+
+
         if (_currentPassword.Count == _correctPassword.Count)
         {
             for (int i = 0; i < _correctPassword.Count; i++)
@@ -87,6 +92,7 @@ public class PasswordPuzzleManager : MonoBehaviour
                     _currentPassword.Clear();
                     StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
                     StartCoroutine(FlashingLightCoroutine(false));
+                    OnFailedPassword?.Invoke();
                     return;
                 }
             }
@@ -157,6 +163,7 @@ public class PasswordPuzzleManager : MonoBehaviour
         //anchor.GetComponent<XRSocketInteractor>().enabled = false;
         _keyboardToActivate.SetActive(true);
         _keyboardToDeactivate.GetComponentInChildren<MeshRenderer>().enabled = false;
+        OnKeyboardPlacedOnSocket?.Invoke();
     }
 
     public void DisplayKeyOnComputer(PASSWORDKEYS key)

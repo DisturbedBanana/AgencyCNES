@@ -1394,6 +1394,7 @@ MonoBehaviour:
   maxConnections: 5
   _unityTransport: {fileID: 112292118}
   m_TextMeshProUGUI: {fileID: 873585124}
+  _LobbyCode: 
   _playerController: {fileID: 1070170747}
   enableSpawnPosition: 1
   spawns:
@@ -8147,10 +8148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _launchButtonTimingTolerance: 10000
-  _launchButtons:
-  - {fileID: 0}
-  - {fileID: 0}
   _notifText: {fileID: 873585124}
+  _StartWithState: 0
+  OnStateChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &714619398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22320,6 +22322,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrequenciesCheck
       objectReference: {fileID: 0}
+    - target: {fileID: 1581981822582593224, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746737213300160801, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746737213300160801, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2794355654134988016, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
       propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -22331,6 +22345,10 @@ PrefabInstance:
     - target: {fileID: 2794355654134988016, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
       propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400304429308101994, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4280977154615851804, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22379,6 +22397,14 @@ PrefabInstance:
     - target: {fileID: 6573806381638908774, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 2368454515
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701117528085276238, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701117528085276238, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8273284761348017144, guid: 3bad52d597adddf49a04b317df10286c, type: 3}
       propertyPath: GlobalObjectIdHash

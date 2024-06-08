@@ -9,6 +9,7 @@ using UnityEngine.Video;
 using TMPro;
 using NaughtyAttributes;
 using System.Security.Cryptography;
+using UnityEngine.Events;
 
 public class GameState : NetworkBehaviour
 {
@@ -20,6 +21,9 @@ public class GameState : NetworkBehaviour
 
     [SerializeField] TextMeshProUGUI _notifText;
     [SerializeField] private GAMESTATES _StartWithState;
+
+    [Header("Events")]
+    public UnityEvent OnStateChange;
 
     public enum GAMESTATES
     {
@@ -137,7 +141,6 @@ public class GameState : NetworkBehaviour
     public void ApplyStateChangesRpc(GAMESTATES state)
     {
         CurrentGameState = state;
-        Debug.LogError(CurrentGameState);
 
         switch (state)
             {
@@ -168,8 +171,11 @@ public class GameState : NetworkBehaviour
                 default:
                     break;
             }
-        
+
+        Debug.LogError(CurrentGameState);
         _notifText.text += "ChangeState to: " + CurrentGameState;
+
+        OnStateChange?.Invoke();
     }
 
     [ServerRpc(RequireOwnership = false)]

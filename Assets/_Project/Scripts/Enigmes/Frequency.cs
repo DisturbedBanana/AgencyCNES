@@ -1,46 +1,50 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.Events;
 
 public class Frequency : NetworkBehaviour
 {
-    [Header("Target Line renderer")]
-    [SerializeField] private LineRenderer _targetLineRenderer;
-    [SerializeField] private Color _targetColor;
-
     [Header("Line renderer")]
     [SerializeField] private LineRenderer _myLineRenderer;
     [SerializeField, Range(0.001f, 0.02f)] private float _lineWidth;
-    [SerializeField] private int _pointsMultiplicator;
+    [SerializeField, Range(100, 300)] private int _pointsMultiplicator;
     [SerializeField] private Vector2 _xLimits;
-    [SerializeField] private float _movementSpeed;
+    [SerializeField, Range(0.5f, 100f)] private float _movementSpeed;
     [SerializeField, Range(0, 2 * Mathf.PI)] private float _radians;
 
     [Header("Sensitivity")]
-    [SerializeField] private float _sensitivity;
-    [SerializeField] private float _sensitivitySteps;
-    [SerializeField] private float _minSensitivity;
-    [SerializeField] private float _maxSensitivity;
+    [SerializeField, Range(0, 5)] private float _sensitivity;
+    [SerializeField, Range(0, 1)] private float _sensitivitySteps;
+    [SerializeField, Range(0, 1)] private float _minSensitivity;
+    [SerializeField, Range(0, 5)] private float _maxSensitivity;
 
     [Header("Amplitude")]
+    [InfoBox("Don't put amplitude above 1", EInfoBoxType.Normal)]
     [SerializeField] private NetworkVariable<float> _amplitude = new NetworkVariable<float>(0.5f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    [SerializeField] private float _maxAmplitude;
-    [SerializeField] private float _minAmplitude;
+    [SerializeField, Range(0,1)] private float _maxAmplitude;
+    [SerializeField, Range(0, 1)] private float _minAmplitude;
 
     [Header("Frequence")]
+    [InfoBox("Don't put frequence above 1", EInfoBoxType.Normal)]
     [SerializeField] private NetworkVariable<float> _frequency = new NetworkVariable<float>(0.5f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    [SerializeField] private float _maxFrequency;
-    [SerializeField] private float _minFrequency;
+    [SerializeField, Range(0, 1)] private float _maxFrequency;
+    [SerializeField, Range(0, 1)] private float _minFrequency;
 
     [Header("Target Objectif")]
-    [SerializeField] private float _targetDifference;
-    [SerializeField] private float _targetFrequency;
-    [SerializeField] private float _targetAmplitude;
+    [SerializeField] private LineRenderer _targetLineRenderer;
+    [SerializeField] private Color _targetColor;
+    [SerializeField, Range(0.01f, 10f)] private float _targetDifference;
+    [SerializeField, Range(0, 1)] private float _targetFrequency;
+    [SerializeField, Range(0, 1)] private float _targetAmplitude;
     [SerializeField] private NetworkVariable<bool> _isTargetFrequency = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> IsTargetFrequency { get => _isTargetFrequency; set => _isTargetFrequency = value; }
+
+    [Header("Events")]
+    public UnityEvent OnCorrectTargetValue;
 
     private void Reset()
     {
@@ -50,7 +54,11 @@ public class Frequency : NetworkBehaviour
         _pointsMultiplicator = 150;
 
         _maxAmplitude = 1f;
+        _minAmplitude = 0.1f;
+
         _maxFrequency = 1f;
+        _minFrequency = 0.1f;
+
         _xLimits = new Vector2(0, 8);
         _movementSpeed = 1;
         _sensitivity = 1f;
@@ -143,6 +151,9 @@ public class Frequency : NetworkBehaviour
     private void ChangeLineColorClientRpc(bool isTarget)
     {
         _myLineRenderer.startColor = _myLineRenderer.endColor = isTarget ? Color.green : Color.white;
+
+        if (isTarget && _myLineRenderer.startColor != Color.green)
+            OnCorrectTargetValue?.Invoke();
     }
 
     #region Amplitude

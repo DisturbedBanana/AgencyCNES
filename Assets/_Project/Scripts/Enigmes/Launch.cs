@@ -28,6 +28,9 @@ public class Launch : NetworkBehaviour
     [SerializeField] private GameObject _ceintureClosed;
 
     [Header("Events")]
+    public UnityEvent OnAttachedPlayer;
+    public UnityEvent OnDettachedPlayer;
+    public UnityEvent OnVideoPlay;
     public UnityEvent OnComplete;
 
     private void Reset()
@@ -61,6 +64,7 @@ public class Launch : NetworkBehaviour
 
         _ceintureOpen.SetActive(false);
         _ceintureClosed.SetActive(true);
+        OnAttachedPlayer?.Invoke();
     }
     public void DetachPlayer()
     {
@@ -68,6 +72,7 @@ public class Launch : NetworkBehaviour
         _playerController.LockMovement(false);
         _ceintureOpen.SetActive(true);
         _ceintureClosed.SetActive(false);
+        OnDettachedPlayer?.Invoke();
     }
 
 
@@ -82,9 +87,9 @@ public class Launch : NetworkBehaviour
         if (_playerIsLock.Value)
         {
             PlayVideoRpc();
+            OnComplete?.Invoke();
             GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
             DetachPlayer();
-            OnComplete?.Invoke();
         }
         else
         {
@@ -98,6 +103,7 @@ public class Launch : NetworkBehaviour
     {
         _launchVideo.gameObject.SetActive(true);
         _launchVideo.Play();
+        OnVideoPlay?.Invoke();
     }
 
 

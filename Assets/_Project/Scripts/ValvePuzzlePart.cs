@@ -5,6 +5,7 @@ using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 using UnityEngine.XR.Content.Interaction;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
@@ -16,9 +17,9 @@ public class ValvePuzzlePart : NetworkBehaviour
     [SerializeField] float _currentValue;
     [SerializeField] float _targetValue;
     [SerializeField] float _correctValue;
-    [SerializeField] float _speed = 1;
-    [SerializeField] bool _isSolved = false;
-    [SerializeField] private float _targetDifference;
+    [SerializeField, Range(50, 200)] float _speed;
+    [SerializeField] bool _isSolved;
+    [SerializeField, Range(0.05f, 10f)] private float _targetDifference;
 
     [Header("References")]
     [SerializeField] Transform _needle;
@@ -26,6 +27,10 @@ public class ValvePuzzlePart : NetworkBehaviour
 
 
     NetworkVariable<float> _angle = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    [Header("Events")]
+    public UnityEvent OnCorrectAngle;
+    public UnityEvent OnCorrectAngleChangedToIncorrect;
 
     public float CurrentValue
     {
@@ -43,28 +48,38 @@ public class ValvePuzzlePart : NetworkBehaviour
     {
         set { _isSolved = value; }
         get { return _isSolved; }
+
+    }
+
+    private void Reset()
+    {
+        _speed = 50;
+        _minValue = -90;
+        _maxValue = 90;
+        _targetDifference = 1;
+        _isSolved = false;
     }
 
     private void Start()
     {
         //RollRandomValues();
         _needle.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        CurrentValue = TargetValue;
-
+        _currentValue = _targetValue;
+        _isSolved = false;
     }
 
     private void Update()
     {
-        if (CurrentValue != _angle.Value)
+        if (_currentValue != _angle.Value)
         {
-            CurrentValue = Mathf.MoveTowards(CurrentValue, _angle.Value, _speed * Time.deltaTime);
-            _needle.localEulerAngles = new Vector3(Mathf.Lerp(-90, 90, (CurrentValue - _minValue) / (_maxValue - _minValue)), 0, 0);
+            _currentValue = Mathf.MoveTowards(_currentValue, _angle.Value, _speed * Time.deltaTime);
+            _needle.localEulerAngles = new Vector3(Mathf.Lerp(-90, 90, (_currentValue - _minValue) / (_maxValue - _minValue)), 0, 0);
         }
 
         if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.VALVES)
             return;
            
-        if (AreValuesRoughlyEqual())
+        if (IsCorrectValue())
         {
             _needle.GetComponentInChildren<SpriteRenderer>().color = Color.green;
         }
@@ -79,7 +94,7 @@ public class ValvePuzzlePart : NetworkBehaviour
         _currentValue = UnityEngine.Random.Range(_minValue, _maxValue);
         _correctValue = UnityEngine.Random.Range(_minValue, _maxValue);
 
-        if (AreValuesRoughlyEqual())
+        if (IsCorrectValue())
         {
             RollRandomValues();
         }
@@ -90,7 +105,7 @@ public class ValvePuzzlePart : NetworkBehaviour
         return Mathf.Abs(_currentValue - _correctValue) <= (_maxValue - _minValue) * 0.01f;
     }
 
-    private bool isCorrectValue() => Mathf.Abs(_correctValue - _currentValue) <= _targetDifference;
+    private bool IsCorrectValue() => Mathf.Abs(_correctValue - _currentValue) <= _targetDifference;
 
     public void ChangeTargetValue()
     {
@@ -103,11 +118,17 @@ public class ValvePuzzlePart : NetworkBehaviour
     {
         if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.VALVES)
             return;
-        
-        if (isCorrectValue())
-            IsSolved = true;
+
+        if (IsCorrectValue() && !_isSolved) //Changed to Correct
+            OnCorrectAngle?.Invoke();
+        else if (!IsCorrectValue() && _isSolved)
+            OnCorrectAngleChangedToIncorrect?.Invoke(); //Changed from Correct to Incorrect
+
+
+        if (IsCorrectValue())
+            _isSolved = true;
         else
-            IsSolved = false;
+            _isSolved = false;
 
         ValveManager.instance.CheckValves();
     }

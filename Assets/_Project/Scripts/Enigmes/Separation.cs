@@ -42,10 +42,9 @@ public class Separation : NetworkBehaviour
         if (!AreBothLeverActivated())
             return;
 
-        GameState.Instance.ChangeState(GameState.GAMESTATES.FREQUENCY);
-
         OnComplete?.Invoke();// TODO: ouvrir la porte de l'ATV
 
+        GameState.Instance.ChangeState(GameState.GAMESTATES.FREQUENCY);
     }
 
     private bool AreBothLeverActivated() => _leverFuseeIsActivated.Value && _leverMissionControlIsActivated.Value;

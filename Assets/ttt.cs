@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ttt : MonoBehaviour
 {
-    [SerializeField, EnumFlags] private GameState.GAMESTATES stateToGo;
+    [SerializeField] private GameState.GAMESTATES stateToGo;
 
 
     [Button]
