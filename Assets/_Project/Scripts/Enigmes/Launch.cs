@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,27 +17,28 @@ public class Launch : NetworkBehaviour
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private Transform _attach;
 
-    [SerializeField, Range(0, 30)] private float _timeCountdown;
     [SerializeField] private VideoPlayer _launchVideo;
 
     private NetworkVariable<bool> _playerIsLock = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    [ReadOnly] public float _countdown;
+    [Header("Countdown")]
+    [SerializeField, Range(0, 30)] private float _countdownBeforeButton;
+    [SerializeField] private TextMeshProUGUI _textCountdown;
+    [SerializeField] private GameObject _layoutPassword;
+    [ReadOnly] public float _currentCountdown;
+    private Coroutine countdownRoutine;
 
     [Header("Ceintures")]
     [SerializeField] private GameObject _ceintureOpen;
     [SerializeField] private GameObject _ceintureClosed;
 
     [Header("Events")]
-    public UnityEvent OnAttachedPlayer;
-    public UnityEvent OnDettachedPlayer;
-    public UnityEvent OnVideoPlay;
     public UnityEvent OnComplete;
 
     private void Reset()
     {
         _canAttach = false;
-        _timeCountdown = 10f;
+        _countdownBeforeButton = 10f;
     }
 
     private void Start()
@@ -64,7 +66,8 @@ public class Launch : NetworkBehaviour
 
         _ceintureOpen.SetActive(false);
         _ceintureClosed.SetActive(true);
-        OnAttachedPlayer?.Invoke();
+
+        CountdownButtonRpc();
     }
     public void DetachPlayer()
     {
@@ -72,105 +75,36 @@ public class Launch : NetworkBehaviour
         _playerController.LockMovement(false);
         _ceintureOpen.SetActive(true);
         _ceintureClosed.SetActive(false);
-        OnDettachedPlayer?.Invoke();
     }
 
 
-    public void LaunchCountdownForSitting()
+    public void StartLaunchState()
     {
-        CountdownRpc();
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    private void CheckLaunchServerRpc()
-    {
-        if (_playerIsLock.Value)
-        {
-            PlayVideoRpc();
-            OnComplete?.Invoke();
-            GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
-            DetachPlayer();
-        }
-        else
-        {
-            PlayVoiceOffClientRpc(1);
-        }
-        _canAttach = false;
-    }
-
-    [Rpc(SendTo.Everyone)]
-    private void PlayVideoRpc()
-    {
-        _launchVideo.gameObject.SetActive(true);
-        _launchVideo.Play();
-        OnVideoPlay?.Invoke();
-    }
-
-
-
-    [Rpc(SendTo.Everyone)]
-    private void CountdownRpc()
-    {
-        Debug.Log("CountdownRpc");
         _canAttach = true;
-
-        if (countdownRoutine == null)
-            countdownRoutine = StartCoroutine(Countdown());
-    }
-    Coroutine countdownRoutine;
-    private IEnumerator Countdown()
-    {
-        Debug.Log("Countdown routine");
-        PlayVoiceOffClientRpc(0);
-        _countdown = _timeCountdown;
-        while(_countdown > 0)
-        {
-            if (_playerIsLock.Value)
-            {
-                Debug.Log("Player is lock");
-                break;
-            }
-            Debug.Log(_countdown);
-            _countdown--;
-            yield return new WaitForSeconds(1);
-        }
-
-        if (NetworkManager.Singleton.IsHost)
-            CheckPlayerLockServerRpc();
-
-        countdownRoutine = null;
+        _layoutPassword.SetActive(false);
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void CheckPlayerLockServerRpc()
-    {
-        if (_playerIsLock.Value)
-        {
-            CountdownButtonRpc();
-        }
-        else
-        {
-            PlayVoiceOffClientRpc(1);
-        }
-    }
+
 
     [Rpc(SendTo.Everyone)]
     private void CountdownButtonRpc()
     {
         Debug.Log("CountdownButtonRpc");
-        _canPushButton = true;
-        if(countdownRoutine == null)
+        if (countdownRoutine == null)
             countdownRoutine = StartCoroutine(CountdownButton());
     }
 
     private IEnumerator CountdownButton()
     {
         PlayVoiceOffClientRpc(0);
-        _countdown = 10;
-        while (_countdown > 0)
+        yield return new WaitForSeconds(5); // wait for voiceOFF
+        _currentCountdown = _countdownBeforeButton;
+        _textCountdown.gameObject.SetActive(true);
+        while (_currentCountdown > 0)
         {
-            Debug.Log(_countdown);
-            _countdown--;
+            Debug.Log(_currentCountdown); 
+            _textCountdown.text = _currentCountdown.ToString();
+            _currentCountdown--;
             yield return new WaitForSeconds(1);
         }
 
@@ -198,8 +132,34 @@ public class Launch : NetworkBehaviour
                 Debug.Log("Countdown");
                 break;
             case 1:
-                Debug.Log($"Player not attached. Please restart"); 
+                Debug.Log($"Player not attached. Please restart");
                 break;
         }
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void CheckLaunchServerRpc()
+    {
+        if (_playerIsLock.Value)
+        {
+            PlayVideoRpc();
+            GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
+            DetachPlayer();
+            OnComplete?.Invoke();
+        }
+        else
+        {
+            PlayVoiceOffClientRpc(1);
+        }
+        _canAttach = false;
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void PlayVideoRpc()
+    {
+        _launchVideo.gameObject.SetActive(true);
+        _launchVideo.Play();
+    }
+
+
 }

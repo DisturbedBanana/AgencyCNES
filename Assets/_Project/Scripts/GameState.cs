@@ -150,7 +150,7 @@ public class GameState : NetworkBehaviour
                     //Activate all elements related to calibrating
                     break;
                 case GAMESTATES.LAUNCH:
-                    FindObjectOfType<Launch>().LaunchCountdownForSitting();
+                    FindObjectOfType<Launch>().StartLaunchState();
                 break;
                 case GAMESTATES.VALVES:
                     
@@ -163,7 +163,8 @@ public class GameState : NetworkBehaviour
                 //When harness is attached and button pressed -> valves (coroutine for timer?)
                 break;
                 case GAMESTATES.FUSES:
-                    break;
+                FindObjectOfType<FuseManager>().StartState();
+                break;
                 case GAMESTATES.FREQUENCY:
                     break;
                 case GAMESTATES.DODGE:

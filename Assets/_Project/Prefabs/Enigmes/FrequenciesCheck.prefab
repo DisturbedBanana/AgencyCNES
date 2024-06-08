@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed5dd6d03948d342ae881d2e53dfabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetLineRenderer: {fileID: 3400304429308101994}
+  _targetColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 0.39607844}
   _myLineRenderer: {fileID: 7701117528085276238}
   _lineWidth: 0.005
   _pointsMultiplicator: 150
@@ -60,21 +62,16 @@ MonoBehaviour:
   _amplitude:
     m_InternalValue: 0.5
   _maxAmplitude: 1
-  _minAmplitude: 0.1
+  _minAmplitude: 0.01
   _frequency:
     m_InternalValue: 0.5
   _maxFrequency: 1
-  _minFrequency: 0.1
-  _targetLineRenderer: {fileID: 3400304429308101994}
-  _targetColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 0.39607844}
+  _minFrequency: 0.01
   _targetDifference: 0.05
-  _targetFrequency: 1
-  _targetAmplitude: 1
+  _targetFrequency: 0.97
+  _targetAmplitude: 0.07
   _isTargetFrequency:
     m_InternalValue: 0
-  OnCorrectTargetValue:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!120 &7701117528085276238
 LineRenderer:
   serializedVersion: 2
@@ -200,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3470523878
+  GlobalObjectIdHash: 306715093
   InScenePlacedSourceGlobalObjectIdHash: 2368454515
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -401,6 +398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed5dd6d03948d342ae881d2e53dfabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetLineRenderer: {fileID: 1581981822582593224}
+  _targetColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0.39607844}
   _myLineRenderer: {fileID: 2746737213300160801}
   _lineWidth: 0.005
   _pointsMultiplicator: 150
@@ -414,21 +413,16 @@ MonoBehaviour:
   _amplitude:
     m_InternalValue: 0.5
   _maxAmplitude: 1
-  _minAmplitude: 0.3
+  _minAmplitude: 0.01
   _frequency:
     m_InternalValue: 0.5
   _maxFrequency: 1
-  _minFrequency: 0.3
-  _targetLineRenderer: {fileID: 1581981822582593224}
-  _targetColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0.39607844}
+  _minFrequency: 0.01
   _targetDifference: 0.1
-  _targetFrequency: 1
-  _targetAmplitude: 1
+  _targetFrequency: 0.37
+  _targetAmplitude: 0.16
   _isTargetFrequency:
     m_InternalValue: 0
-  OnCorrectTargetValue:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!120 &2746737213300160801
 LineRenderer:
   serializedVersion: 2
@@ -554,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3470523878
+  GlobalObjectIdHash: 2361164341
   InScenePlacedSourceGlobalObjectIdHash: 2368454515
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -616,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3470523878
+  GlobalObjectIdHash: 2368454515
   InScenePlacedSourceGlobalObjectIdHash: 2368454515
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

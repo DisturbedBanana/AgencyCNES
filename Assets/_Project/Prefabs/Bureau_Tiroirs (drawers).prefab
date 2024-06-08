@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 16407869823703617}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 9.770257e-16, z: 0.000000044703487, w: 1}
-  m_LocalPosition: {x: -0.0002000099, y: -0.021800008, z: 0.10159992}
+  m_LocalPosition: {x: -0.0002000099, y: 0.005, z: 0.10159992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,8 +118,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.34404337, y: 0.34672073, z: 0.020467043}
-  m_Center: {x: -0.000000029802322, y: 0.034452036, z: -0.20893276}
+  m_Size: {x: 0.34404337, y: 0.32434493, z: 0.020467043}
+  m_Center: {x: -0.00000002980232, y: 0.023264132, z: -0.20893276}
 --- !u!65 &6769883856320556433
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -752,8 +752,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.34404337, y: 0.34672073, z: 0.020467043}
-  m_Center: {x: -0.000000029802322, y: 0.034452036, z: -0.20893276}
+  m_Size: {x: 0.34404337, y: 0.33941555, z: 0.020467043}
+  m_Center: {x: -0.000000029802322, y: 0.030799441, z: -0.20893276}
 --- !u!65 &4260989060931416046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -895,7 +895,7 @@ Transform:
   m_GameObject: {fileID: 8889168559850133059}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 9.770257e-16, z: 0.000000044703487, w: 1}
-  m_LocalPosition: {x: -0.0002000099, y: -0.021800008, z: 0.10159992}
+  m_LocalPosition: {x: -0.0002000099, y: 0.001, z: 0.10159992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -983,8 +983,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.34404337, y: 0.34672073, z: 0.020467043}
-  m_Center: {x: -0.000000029802322, y: 0.034452036, z: -0.20893276}
+  m_Size: {x: 0.34404337, y: 0.32502824, z: 0.020467043}
+  m_Center: {x: -0.000000029802322, y: 0.023605801, z: -0.20893276}
 --- !u!65 &8663382375275155112
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1115,7 +1115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4146292237361990556, guid: 6937f459a5fdbb944ba5953cf2c42f3e, type: 3}
       propertyPath: m_Name
-      value: Bureau_Tiroirs Variant
+      value: Bureau_Tiroirs (drawers)
       objectReference: {fileID: 0}
     - target: {fileID: 8766705762244453723, guid: 6937f459a5fdbb944ba5953cf2c42f3e, type: 3}
       propertyPath: m_Materials.Array.size
@@ -1216,15 +1216,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fedc914ee155dc44baab0564ce852cb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.173
+      value: -1.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fedc914ee155dc44baab0564ce852cb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2971
+      value: 0.304
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fedc914ee155dc44baab0564ce852cb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.34525478
+      value: -0.336
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fedc914ee155dc44baab0564ce852cb5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1268,11 +1268,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: fedc914ee155dc44baab0564ce852cb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0156
+      value: -0.033
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: fedc914ee155dc44baab0564ce852cb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2068
+      value: 0.2001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1745,7 +1745,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.4
+    limit: 0.35
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -2376,7 +2376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fedc914ee155dc44baab0564ce852cb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.34525478
+      value: -0.095
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fedc914ee155dc44baab0564ce852cb5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2424,7 +2424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: fedc914ee155dc44baab0564ce852cb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2068
+      value: -0.053
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
