@@ -14,9 +14,9 @@ public enum EnigmaEvents
 {
     ONSUCCEED = 0,
     ONFAILED = 1,
-    ONCOMPLETE = 2
+    OnStateComplete = 2
 }
-public class Simon : NetworkBehaviour
+public class Simon : NetworkBehaviour, IGameState
 {
     #region Structs
 
@@ -64,9 +64,10 @@ public class Simon : NetworkBehaviour
     public bool CanChooseColor { get => _canChooseColor.Value; set => _canChooseColor.Value = value; }
 
     [Header("Events")]
+    public UnityEvent OnStateStart;
     public UnityEvent OnLevelSucceed;
     public UnityEvent OnLevelFailed;
-    public UnityEvent OnComplete;
+    public UnityEvent OnStateComplete;
 
     private void Reset()
     {
@@ -158,8 +159,8 @@ public class Simon : NetworkBehaviour
             case EnigmaEvents.ONFAILED:
                 OnLevelFailed?.Invoke();
                 break;
-            case EnigmaEvents.ONCOMPLETE:
-                OnComplete?.Invoke();
+            case EnigmaEvents.OnStateComplete:
+                OnStateComplete?.Invoke();
                 break;
 
         }
@@ -194,6 +195,7 @@ public class Simon : NetworkBehaviour
 
     public void StartState()
     {
+        OnStateStart?.Invoke();
         CanChooseColor = true;
         ChangeAmbiantLights(true);
         StartSimonClientRpc();

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Content.Interaction;
 
-public class Separation : NetworkBehaviour
+public class Separation : NetworkBehaviour, IGameState
 {
     [Header("Levers")]
     [SerializeField] private XRLever _leverFusee;
@@ -15,7 +15,8 @@ public class Separation : NetworkBehaviour
     private NetworkVariable<bool> _leverMissionControlIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Events")]
-    public UnityEvent OnComplete;
+    public UnityEvent OnStateStart;
+    public UnityEvent OnStateComplete;
     public void LeverActivated(int playerNumber)
     {
         ChangeLeverValueServerRpc(playerNumber, true);
@@ -42,7 +43,7 @@ public class Separation : NetworkBehaviour
         if (!AreBothLeverActivated())
             return;
 
-        OnComplete?.Invoke();// TODO: ouvrir la porte de l'ATV
+        OnStateComplete?.Invoke();// TODO: ouvrir la porte de l'ATV
 
         GameState.Instance.ChangeState(GameState.GAMESTATES.FREQUENCY);
     }
@@ -50,6 +51,8 @@ public class Separation : NetworkBehaviour
     private bool AreBothLeverActivated() => _leverFuseeIsActivated.Value && _leverMissionControlIsActivated.Value;
     private NetworkVariable<bool> GetPlayerLever(int playerNumber) => playerNumber == 0 ? _leverFuseeIsActivated : _leverMissionControlIsActivated;
 
-
-
+    public void StartState()
+    {
+        OnStateStart?.Invoke();
+    }
 }

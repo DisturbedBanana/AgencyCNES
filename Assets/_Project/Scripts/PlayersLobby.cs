@@ -84,7 +84,6 @@ public class PlayersLobby : NetworkBehaviour
     [ClientRpc]
     private void StartGameClientRpc()
     {
-        Debug.LogError("StartGameClientRpc");
         if (!enableSpawnPosition)
             return;
 

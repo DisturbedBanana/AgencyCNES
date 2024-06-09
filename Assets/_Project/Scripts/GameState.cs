@@ -53,7 +53,7 @@ public class GameState : NetworkBehaviour
     {
         GoToState(_StartWithState);
     }
-    public void StateForce(GAMESTATES state) 
+    public void StateForce(GAMESTATES state)
     {
         CurrentGameState = state;
     }
@@ -99,7 +99,7 @@ public class GameState : NetworkBehaviour
 
     private void Awake()
     {
-        
+
         if (Instance == null)
         {
             Instance = this;
@@ -114,11 +114,11 @@ public class GameState : NetworkBehaviour
     {
         if (IsOwner)
         {
-            AskForGameStateUpdateClientRpc(this.GetComponent<NetworkObject>(),state);
+            AskForGameStateUpdateClientRpc(this.GetComponent<NetworkObject>(), state);
         }
         else
         {
-            AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>(),state);
+            AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>(), state);
         }
 
         ApplyStateChangesRpc(state);
@@ -128,55 +128,58 @@ public class GameState : NetworkBehaviour
     {
         foreach (var enumValue in Enum.GetValues(typeof(GAMESTATES)))
         {
-            if(enumValue.ToString() == state.ToUpper())
+            if (enumValue.ToString() == state.ToUpper())
             {
                 ChangeState((GAMESTATES)enumValue);
             }
         }
-        Debug.LogError("Enum"+ state.ToUpper() + " value found in " + typeof(GAMESTATES));
+        Debug.LogError("Enum" + state.ToUpper() + " value found in " + typeof(GAMESTATES));
     }
 
 
     [Rpc(SendTo.Everyone)]
     public void ApplyStateChangesRpc(GAMESTATES state)
     {
+        OnStateChange?.Invoke();
         CurrentGameState = state;
 
         switch (state)
-            {
-                case GAMESTATES.PASSWORD:
-                    break;
-                case GAMESTATES.CALIBRATE:
-                    //Activate all elements related to calibrating
-                    break;
-                case GAMESTATES.LAUNCH:
-                    FindObjectOfType<Launch>().StartLaunchState();
+        {
+            case GAMESTATES.PASSWORD:
+                FindObjectOfType<PasswordPuzzleManager>().StartState();
                 break;
-                case GAMESTATES.VALVES:
-                    
-                    break;
+            case GAMESTATES.CALIBRATE:
+                //Activate all elements related to calibrating
+                Debug.LogError("State CALIBRATE not implemented");
+                break;
+            case GAMESTATES.LAUNCH:
+                FindObjectOfType<Launch>().StartState();
+                break;
+            case GAMESTATES.VALVES:
+                FindObjectOfType<ValveManager>().StartState();
+                break;
             case GAMESTATES.SIMONSAYS:
-                    FindObjectOfType<Simon>().StartState();
-                    break;
-                case GAMESTATES.SEPARATION:
-                //Change control video (launch video)
-                //When harness is attached and button pressed -> valves (coroutine for timer?)
+                FindObjectOfType<Simon>().StartState();
                 break;
-                case GAMESTATES.FUSES:
+            case GAMESTATES.SEPARATION:
+                FindObjectOfType<Separation>().StartState();
+                break;
+            case GAMESTATES.FUSES:
                 FindObjectOfType<FuseManager>().StartState();
                 break;
-                case GAMESTATES.FREQUENCY:
-                    break;
-                case GAMESTATES.DODGE:
-                    break;
-                default:
-                    break;
-            }
+            case GAMESTATES.FREQUENCY:
+                FindObjectOfType<FrequenciesCheck>().StartState();
+                break;
+            case GAMESTATES.DODGE:
+                Debug.LogError("State DODGE not implemented");
+                break;
+            default:
+                Debug.LogError("No State found");
+                break;
+        }
 
         Debug.LogError(CurrentGameState);
         _notifText.text += "ChangeState to: " + CurrentGameState;
-
-        OnStateChange?.Invoke();
     }
 
     [ServerRpc(RequireOwnership = false)]

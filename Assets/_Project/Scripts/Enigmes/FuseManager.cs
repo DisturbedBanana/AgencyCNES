@@ -6,7 +6,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.Events;
 
-public class FuseManager : NetworkBehaviour
+public class FuseManager : NetworkBehaviour, IGameState
 {
     public static FuseManager Instance;
 
@@ -22,10 +22,9 @@ public class FuseManager : NetworkBehaviour
     private int _currentConnectedFuses;
     private bool _areFusesSolved = false;
 
-    [SerializeField] private GameObject _sparksParticules;
-
     [Header("Events")]
-    public UnityEvent OnComplete;
+    public UnityEvent OnStateStart;
+    public UnityEvent OnStateComplete;
 
     #region PROPERTIES
     public Material GreenMat
@@ -99,7 +98,7 @@ public class FuseManager : NetworkBehaviour
             return;
 
         GameState.Instance.ChangeState(GameState.GAMESTATES.SEPARATION);
-        OnComplete?.Invoke();
+        OnStateComplete?.Invoke();
     }
 
     private bool AreFusesSolved()
@@ -109,7 +108,7 @@ public class FuseManager : NetworkBehaviour
 
     public void StartState()
     {
-        _sparksParticules.SetActive(true);
+        OnStateStart?.Invoke();
     }
 
 }

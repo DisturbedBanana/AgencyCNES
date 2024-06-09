@@ -9,7 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.Video;
 using UnityEngine.XR.Content.Interaction;
 
-public class Launch : NetworkBehaviour
+public class Launch : NetworkBehaviour, IGameState
 {
     private bool _canAttach;
     private bool _canPushButton;
@@ -33,7 +33,8 @@ public class Launch : NetworkBehaviour
     [SerializeField] private GameObject _ceintureClosed;
 
     [Header("Events")]
-    public UnityEvent OnComplete;
+    public UnityEvent OnStateStart;
+    public UnityEvent OnStateComplete;
 
     private void Reset()
     {
@@ -76,14 +77,6 @@ public class Launch : NetworkBehaviour
         _ceintureOpen.SetActive(true);
         _ceintureClosed.SetActive(false);
     }
-
-
-    public void StartLaunchState()
-    {
-        _canAttach = true;
-        _layoutPassword.SetActive(false);
-    }
-
 
 
     [Rpc(SendTo.Everyone)]
@@ -145,7 +138,7 @@ public class Launch : NetworkBehaviour
             PlayVideoRpc();
             GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
             DetachPlayer();
-            OnComplete?.Invoke();
+            OnStateComplete?.Invoke();
         }
         else
         {
@@ -159,6 +152,12 @@ public class Launch : NetworkBehaviour
     {
         _launchVideo.gameObject.SetActive(true);
         _launchVideo.Play();
+    }
+    public void StartState()
+    {
+        OnStateStart?.Invoke();
+        _canAttach = true;
+        _layoutPassword.SetActive(false);
     }
 
 

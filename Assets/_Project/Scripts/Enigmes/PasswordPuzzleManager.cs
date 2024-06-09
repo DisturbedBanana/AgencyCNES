@@ -8,7 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PasswordPuzzleManager : MonoBehaviour
+public class PasswordPuzzleManager : MonoBehaviour, IGameState
 {
     bool _isCoroutineRunning = false;
     int _ignoreKeysAmount = 0;
@@ -59,10 +59,11 @@ public class PasswordPuzzleManager : MonoBehaviour
     [SerializeField, Expandable] private SoundSO _SFXValidationLight;
 
     [Header("Events")]
+    public UnityEvent OnStateStart;
     public UnityEvent OnKeyboardPlacedOnSocket;
     public UnityEvent OnKeyUsed;
     public UnityEvent OnFailedPassword;
-    public UnityEvent OnComplete;
+    public UnityEvent OnStateComplete;
 
     private void Start()
     {
@@ -105,7 +106,7 @@ public class PasswordPuzzleManager : MonoBehaviour
             GameState.Instance.ChangeState(GameState.GAMESTATES.LAUNCH);
             StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
             StartCoroutine(FlashingLightCoroutine(true));
-            OnComplete?.Invoke();
+            OnStateComplete?.Invoke();
         }
     }
 
@@ -194,5 +195,10 @@ public class PasswordPuzzleManager : MonoBehaviour
         {
             child.sprite = _spriteBarre;
         }
+    }
+
+    public void StartState()
+    {
+        OnStateStart?.Invoke();
     }
 }

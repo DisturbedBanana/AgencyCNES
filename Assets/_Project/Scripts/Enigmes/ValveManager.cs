@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ValveManager : NetworkBehaviour
+public class ValveManager : NetworkBehaviour, IGameState
 {
     public static ValveManager instance;
 
@@ -14,7 +14,8 @@ public class ValveManager : NetworkBehaviour
     public bool IsSolved { get { return _isSolved; } set { _isSolved = value; } }
 
     [Header("Events")]
-    public UnityEvent OnComplete;
+    public UnityEvent OnStateStart;
+    public UnityEvent OnStateComplete;
     private void Awake()
     {
         if (instance != null)
@@ -39,8 +40,13 @@ public class ValveManager : NetworkBehaviour
         }
 
         _isSolved = true;
-        OnComplete?.Invoke();
+        OnStateComplete?.Invoke();
         Debug.LogError("Valve puzzle solved!");
         GameState.Instance.ChangeState(GameState.GAMESTATES.FUSES);
+    }
+
+    public void StartState()
+    {
+        OnStateStart?.Invoke();
     }
 }
