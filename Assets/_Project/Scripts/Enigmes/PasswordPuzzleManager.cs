@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,6 +53,10 @@ public class PasswordPuzzleManager : MonoBehaviour
     [SerializeField] List<PasswordSprites> passwordsSprites = new List<PasswordSprites>(12);
     [SerializeField] Transform _computerSpritesParent;
     [SerializeField] Sprite _spriteBarre;
+
+
+    [Header("Sounds")]
+    [SerializeField, Expandable] private SoundSO _SFXValidationLight;
 
     [Header("Events")]
     public UnityEvent OnKeyboardPlacedOnSocket;
