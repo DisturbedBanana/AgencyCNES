@@ -15,6 +15,7 @@ using UnityEngine.Serialization;
 using Unity.XR.CoreUtils;
 using NaughtyAttributes;
 using System.Linq;
+using UnityEngine.Rendering;
 
 public class NetworkConnect : MonoBehaviour
 {
@@ -45,10 +46,6 @@ public class NetworkConnect : MonoBehaviour
         }
     }
 
-    [Header("Player Spawn")]
-    [SerializeField] private PlayerController _playerController;
-    [SerializeField] private bool enableSpawnPosition;
-    [SerializeField] private List<PlayerSpawn> spawns;
 
     private async void Awake()
     {
@@ -95,22 +92,13 @@ public class NetworkConnect : MonoBehaviour
 
     private void PlayerConnected(ulong id)
     {
-        //DisplayText("A player connected");
-        SendInfoToServerRpc($"Client {NetworkManager.Singleton.LocalClient.ClientId} connected");
-        if (!enableSpawnPosition)
+        if (NetworkManager.Singleton.IsHost && NetworkManager.Singleton.LocalClientId == id)
             return;
-
-        ChooseAMovementTypeToSpawnPlayer();
-        GameState.Instance.StartWithState();
+        if(!NetworkManager.Singleton.IsHost)
+            DisplayText("Server joined");
+        SendInfoToServerRpc($"Client {NetworkManager.Singleton.LocalClient.ClientId} connected");
     }
 
-    private void ChooseAMovementTypeToSpawnPlayer()
-    {
-        bool isHost = NetworkManager.Singleton.IsHost;
-        PlayerSpawn playerSpawn = isHost ? spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.LAUNCHER)
-            : spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.MISSIONCONTROL);
-        _playerController.SpawnPlayer(playerSpawn);
-    }
 
     public async void JoinOrCreate()
     {
