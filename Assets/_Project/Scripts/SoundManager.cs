@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     public void PlaySound(GameObject gameObject, AudioClip clip, float volume)
     {
         AudioSource audioSource = gameObject.TryGetComponent(out AudioSource source) ? source : gameObject.AddComponent<AudioSource>();
