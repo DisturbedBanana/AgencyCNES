@@ -7,24 +7,23 @@ using UnityEngine.InputSystem.LowLevel;
 using System;
 using UnityEngine.Video;
 using TMPro;
+using NaughtyAttributes;
+using System.Security.Cryptography;
+using UnityEngine.Events;
 
 public class GameState : NetworkBehaviour
 {
-    public static GameState instance;
+    public static GameState Instance;
 
     [Header("Variables")]
     [SerializeField] int _launchButtonTimingTolerance;
 
-    [Header("References")]
-    [SerializeField] List<GameObject> _launchButtons = new List<GameObject>();
-    [SerializeField] GameObject _videoObject;
-
-    VideoPlayer _video;
-    ulong _firstClientToPushButtonID = 150;
-    DateTime _firstButtonPressTime;
-    Coroutine _toleranceCoroutine = null;
 
     [SerializeField] TextMeshProUGUI _notifText;
+    [SerializeField] private GAMESTATES _StartWithState;
+
+    [Header("Events")]
+    public UnityEvent OnStateChange;
 
     public enum GAMESTATES
     {
@@ -37,6 +36,7 @@ public class GameState : NetworkBehaviour
         FUSES, //Control player activates fuses according to ship player's  instructions
         FREQUENCY, //Both players tune frequency to match other's instructions (easier for ship player)
         DODGE, //Control player controls ship to dodge asteroids, but is guided by ship player (30s)
+        WHACKAMOLE, //whack-a-mole game
     }
 
     #region PROPERTIES
@@ -49,98 +49,135 @@ public class GameState : NetworkBehaviour
     }
     #endregion
 
+    public void StartWithState()
+    {
+        GoToState(_StartWithState);
+    }
+    public void StateForce(GAMESTATES state)
+    {
+        CurrentGameState = state;
+    }
+
+    [Button]
+    public void NextStateForce()
+    {
+        switch (CurrentGameState)
+        {
+            case GAMESTATES.PASSWORD:
+                ApplyStateChangesRpc(GAMESTATES.LAUNCH);
+                break;
+            case GAMESTATES.CALIBRATE:
+                break;
+            case GAMESTATES.LAUNCH:
+                ApplyStateChangesRpc(GAMESTATES.VALVES);
+                break;
+            case GAMESTATES.VALVES:
+                ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
+                break;
+            case GAMESTATES.SIMONSAYS:
+                ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
+                break;
+            case GAMESTATES.SEPARATION:
+                ApplyStateChangesRpc(GAMESTATES.SEPARATION);
+                break;
+            case GAMESTATES.FUSES:
+                ApplyStateChangesRpc(GAMESTATES.FUSES);
+                break;
+            case GAMESTATES.FREQUENCY:
+                ApplyStateChangesRpc(GAMESTATES.FREQUENCY);
+                break;
+            case GAMESTATES.DODGE:
+                break;
+            default:
+                break;
+        }
+    }
+    public void GoToState(GAMESTATES state)
+    {
+        ApplyStateChangesRpc(state);
+    }
 
     private void Awake()
     {
-        
-        if (instance == null)
+
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
             Destroy(gameObject);
         }
-
-        //_video = _videoObject.GetComponent<VideoPlayer>();
-        //_video.Stop();
-        //_videoObject.SetActive(false);
     }
 
     public void ChangeState(GAMESTATES state)
     {
         if (IsOwner)
         {
-            AskForGameStateUpdateClientRpc(this.GetComponent<NetworkObject>(),state);
+            AskForGameStateUpdateClientRpc(this.GetComponent<NetworkObject>(), state);
         }
         else
         {
-            AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>(),state);
+            AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>(), state);
         }
-        
-        ApplyStateChanges(state);
+
+        ApplyStateChangesRpc(state);
     }
 
     public void ChangeState(string state)
     {
         foreach (var enumValue in Enum.GetValues(typeof(GAMESTATES)))
         {
-            if(enumValue.ToString() == state.ToUpper())
+            if (enumValue.ToString() == state.ToUpper())
             {
                 ChangeState((GAMESTATES)enumValue);
             }
         }
-        Debug.LogError("Enum"+ state.ToUpper() + " value found in " + typeof(GAMESTATES));
+        Debug.LogError("Enum" + state.ToUpper() + " value found in " + typeof(GAMESTATES));
     }
 
 
-    private void PlayVideo()
+    [Rpc(SendTo.Everyone)]
+    public void ApplyStateChangesRpc(GAMESTATES state)
     {
-        if (CurrentGameState == GAMESTATES.LAUNCH)
-        {
-            _videoObject.SetActive(true);
-            _videoObject.GetComponent<VideoPlayer>().Play();
-        }
-    }
-
-    public void ApplyStateChanges(GAMESTATES state)
-    {
+        OnStateChange?.Invoke();
         CurrentGameState = state;
-            switch (state)
-            {
-                case GAMESTATES.PASSWORD:
-                    break;
-                case GAMESTATES.CALIBRATE:
-                    //Activate all elements related to calibrating
-                    break;
-                case GAMESTATES.LAUNCH:
-                    FindObjectOfType<Launch>().CanAttach = true;
-                    break;
-                case GAMESTATES.VALVES:
-                    
-                    break;
-            case GAMESTATES.SIMONSAYS:
-                    FindObjectOfType<Simon>().CanChooseColor = true;
-                    FindObjectOfType<Simon>().StartSimonClientRpc();
-                    break;
-                case GAMESTATES.SEPARATION:
-                foreach (GameObject item in _launchButtons)
-                {
-                    item.GetComponent<VideoPlayerButton>().CanLaunch = true;
-                }
-                //Change control video (launch video)
-                //When harness is attached and button pressed -> valves (coroutine for timer?)
+
+        switch (state)
+        {
+            case GAMESTATES.PASSWORD:
+                FindObjectOfType<PasswordPuzzleManager>().StartState();
                 break;
-                case GAMESTATES.FUSES:
-                    break;
-                case GAMESTATES.FREQUENCY:
-                    break;
-                case GAMESTATES.DODGE:
-                    break;
-                default:
-                    break;
-            }
-        
+            case GAMESTATES.CALIBRATE:
+                //Activate all elements related to calibrating
+                Debug.LogError("State CALIBRATE not implemented");
+                break;
+            case GAMESTATES.LAUNCH:
+                FindObjectOfType<Launch>().StartState();
+                break;
+            case GAMESTATES.VALVES:
+                FindObjectOfType<ValveManager>().StartState();
+                break;
+            case GAMESTATES.SIMONSAYS:
+                FindObjectOfType<Simon>().StartState();
+                break;
+            case GAMESTATES.SEPARATION:
+                FindObjectOfType<Separation>().StartState();
+                break;
+            case GAMESTATES.FUSES:
+                FindObjectOfType<FuseManager>().StartState();
+                break;
+            case GAMESTATES.FREQUENCY:
+                FindObjectOfType<FrequenciesCheck>().StartState();
+                break;
+            case GAMESTATES.DODGE:
+                Debug.LogError("State DODGE not implemented");
+                break;
+            default:
+                Debug.LogError("No State found");
+                break;
+        }
+
         Debug.LogError(CurrentGameState);
         _notifText.text += "ChangeState to: " + CurrentGameState;
     }
@@ -150,7 +187,7 @@ public class GameState : NetworkBehaviour
     {
         if (networkObjectRef.TryGet(out NetworkObject networkObject2))
         {
-            networkObject2.GetComponent<GameState>().ApplyStateChanges(state);
+            networkObject2.GetComponent<GameState>().ApplyStateChangesRpc(state);
         }
     }
 
@@ -159,55 +196,8 @@ public class GameState : NetworkBehaviour
     {
         if (networkObjectRef.TryGet(out NetworkObject networkObject2))
         {
-            networkObject2.GetComponent<GameState>().ApplyStateChanges(state);
+            networkObject2.GetComponent<GameState>().ApplyStateChangesRpc(state);
         }
     }
 
-    [Rpc(SendTo.Everyone)]
-    public void CheckLaunchButtonTimingRpc(DateTime givenTime, ulong clientID)
-    {
-        
-        if (DateTime.Equals(_firstButtonPressTime, DateTime.MinValue))
-        {
-            if (_toleranceCoroutine == null)
-                _toleranceCoroutine = StartCoroutine(ButtonPushedCoroutine());
-
-            _firstClientToPushButtonID = clientID;
-            _firstButtonPressTime = givenTime;
-        }
-        else
-        {
-            if (clientID == _firstClientToPushButtonID)
-            {
-                Debug.LogError("Same Client called twice");
-                _firstClientToPushButtonID = 150;
-                _firstButtonPressTime = DateTime.MinValue;
-                StopCoroutine(_toleranceCoroutine);
-                _toleranceCoroutine = null;
-            }
-            else
-            {
-                Debug.LogError("First time: " + _firstButtonPressTime+ "\nSecond time: " + givenTime);
-                if (givenTime.Subtract(_firstButtonPressTime).TotalMilliseconds <= _launchButtonTimingTolerance)
-                {
-                    PlayVideo();
-                    ChangeState(GAMESTATES.SIMONSAYS);
-                }
-                
-                _firstClientToPushButtonID = 150;
-                _firstButtonPressTime = DateTime.MinValue;
-                StopCoroutine(_toleranceCoroutine);
-                _toleranceCoroutine = null;
-            }
-
-        }
-    }
-
-    private IEnumerator ButtonPushedCoroutine()
-    {
-        yield return new WaitForSeconds(_launchButtonTimingTolerance / 1000);
-        _firstClientToPushButtonID = 150;
-        _firstButtonPressTime = DateTime.MinValue;
-        yield return null;
-    }
 }

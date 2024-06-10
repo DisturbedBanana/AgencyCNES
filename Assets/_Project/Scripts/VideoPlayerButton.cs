@@ -32,7 +32,6 @@ public class VideoPlayerButton : NetworkBehaviour
     {
         if (_canLaunch)
         {
-            GameState.instance.CheckLaunchButtonTimingRpc(DateTime.Now, NetworkManager.Singleton.LocalClientId);
             Debug.LogError("Clicked button" + NetworkManager.Singleton.LocalClientId);
         }
     }
