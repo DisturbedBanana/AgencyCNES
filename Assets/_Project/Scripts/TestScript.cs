@@ -58,12 +58,12 @@ public class TestScript : NetworkBehaviour
 
     private void OnEnable()
     {
-        NetworkXRGrabInteractable.targetMove += ClientObjectMove;
+        //NetworkXRGrabInteractable.targetMove += ClientObjectMove;
     }
 
     private void OnDisable()
     {
-        NetworkXRGrabInteractable.targetMove -= ClientObjectMove;
+        //NetworkXRGrabInteractable.targetMove -= ClientObjectMove;
 
     }
 
