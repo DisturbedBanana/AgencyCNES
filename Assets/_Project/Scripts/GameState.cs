@@ -149,7 +149,6 @@ public class GameState : NetworkBehaviour
                 FindObjectOfType<PasswordPuzzleManager>().StartState();
                 break;
             case GAMESTATES.CALIBRATE:
-                //Activate all elements related to calibrating
                 Debug.LogError("State CALIBRATE not implemented");
                 break;
             case GAMESTATES.LAUNCH:
