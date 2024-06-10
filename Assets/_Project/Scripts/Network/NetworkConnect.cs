@@ -52,8 +52,8 @@ public class NetworkConnect : MonoBehaviour
         _currentLobby = null;
         await UnityServices.InitializeAsync();
         string playerName = $"Player_{UnityEngine.Random.Range(0, 100)}";
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
         AuthenticationService.Instance.SwitchProfile(playerName);
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
         if (NetworkManager.Singleton == null)
             return;
