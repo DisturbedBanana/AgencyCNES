@@ -1,69 +1,163 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Video;
 using UnityEngine.XR.Content.Interaction;
 
-public class Launch : NetworkBehaviour
+public class Launch : NetworkBehaviour, IGameState
 {
-    [SerializeField] private bool _canAttach;
+    private bool _canAttach;
+    private bool _canPushButton;
     public bool CanAttach { get => _canAttach; set => _canAttach = value; }
-    [SerializeField] private XRLockSocketInteractor _socketInteractor;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private Transform _attach;
 
-    [SerializeField] NetworkVariable<bool> _playerIsLock = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [SerializeField] private VideoPlayer _launchVideo;
+
+    private NetworkVariable<bool> _playerIsLock = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    [Header("Countdown")]
+    [SerializeField, Range(0, 30)] private float _countdownBeforeButton;
+    [SerializeField] private TextMeshProUGUI _textCountdown;
+    [SerializeField] private GameObject _layoutPassword;
+    [ReadOnly] public float _currentCountdown;
+    private Coroutine countdownRoutine;
+
+    [Header("Ceintures")]
+    [SerializeField] private GameObject _ceintureOpen;
+    [SerializeField] private GameObject _ceintureClosed;
+
+    [Header("Events")]
+    public UnityEvent OnStateStart;
+    public UnityEvent OnStateComplete;
+
     private void Reset()
     {
-        _canAttach = true;
+        _canAttach = false;
+        _countdownBeforeButton = 10f;
+    }
+
+    private void Start()
+    {
+        _canAttach = false;
+        _canPushButton = false;
+        countdownRoutine = null;
+        _ceintureOpen.SetActive(true);
+        _ceintureClosed.SetActive(false);
     }
 
     public void AttachPlayer()
     {
-        if (!CanAttach)
+        if (!_canAttach)
             return;
-        Debug.Log("PlayerAttach");
+
         _playerController.GetComponent<Collider>().enabled = false;
         _playerController.LockMovement(true);
         _playerController.transform.position = _attach.position;
         _playerController.transform.rotation = _attach.rotation;
+
         if(IsOwner)
             _playerIsLock.Value = true;
+
+
+        _ceintureOpen.SetActive(false);
+        _ceintureClosed.SetActive(true);
+
+        CountdownButtonRpc();
     }
     public void DetachPlayer()
     {
-        Debug.Log("PlayerDetach");
         _playerController.GetComponent<Collider>().enabled = true;
         _playerController.LockMovement(false);
-        _playerController.GetComponent<Rigidbody>().AddForce(Vector3.forward, ForceMode.Impulse);
+        _ceintureOpen.SetActive(true);
+        _ceintureClosed.SetActive(false);
     }
+
+
+    [Rpc(SendTo.Everyone)]
+    private void CountdownButtonRpc()
+    {
+        Debug.Log("CountdownButtonRpc");
+        if (countdownRoutine == null)
+            countdownRoutine = StartCoroutine(CountdownButton());
+    }
+
+    private IEnumerator CountdownButton()
+    {
+        PlayVoiceOffClientRpc(0);
+        yield return new WaitForSeconds(5); // wait for voiceOFF
+        _currentCountdown = _countdownBeforeButton;
+        _textCountdown.gameObject.SetActive(true);
+        while (_currentCountdown > 0)
+        {
+            Debug.Log(_currentCountdown); 
+            _textCountdown.text = _currentCountdown.ToString();
+            _currentCountdown--;
+            yield return new WaitForSeconds(1);
+        }
+
+        _canPushButton = true;
+
+        countdownRoutine = null;
+    }
+
 
     public void PlayerPushedButton()
     {
-        if (!_playerIsLock.Value)
+        if (GameState.Instance.CurrentGameState != GameState.GAMESTATES.LAUNCH || !_playerIsLock.Value || !_canPushButton)
             return;
+
         CheckLaunchServerRpc();
+    }
+
+
+    [ClientRpc]
+    private void PlayVoiceOffClientRpc(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                Debug.Log("Countdown");
+                break;
+            case 1:
+                Debug.Log($"Player not attached. Please restart");
+                break;
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
     private void CheckLaunchServerRpc()
     {
-        try
+        if (_playerIsLock.Value)
         {
-            if (_playerIsLock.Value)
-            {
-                //Launch
-                GameState.instance.ChangeState(GameState.GAMESTATES.SIMONSAYS);
-                DetachPlayer();
-                _canAttach = false;
-            }
+            PlayVideoRpc();
+            GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
+            DetachPlayer();
+            OnStateComplete?.Invoke();
         }
-        catch(Exception e)
+        else
         {
-            Debug.Log(e);
+            PlayVoiceOffClientRpc(1);
         }
-        
+        _canAttach = false;
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void PlayVideoRpc()
+    {
+        _launchVideo.gameObject.SetActive(true);
+        _launchVideo.Play();
+    }
+    public void StartState()
+    {
+        OnStateStart?.Invoke();
+        _canAttach = true;
+        _layoutPassword.SetActive(false);
     }
 
 
