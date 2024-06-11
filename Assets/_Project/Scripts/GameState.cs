@@ -22,6 +22,11 @@ public class GameState : NetworkBehaviour
     [SerializeField] TextMeshProUGUI _notifText;
     [SerializeField] private GAMESTATES _StartWithState;
 
+
+    [Header("Light")]
+    [SerializeField] Light _light;
+    [SerializeField, Range(2f, 50f)] float _lightFlashingSpeed = 10f;
+
     [Header("Events")]
     public UnityEvent OnStateChange;
 
@@ -42,6 +47,8 @@ public class GameState : NetworkBehaviour
     #region PROPERTIES
 
     GAMESTATES _currentGameState = GAMESTATES.PASSWORD;
+    private bool _isCoroutineRunning;
+
     public GAMESTATES CurrentGameState
     {
         get { return _currentGameState; }
@@ -193,4 +200,53 @@ public class GameState : NetworkBehaviour
         }
     }
 
+    [Rpc(SendTo.Everyone, RequireOwnership = false)]
+    public void FlashValidationLightRpc(bool success)
+    {
+        if(_isCoroutineRunning)
+            return;
+
+        StartCoroutine(FlashingLightCoroutine(success));
+    }
+
+    private IEnumerator FlashingLightCoroutine(bool success = false)
+    {
+        _isCoroutineRunning = true;
+        Color targetColor;
+        float t;
+
+        switch (success)
+        {
+            case true:
+                targetColor = Color.green;
+                break;
+            case false:
+                targetColor = Color.red;
+                break;
+        }
+
+        for (float i = 0; i < 255; i++)
+        {
+            t = (i / 255) * (_lightFlashingSpeed * Time.deltaTime);
+            if (t > 0.95f)
+                break;
+
+            _light.color = Color.Lerp(_light.color, targetColor, t);
+            yield return null;
+        }
+
+        t = 0;
+
+        for (float i = 0; i < 255; i++)
+        {
+            t = (i / 255) * (_lightFlashingSpeed * Time.deltaTime);
+            if (t > 0.95f)
+                break;
+
+            _light.color = Color.Lerp(_light.color, Color.white, t);
+            yield return null;
+        }
+
+        _isCoroutineRunning = false;
+    }
 }
