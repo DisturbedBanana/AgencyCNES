@@ -2706,6 +2706,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 2810007726306780433, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
+      propertyPath: _colorToChangeTo
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3420496214885335177, guid: 5163eb2934c3ab049a4e65ac54ad2464, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.25063646
@@ -29381,6 +29385,14 @@ PrefabInstance:
     - target: {fileID: 5827221766189087718, guid: 24305cbc0cc9aa542b69c6f3eaa88bfd, type: 3}
       propertyPath: m_LocalPosition.z
       value: 13.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373710610321497919, guid: 24305cbc0cc9aa542b69c6f3eaa88bfd, type: 3}
+      propertyPath: m_Colliders.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373710610321497919, guid: 24305cbc0cc9aa542b69c6f3eaa88bfd, type: 3}
+      propertyPath: m_DistanceCalculationMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
