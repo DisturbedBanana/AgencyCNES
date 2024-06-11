@@ -23966,6 +23966,10 @@ PrefabInstance:
       value: 914520227
       objectReference: {fileID: 0}
     - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
       propertyPath: _spotLights.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -23998,6 +24002,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1941568111}
     - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[4].Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[4].Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[4].Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[4].Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[5].Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
       propertyPath: _ambiantSpotLights.Array.data[0]
       value: 
       objectReference: {fileID: 927152793}
@@ -24025,6 +24049,14 @@ PrefabInstance:
       propertyPath: _ambiantSpotLights.Array.data[6]
       value: 
       objectReference: {fileID: 1941568111}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[4].SimonColor
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
+      propertyPath: _colors.Array.data[5].SimonColor
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2656752250570713542, guid: c2cc58f4e6e95f1488ac3168f0f1ffee, type: 3}
       propertyPath: _levelList.Array.data[1].ColorOrder.Array.data[4]
       value: 3

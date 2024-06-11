@@ -65,7 +65,8 @@ public class Simon : NetworkBehaviour, IGameState
 
     private Coroutine _colorRoutine = null;
     [SerializeField, Range(0, 5)] private float _holdColorTime = 2f;
-    [SerializeField, Range(0, 10)] private float _pauseAfterColors = 3f;
+    [SerializeField, Range(0, 10)] private float _pauseAfterEachColor = 0.25f;
+    [SerializeField, Range(0, 10)] private float _pauseAfterColorSequence = 3f;
     [SerializeField, Range(0, 10)] private float _waitBeforeClearButtons = 2f;
     [SerializeField, Range(0, 10)] private float _replaySimonSpeed = 0.2f;
 
@@ -323,13 +324,18 @@ public class Simon : NetworkBehaviour, IGameState
     {
         Debug.Log("DisplayColorRoutine");
         var wait1 = new WaitForSeconds(_holdColorTime);
-        var wait2 = new WaitForSeconds(_pauseAfterColors);
+        var wait2 = new WaitForSeconds(_pauseAfterColorSequence);
+        var waitAfterEachColor = new WaitForSeconds(_pauseAfterEachColor);
         while (true)
         {
             for (int i = 0; i < _levelList[_currentLevel].ColorOrder.Count; i++)
             {
                 ChangeSpotLightsColor(_levelList[_currentLevel].ColorOrder[i]);
                 yield return wait1;
+
+                ChangeSpotLightsColor(SimonColor.BLACK);
+                yield return waitAfterEachColor;
+
                 DisableAllLightsClientRpc();
             }
             yield return wait2;
