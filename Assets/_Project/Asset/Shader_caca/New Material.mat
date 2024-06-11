@@ -39,8 +39,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _BaseGradientPower: 1.4
-    - _FresnelPower: 1
-    - _GlitterOffset: 0.59
+    - _FresnelPower: 2.67
+    - _GlitterOffset: 0.58
     - _NoiseRotationSpeed: 79.7
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -48,6 +48,6 @@ Material:
     - _BaseColor1: {r: 0.462745, g: 0.9921568, b: 0.8589504, a: 1}
     - _BaseColor2: {r: 0.59337366, g: 0.262264, b: 1, a: 1}
     - _FresnelColor: {r: 0, g: 0.9257514, b: 12.844468, a: 1}
-    - _GlitterColor: {r: 0.31372547, g: 1, b: 0.9476376, a: 1}
-    - _NoiseScale: {r: 10, g: 5, b: 0, a: 0}
+    - _GlitterColor: {r: 0, g: 0.9664203, b: 4.649013, a: 1}
+    - _NoiseScale: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
