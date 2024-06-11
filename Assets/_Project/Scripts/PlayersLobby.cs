@@ -86,12 +86,20 @@ public class PlayersLobby : NetworkBehaviour
     [ClientRpc]
     private void StartGameClientRpc()
     {
-        if (!enableSpawnPosition)
-            return;
+        if (enableSpawnPosition)
+        {
+            PlayerSpawn playerSpawn = ChooseAMovementTypeToSpawnPlayer();
+            _playerController.SpawnPlayer(playerSpawn);
+        }
 
-        PlayerSpawn playerSpawn = ChooseAMovementTypeToSpawnPlayer();
-        _playerController.SpawnPlayer(playerSpawn);
         GameState.Instance.StartWithState();
+    }
+
+    public void TeleportPlayerDebug(int num)
+    {
+
+        PlayerSpawn playerSpawn = spawns[num];
+        _playerController.SpawnPlayer(playerSpawn);
     }
 
     private PlayerSpawn ChooseAMovementTypeToSpawnPlayer()
