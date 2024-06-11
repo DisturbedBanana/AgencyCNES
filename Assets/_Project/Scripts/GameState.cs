@@ -148,9 +148,6 @@ public class GameState : NetworkBehaviour
             case GAMESTATES.PASSWORD:
                 FindObjectOfType<PasswordPuzzleManager>().StartState();
                 break;
-            case GAMESTATES.CALIBRATE:
-                Debug.LogError("State CALIBRATE not implemented");
-                break;
             case GAMESTATES.LAUNCH:
                 FindObjectOfType<Launch>().StartState();
                 break;
@@ -168,9 +165,6 @@ public class GameState : NetworkBehaviour
                 break;
             case GAMESTATES.FREQUENCY:
                 FindObjectOfType<FrequenciesCheck>().StartState();
-                break;
-            case GAMESTATES.DODGE:
-                Debug.LogError("State DODGE not implemented");
                 break;
             default:
                 Debug.LogError("No State found");

@@ -32,6 +32,7 @@ public class PlayerController : CharacterControllerDriver
 
     [SerializeField, ReadOnly] private float _currentMagnitude;
     [SerializeField] private GameObject _locomotion;
+    [SerializeField] private TeleportationProvider _teleportationProvider;
 
     private MOVEMENTTYPE _movementType;
 
@@ -54,6 +55,7 @@ public class PlayerController : CharacterControllerDriver
         {
             case MOVEMENTTYPE.LAUNCHER:
                 _rigidbody.useGravity = false;
+                _teleportationProvider.gameObject.SetActive(false);
                 break;
             case MOVEMENTTYPE.MISSIONCONTROL:
                 _rigidbody.useGravity = true;
