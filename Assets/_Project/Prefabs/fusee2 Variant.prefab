@@ -113,6 +113,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2707736727530686, guid: 5cab872310d658d4c9818fd361cf482b, type: 3}
+      propertyPath: m_DistanceCalculationMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 686170013267986940, guid: 5cab872310d658d4c9818fd361cf482b, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 211996138
