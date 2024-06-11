@@ -16,7 +16,6 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        base.OnNetworkSpawn();
         if (IsOwner)
         {
             foreach (Renderer item in meshesToDisable)
