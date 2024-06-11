@@ -39,8 +39,11 @@ public class PlayersLobby : NetworkBehaviour
     }
     private void PlayerConnected(ulong id)
     {
-        if(NetworkManager.Singleton.IsHost)
-            CheckStartAGame();
+        if (!NetworkManager.Singleton.IsHost)
+            return;
+
+        CheckStartAGame();
+        //DisplayTextNotif("Player connected: " + NetworkManager.Singleton.ConnectedClients.First(client => client.Value.ClientId == id));
     }
     private void PlayerDisconnected(ulong id)
     {
