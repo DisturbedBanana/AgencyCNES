@@ -33,7 +33,6 @@ public class GameState : NetworkBehaviour
     public enum GAMESTATES
     {
         PASSWORD, //Control player enters password
-        CALIBRATE, //Both player calibrate
         LAUNCH, //Harness and button
         VALVES, //Ship player moves valves to match control gauges
         SIMONSAYS, //Control player activates color in order -> told by ship player
@@ -41,7 +40,6 @@ public class GameState : NetworkBehaviour
         FUSES, //Control player activates fuses according to ship player's  instructions
         FREQUENCY, //Both players tune frequency to match other's instructions (easier for ship player)
         DODGE, //Control player controls ship to dodge asteroids, but is guided by ship player (30s)
-        WHACKAMOLE, //whack-a-mole game
     }
 
     #region PROPERTIES
@@ -72,8 +70,6 @@ public class GameState : NetworkBehaviour
         {
             case GAMESTATES.PASSWORD:
                 ApplyStateChangesRpc(GAMESTATES.LAUNCH);
-                break;
-            case GAMESTATES.CALIBRATE:
                 break;
             case GAMESTATES.LAUNCH:
                 ApplyStateChangesRpc(GAMESTATES.VALVES);
