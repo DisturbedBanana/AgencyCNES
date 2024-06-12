@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77eed2e6275e1514096487091860b33e, type: 3}
-  m_Name: Launch
+  m_Name: Dodge
   m_EditorClassIdentifier: 
   _voices:
-  - text: Decollage
+  - text: 
     voiceType: 0
-    audio: {fileID: 8300000, guid: 29e4b296f16fe6b48a2832b0e07f5edb, type: 3}
+    audio: {fileID: 8300000, guid: 27e122f08e476fb429df06871dd57e18, type: 3}
     delayedTime: 0
     numberOfRepeat: 0
-  - text: Sitted
-    voiceType: 3
-    audio: {fileID: 8300000, guid: 40822c39389589f4fb225e42c75c99d6, type: 3}
+  - text: 
+    voiceType: 2
+    audio: {fileID: 8300000, guid: 87893753bb41c0a498fbc80f9f79129e, type: 3}
     delayedTime: 0
     numberOfRepeat: 0

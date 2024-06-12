@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Content.Interaction;
 
-public class Dodge : MonoBehaviour, IGameState
+public class Dodge : MonoBehaviour, IGameState, IVoiceAI
 {
     [Header("Levers")]
     [SerializeField] private XRLever _leverFusee;
@@ -18,14 +18,58 @@ public class Dodge : MonoBehaviour, IGameState
     [Header("Voices")]
     [Expandable]
     [SerializeField] private VoiceAI _voicesAI;
+    private List<VoiceData> _voicesHint => _voicesAI.GetAllHintVoices();
+    private NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Events")]
     public UnityEvent OnStateStart;
     public UnityEvent OnStateComplete;
+
     public void StartState()
     {
         OnStateStart?.Invoke();
+        StartCoroutine(StartHintCountdown());
     }
+    public IEnumerator StartHintCountdown()
+    {
+        if (_voicesHint.Count == 0)
+            yield break;
+
+        for (int i = 0; i < _voicesHint[_currentHintIndex.Value].numberOfRepeat + 1; i++)
+        {
+            float waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
+            int waitingHintIndex = _currentHintIndex.Value;
+
+            while (waitBeforeHint > 0)
+            {
+                if (waitingHintIndex != _currentHintIndex.Value)
+                { 
+                    if(_currentHintIndex.Value > _voicesHint.Count - 1) yield break;
+                    waitingHintIndex = _currentHintIndex.Value;
+                    waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
+                }
+
+                waitBeforeHint -= Time.deltaTime;
+                yield return null;
+            }
+            SoundManager.Instance.PlaySound(gameObject, _voicesHint[_currentHintIndex.Value].audio);
+        }
+
+
+        if (_currentHintIndex.Value < _voicesHint.Count - 1)
+        {
+            ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
+            StartCoroutine(StartHintCountdown());
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ChangeHintIndexServerRpc(int value)
+    {
+        _currentHintIndex.Value = value;
+    }
+
+
     public void LeverActivated(int playerNumber)
     {
         ChangeLeverValueServerRpc(playerNumber, true);
@@ -42,12 +86,12 @@ public class Dodge : MonoBehaviour, IGameState
 
         if (GameState.Instance.CurrentGameState == GameState.GAMESTATES.SEPARATION)
         {
-            CheckSeparationLeverServerRpc(NetworkManager.Singleton.LocalClientId);
+            CheckSeparationLeverServerRpc();
         }
     }
 
     [ServerRpc]
-    public void CheckSeparationLeverServerRpc(ulong clientID)
+    public void CheckSeparationLeverServerRpc()
     {
         if (!AreBothLeverActivated())
             return;
@@ -61,6 +105,7 @@ public class Dodge : MonoBehaviour, IGameState
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
+        StopCoroutine(StartHintCountdown());
     }
 
     private bool AreBothLeverActivated() => _leverFuseeIsActivated.Value && _leverMissionControlIsActivated.Value;

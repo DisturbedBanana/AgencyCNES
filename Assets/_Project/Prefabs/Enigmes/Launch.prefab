@@ -71,13 +71,24 @@ MonoBehaviour:
   _playerController: {fileID: 0}
   _attach: {fileID: 6534708040529579151}
   _launchVideo: {fileID: 0}
+  _voicesAI: {fileID: 0}
   _countdownBeforeButton: 0
   _textCountdown: {fileID: 0}
   _layoutPassword: {fileID: 0}
   _currentCountdown: 0
   _ceintureOpen: {fileID: 3458578623959576367}
   _ceintureClosed: {fileID: 3370686647857781990}
+  _waitSecondsBeforeDetach: 25
   OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerAttached:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCountdownFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerDetached:
     m_PersistentCalls:
       m_Calls: []
   OnStateComplete:

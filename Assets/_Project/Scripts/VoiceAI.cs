@@ -17,6 +17,7 @@ public class VoiceAI : ScriptableObject
     public List<VoiceData> GetAllHintVoices() => _voices.Where(x => x.voiceType == VoiceType.HINT).ToList();
     public List<VoiceData> GetAllStartVoices() => _voices.Where(x => x.voiceType == VoiceType.START).ToList();
     public List<VoiceData> GetAllEndVoices() => _voices.Where(x => x.voiceType == VoiceType.END).ToList();
+    public List<VoiceData> GetAllSpecialVoices() => _voices.Where(x => x.voiceType == VoiceType.SPECIAL).ToList();
 }
 
 [Serializable]
@@ -33,5 +34,6 @@ public enum VoiceType
 {
     START,
     END,
-    HINT
+    HINT,
+    SPECIAL
 }

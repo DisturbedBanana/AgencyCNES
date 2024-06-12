@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3470523878
+  GlobalObjectIdHash: 306715093
   InScenePlacedSourceGlobalObjectIdHash: 2368454515
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3470523878
+  GlobalObjectIdHash: 2361164341
   InScenePlacedSourceGlobalObjectIdHash: 2368454515
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -616,7 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3470523878
+  GlobalObjectIdHash: 2368454515
   InScenePlacedSourceGlobalObjectIdHash: 2368454515
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -639,6 +639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _frequencyLauncher: {fileID: 4540992263880831857}
   _frequencyMissionControl: {fileID: 5758072236868777110}
+  _voicesAI: {fileID: 11400000, guid: 7bd7a284df4623445960b83142358e37, type: 2}
   OnStateStart:
     m_PersistentCalls:
       m_Calls: []

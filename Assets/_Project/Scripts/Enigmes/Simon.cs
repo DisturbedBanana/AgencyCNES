@@ -4,19 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Experimental.GlobalIllumination;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public enum EnigmaEvents
-{
-    ONSUCCEED = 0,
-    ONFAILED = 1,
-    OnStateComplete = 2
-}
+
 public class Simon : NetworkBehaviour, IGameState
 {
     #region Structs
@@ -68,10 +60,17 @@ public class Simon : NetworkBehaviour, IGameState
     [SerializeField, Range(0, 10)] private float _pauseAfterEachColor = 0.25f;
     [SerializeField, Range(0, 10)] private float _pauseAfterColorSequence = 3f;
     [SerializeField, Range(0, 10)] private float _waitBeforeClearButtons = 2f;
-    [SerializeField, Range(0, 10)] private float _replaySimonSpeed = 0.2f;
+    [SerializeField, Range(0, 1)] private float _replaySimonSpeed = 0.2f;
 
     private NetworkVariable<bool> _canChooseColor = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public bool CanChooseColor { get => _canChooseColor.Value; set => _canChooseColor.Value = value; }
+
+
+    [Header("Voices")]
+    [Expandable]
+    [SerializeField] private VoiceAI _voicesAI;
+    private List<VoiceData> _voicesHint => _voicesAI.GetAllHintVoices();
+    private NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Events")]
     public UnityEvent OnStateStart;
@@ -89,9 +88,37 @@ public class Simon : NetworkBehaviour, IGameState
         _previousAmbiantSpotLightIntensity = _ambiantSpotLights.Count == 0 ? 1f : _ambiantSpotLights[0].intensity;
     }
 
+    public void StartState()
+    {
+        OnStateStart?.Invoke();
+        if (IsOwner)
+            _canChooseColor.Value = true;
+        EnableColorSpotLights(true);
+        ChangeAmbiantLights(true);
+        StartSimonClientRpc();
+        SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllStartVoices());
+        StartCoroutine(StartHintCountdown());
+    }
+
+    public void StartSimon()
+    {
+        _canChooseColor.Value = true;
+        ChangeAmbiantLights(true);
+        StartSimonClientRpc();
+    }
+
+    [ClientRpc]
+    public void StartSimonClientRpc()
+    {
+        Debug.Log("StartSimonClientRpc");
+        StopSimonRoutine();
+        _colorRoutine = StartCoroutine(DisplayColorRoutine(_currentLevel));
+    }
+
+
     public void PushButton(string color)
     {
-        
+
         if (!_canChooseColor.Value || GameState.Instance.CurrentGameState != GameState.GAMESTATES.SIMONSAYS)
             return;
 
@@ -130,19 +157,22 @@ public class Simon : NetworkBehaviour, IGameState
                 break;
             }
         }
-        Debug.Log(isOrderCorrect ? "Order correct!" : "Order is not good!");
 
-        PlayEventClientRpc(isOrderCorrect ? EnigmaEvents.ONSUCCEED : EnigmaEvents.ONFAILED);
+        if(isOrderCorrect)
+            OnLevelSucceedClientRpc();
+        else
+            OnLevelFailedClientRpc();
+
         GameState.Instance.FlashValidationLightRpc(isOrderCorrect);
 
         ClearPlayerColorsClientRpc();
         DisableAllLightsClientRpc();
 
-        if(isOrderCorrect)
+        if (isOrderCorrect)
             ValidateSimonBeforeChangingLevelRpc();
         else
             StartSimonClientRpc();
-        
+
 
     }
 
@@ -159,35 +189,15 @@ public class Simon : NetworkBehaviour, IGameState
         {
             _canChooseColor.Value = false;
             EndSimonClientRpc();
-            PlayEventClientRpc(EnigmaEvents.OnStateComplete);
+            OnStateCompleteClientRpc();
             GameState.Instance.ChangeState(GameState.GAMESTATES.FUSES);
 
         }
     }
 
-        private bool AreAllLevelsCompleted()
+    private bool AreAllLevelsCompleted()
     {
         return _currentLevel >= (_levelList.Count - 1);
-    }
-
-    [ClientRpc]
-    private void PlayEventClientRpc(EnigmaEvents eventNumber)
-    {
-        Debug.Log("Event: " + eventNumber);
-
-        switch (eventNumber) {
-            
-            case EnigmaEvents.ONSUCCEED:
-                OnLevelSucceed?.Invoke();
-                break;
-            case EnigmaEvents.ONFAILED:
-                OnLevelFailed?.Invoke();
-                break;
-            case EnigmaEvents.OnStateComplete:
-                OnStateComplete?.Invoke();
-                break;
-
-        }
     }
 
     [ClientRpc]
@@ -201,7 +211,7 @@ public class Simon : NetworkBehaviour, IGameState
     [Rpc(SendTo.Everyone)]
     private void ValidateSimonBeforeChangingLevelRpc()
     {
-        if(_validateSimonBeforeChangingLevelCoroutine == null)
+        if (_validateSimonBeforeChangingLevelCoroutine == null)
             _validateSimonBeforeChangingLevelCoroutine = StartCoroutine(ValidateSimonBeforeChangingLevel());
     }
 
@@ -209,7 +219,7 @@ public class Simon : NetworkBehaviour, IGameState
 
     private IEnumerator ValidateSimonBeforeChangingLevel()
     {
-        if(IsOwner)
+        if (IsOwner)
             _canChooseColor.Value = false;
 
         var wait1 = new WaitForSeconds(_replaySimonSpeed);
@@ -245,7 +255,7 @@ public class Simon : NetworkBehaviour, IGameState
 
     private IEnumerator WaitBeforeClearScreenButtonsColors()
     {
-        if(IsOwner)
+        if (IsOwner)
             _canChooseColor.Value = false;
 
         yield return new WaitForSeconds(_waitBeforeClearButtons);
@@ -258,31 +268,6 @@ public class Simon : NetworkBehaviour, IGameState
 
         if (IsOwner)
             _canChooseColor.Value = true;
-    }
-
-    public void StartSimon()
-    {
-        _canChooseColor.Value = true;
-        ChangeAmbiantLights(true);
-        StartSimonClientRpc();
-    }
-
-    [ClientRpc]
-    public void StartSimonClientRpc()
-    {
-        Debug.Log("StartSimonClientRpc");
-        StopSimonRoutine();
-        _colorRoutine = StartCoroutine(DisplayColorRoutine(_currentLevel));
-    }
-
-    public void StartState()
-    {
-        OnStateStart?.Invoke();
-        if(IsOwner)
-            _canChooseColor.Value = true;
-        EnableColorSpotLights(true);
-        ChangeAmbiantLights(true);
-        StartSimonClientRpc();
     }
 
     private void EnableColorSpotLights(bool enable)
@@ -340,7 +325,7 @@ public class Simon : NetworkBehaviour, IGameState
             }
             yield return wait2;
         }
-        
+
     }
 
     [ClientRpc]
@@ -348,7 +333,7 @@ public class Simon : NetworkBehaviour, IGameState
     {
         foreach (var item in _colorSpotLights)
         {
-            item.color = new Color(0,0,0,0);
+            item.color = new Color(0, 0, 0, 0);
         }
     }
 
@@ -360,5 +345,62 @@ public class Simon : NetworkBehaviour, IGameState
         {
             _colorSpotLights[i].color = ChooseColor(simonColor);
         }
+    }
+
+    [ClientRpc]
+    public void OnStateCompleteClientRpc()
+    {
+        OnStateComplete?.Invoke();
+        StopCoroutine(StartHintCountdown());
+    }
+
+    [ClientRpc]
+    public void OnLevelSucceedClientRpc()
+    {
+        OnLevelSucceed?.Invoke();
+    }
+
+    [ClientRpc]
+    public void OnLevelFailedClientRpc()
+    {
+        OnLevelFailed?.Invoke();
+    }
+    public IEnumerator StartHintCountdown()
+    {
+        if (_voicesHint.Count == 0)
+            yield break;
+
+        for (int i = 0; i < _voicesHint[_currentHintIndex.Value].numberOfRepeat + 1; i++)
+        {
+            float waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
+            int waitingHintIndex = _currentHintIndex.Value;
+
+            while (waitBeforeHint > 0)
+            {
+                if (waitingHintIndex != _currentHintIndex.Value)
+                {
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1) yield break;
+                    waitingHintIndex = _currentHintIndex.Value;
+                    waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
+                }
+
+                waitBeforeHint -= Time.deltaTime;
+                yield return null;
+            }
+            SoundManager.Instance.PlaySound(gameObject, _voicesHint[_currentHintIndex.Value].audio);
+        }
+
+
+        if (_currentHintIndex.Value < _voicesHint.Count - 1)
+        {
+            ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
+            StartCoroutine(StartHintCountdown());
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ChangeHintIndexServerRpc(int value)
+    {
+        _currentHintIndex.Value = value;
     }
 }

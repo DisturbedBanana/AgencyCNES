@@ -42,7 +42,8 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayVoices(GameObject go, List<VoiceData> voices)
     {
-         StartCoroutine(PlayVoicesRoutine(go, voices));
+        if(voices.Count > 0)
+            StartCoroutine(PlayVoicesRoutine(go, voices));
     }
     public IEnumerator PlayVoicesRoutine(GameObject go, List<VoiceData> voices)
     {
