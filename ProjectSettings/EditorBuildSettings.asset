@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/GameplayScene.unity
     guid: 64547a6eb895ec24d96d28f5348ba65f
   - enabled: 0
@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: e54647f2caf4ea84b842ca10438a62fd
   - enabled: 0
     path: Assets/_Project/Scenes/Nico_GameplayScene.unity
-    guid: 0a631467cb1f24847aff22004df737f4
+    guid: 7504c893e044b854e9d851426db648d6
   - enabled: 0
     path: Assets/_Project/Scenes/Gym_Ariane.unity
     guid: 337a9000a42eb5b42bc79f70536f4780
@@ -23,15 +23,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Project/Scenes/Lucas_GameplayScene.unity
     guid: a70377a62d4911a4ba9c1e406ca15411
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/GameplayScene_Feedbacks_NicoGD.unity
     guid: 22284b6f703e4444099ba3f10a3c4a57
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/GameplayScene_feedbacksLucas.unity
     guid: 9d111e15b5959334f8d3982353ae39f1
   - enabled: 1
     path: Assets/_Project/Scenes/GameplayScene_Lucas.unity
     guid: 341ad8233d3250c40923b02813531bda
+  - enabled: 1
+    path: Assets/_Project/Scenes/FeedbacksLucas.unity
+    guid: 5a0637d4702d40e4a87e8920f944a0e7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
