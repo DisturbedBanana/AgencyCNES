@@ -1578,19 +1578,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6973857
+      value: 0.75321907
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.11684653
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.11684653
+      value: -0.65776974
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6973857
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1803,7 +1803,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_Handle: {fileID: 7160269283313405039}
+  m_Handle: {fileID: 3944203033591247278}
   m_Value: 0.043
   m_ClampedMotion: 0
   m_MaxAngle: 90
@@ -1881,11 +1881,6 @@ CapsuleCollider:
   m_Height: 0.0010493852
   m_Direction: 1
   m_Center: {x: -0.0000056120407, y: 0.0005471005, z: -0.000004444661}
---- !u!4 &7160269283313405039 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5938071182661999146, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
-  m_PrefabInstance: {fileID: 3546064356192294469}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6975675776998009466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2262,19 +2257,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.72197324
+      value: 0.75321907
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.25505164
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.36447823
+      value: -0.65776974
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5299614
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2417,11 +2412,6 @@ CapsuleCollider:
   m_Height: 0.0010493852
   m_Direction: 1
   m_Center: {x: -0.0000056120407, y: 0.0005471005, z: -0.000004444661}
---- !u!4 &4258133963088676805 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5938071182661999146, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
-  m_PrefabInstance: {fileID: 7601981616866467311}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7331512545862033598 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 512c6e2b6c5ad8c45867759ce76fcbfc, type: 3}
@@ -2542,7 +2532,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_Handle: {fileID: 4258133963088676805}
+  m_Handle: {fileID: 7995318143622674948}
   m_Value: 0.043
   m_ClampedMotion: 0
   m_MaxAngle: 90

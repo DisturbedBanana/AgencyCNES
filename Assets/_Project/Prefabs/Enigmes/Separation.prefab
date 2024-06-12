@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4117833763
+  GlobalObjectIdHash: 2439173501
   InScenePlacedSourceGlobalObjectIdHash: 1520805349
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -70,7 +70,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leverFusee: {fileID: 3429707780262862060}
   _leverMissionControl: {fileID: 4366437117247797887}
-  OnSeparation:
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateComplete:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &7407551539039017694
