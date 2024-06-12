@@ -1209,8 +1209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boite_Fusible Knob
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 6313096612254164128, guid: 1021263040b140b44b06a6eb7997b57f, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 6589024924866230054, guid: 1021263040b140b44b06a6eb7997b57f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1021263040b140b44b06a6eb7997b57f, type: 3}
