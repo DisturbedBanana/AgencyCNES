@@ -39,8 +39,11 @@ public class PlayersLobby : NetworkBehaviour
     }
     private void PlayerConnected(ulong id)
     {
-        if(NetworkManager.Singleton.IsHost)
-            CheckStartAGame();
+        if (!NetworkManager.Singleton.IsHost)
+            return;
+
+        CheckStartAGame();
+        //DisplayTextNotif("Player connected: " + NetworkManager.Singleton.ConnectedClients.First(client => client.Value.ClientId == id));
     }
     private void PlayerDisconnected(ulong id)
     {
@@ -83,12 +86,20 @@ public class PlayersLobby : NetworkBehaviour
     [ClientRpc]
     private void StartGameClientRpc()
     {
-        if (!enableSpawnPosition)
-            return;
+        if (enableSpawnPosition)
+        {
+            PlayerSpawn playerSpawn = ChooseAMovementTypeToSpawnPlayer();
+            _playerController.SpawnPlayer(playerSpawn);
+        }
 
-        PlayerSpawn playerSpawn = ChooseAMovementTypeToSpawnPlayer();
-        _playerController.SpawnPlayer(playerSpawn);
         GameState.Instance.StartWithState();
+    }
+
+    public void TeleportPlayerDebug(int num)
+    {
+
+        PlayerSpawn playerSpawn = spawns[num];
+        _playerController.SpawnPlayer(playerSpawn);
     }
 
     private PlayerSpawn ChooseAMovementTypeToSpawnPlayer()
