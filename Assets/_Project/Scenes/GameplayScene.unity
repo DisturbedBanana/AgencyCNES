@@ -13206,6 +13206,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1354577560039781540, guid: 24305cbc0cc9aa542b69c6f3eaa88bfd, type: 3}
   m_PrefabInstance: {fileID: 3315461151728825662}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &763360714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1338278006788659124, guid: 24305cbc0cc9aa542b69c6f3eaa88bfd, type: 3}
+  m_PrefabInstance: {fileID: 3315461151728825662}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c81276f7de325408cfefa5cd42eb84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &764080312 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 6061831274940110703, guid: 9faabda533aa994428532aeef3673ef3, type: 3}
@@ -34690,7 +34701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
       propertyPath: OnStateComplete.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
       propertyPath: OnStateStart.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -34715,7 +34726,7 @@ PrefabInstance:
     - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
       propertyPath: OnStateComplete.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 763360714}
     - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
       propertyPath: OnStateStart.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -34737,12 +34748,20 @@ PrefabInstance:
       value: set_sprite
       objectReference: {fileID: 0}
     - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
+      propertyPath: OnStateComplete.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TestOpenDoors
+      objectReference: {fileID: 0}
+    - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
       propertyPath: OnStateStart.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
       propertyPath: OnStateComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.SpriteRenderer, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
+      propertyPath: OnStateComplete.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RocketAnim, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
       propertyPath: OnStateComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -34755,6 +34774,10 @@ PrefabInstance:
     - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
       propertyPath: OnStateComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Sprite, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7440898768547540108, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
+      propertyPath: OnStateComplete.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8190080673202962313, guid: e76330997bc740f4f87ef76d3542e0d9, type: 3}
       propertyPath: m_Name
@@ -36407,6 +36430,10 @@ PrefabInstance:
     - target: {fileID: 4078538945179262176, guid: 24305cbc0cc9aa542b69c6f3eaa88bfd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -76.298
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814065909049044145, guid: 24305cbc0cc9aa542b69c6f3eaa88bfd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5827221766189087718, guid: 24305cbc0cc9aa542b69c6f3eaa88bfd, type: 3}
       propertyPath: m_LocalScale.x
