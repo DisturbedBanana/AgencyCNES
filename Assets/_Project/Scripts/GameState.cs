@@ -115,14 +115,14 @@ public class GameState : NetworkBehaviour
 
     public void ChangeState(GAMESTATES state)
     {
-        if (IsOwner)
-        {
-            AskForGameStateUpdateClientRpc(this.GetComponent<NetworkObject>(), state);
-        }
-        else
-        {
-            AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>(), state);
-        }
+        //if (IsOwner)
+        //{
+        //    AskForGameStateUpdateClientRpc(this.GetComponent<NetworkObject>(), state);
+        //}
+        //else
+        //{
+        //    AskForGameStateUpdateServerRpc(this.GetComponent<NetworkObject>(), state);
+        //}
 
         ApplyStateChangesRpc(state);
     }
@@ -145,6 +145,8 @@ public class GameState : NetworkBehaviour
     {
         OnStateChange?.Invoke();
         CurrentGameState = state;
+        Debug.LogError(CurrentGameState);
+        _notifText.text += "ChangeState to: " + CurrentGameState;
 
         switch (state)
         {
@@ -174,8 +176,6 @@ public class GameState : NetworkBehaviour
                 break;
         }
 
-        Debug.LogError(CurrentGameState);
-        _notifText.text += "ChangeState to: " + CurrentGameState;
     }
 
     [ServerRpc(RequireOwnership = false)]
