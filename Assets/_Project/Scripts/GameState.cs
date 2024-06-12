@@ -171,6 +171,9 @@ public class GameState : NetworkBehaviour
             case GAMESTATES.FREQUENCY:
                 FindObjectOfType<FrequenciesCheck>().StartState();
                 break;
+            case GAMESTATES.DODGE:
+                FindObjectOfType<Dodge>().StartState();
+                break;
             default:
                 Debug.LogError("No State found");
                 break;
