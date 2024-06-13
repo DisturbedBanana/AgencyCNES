@@ -22,4 +22,10 @@ public class RocketAnim : MonoBehaviour
     {
         GetComponent<Animator>().Play("CloseDoorsAnim");
     }
+
+    [Button("ATV")]
+    public void LaunchATV()
+    {
+        GetComponent<Animator>().Play("ATV 1");
+    }
 }
