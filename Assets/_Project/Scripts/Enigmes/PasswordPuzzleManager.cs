@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -54,6 +55,12 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
     [SerializeField] Transform _computerSpritesParent;
     [SerializeField] Sprite _spriteBarre;
 
+    [Header("Voices")]
+    [Expandable]
+    [SerializeField] private VoiceAI _voicesAI;
+    private List<VoiceData> _voicesHint => _voicesAI.GetAllHintVoices();
+    private NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private Coroutine _hintCoroutine = null;
 
     [Header("Sounds")]
     [SerializeField, Expandable] private SoundSO _SFXValidationLight;
@@ -68,6 +75,13 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
     private void Start()
     {
         ClearDisplayPasswordOnComputer();
+    }
+
+    public void StartState()
+    {
+        OnStateStart?.Invoke();
+        SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllStartVoices());
+        _hintCoroutine = StartCoroutine(StartHintCountdown());
     }
 
     public void AddKey(PASSWORDKEYS key)
@@ -85,7 +99,7 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
         _currentPassword.Add(key);
         DisplayKeyOnComputer(key);
         Debug.Log(key);
-        OnKeyUsed?.Invoke();
+        OnKeyUsedClientRpc();
 
 
         if (_currentPassword.Count == _correctPassword.Count)
@@ -94,21 +108,49 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
             {
                 if (_correctPassword[i] != _currentPassword[i])
                 {
-                    //Wrong password
-                    _currentPassword.Clear();
-                    StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
-                    StartCoroutine(FlashingLightCoroutine(false));
-                    OnFailedPassword?.Invoke();
+                    OnFailedPasswordClientRpc();
                     return;
                 }
             }
             //Correct Password
+            _currentHintIndex.Value++;
+            CorrectPasswordClientRpc();
+            OnStateCompleteClientRpc();
             GameState.Instance.ChangeState(GameState.GAMESTATES.LAUNCH);
-            StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
-            StartCoroutine(FlashingLightCoroutine(true));
-            OnStateComplete?.Invoke();
         }
     }
+
+    [ClientRpc]
+    private void CorrectPasswordClientRpc()
+    {
+        StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
+        StartCoroutine(FlashingLightCoroutine(true));
+    }
+
+    [ClientRpc]
+    private void OnFailedPasswordClientRpc()
+    {
+        _currentPassword.Clear();
+        StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
+        StartCoroutine(FlashingLightCoroutine(false));
+        OnFailedPassword?.Invoke();
+    }
+
+    #region EventsRpc
+    [ClientRpc]
+    private void OnKeyUsedClientRpc()
+    {
+        OnKeyUsed?.Invoke();
+    }
+
+    [ClientRpc]
+    public void OnStateCompleteClientRpc()
+    {
+        OnStateComplete?.Invoke();
+        if(_hintCoroutine != null)
+            StopCoroutine(_hintCoroutine);
+    } 
+    #endregion
 
     public void WrongPasswordVisualFeedback(bool success)
     {
@@ -197,8 +239,46 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
         }
     }
 
-    public void StartState()
+    public IEnumerator StartHintCountdown()
     {
-        OnStateStart?.Invoke();
+        if (_voicesHint.Count == 0)
+            yield break;
+
+        for (int i = 0; i < _voicesHint[_currentHintIndex.Value].numberOfRepeat + 1; i++)
+        {
+            float waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
+            int waitingHintIndex = _currentHintIndex.Value;
+
+            while (waitBeforeHint > 0)
+            {
+                if (waitingHintIndex != _currentHintIndex.Value)
+                {
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1)
+                    {
+                        StopCoroutine(StartHintCountdown());
+                        yield break;
+                    }
+                    waitingHintIndex = _currentHintIndex.Value;
+                    waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
+                }
+
+                waitBeforeHint -= Time.deltaTime;
+                yield return null;
+            }
+            SoundManager.Instance.PlaySound(gameObject, _voicesHint[_currentHintIndex.Value].audio);
+        }
+
+
+        if (_currentHintIndex.Value < _voicesHint.Count - 1)
+        {
+            ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
+            StartCoroutine(StartHintCountdown());
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ChangeHintIndexServerRpc(int value)
+    {
+        _currentHintIndex.Value = value;
     }
 }

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2439173501
+  GlobalObjectIdHash: 1520805349
   InScenePlacedSourceGlobalObjectIdHash: 1520805349
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -68,8 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c1ef41533f5dd408c95cdf05ae88b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leverFusee: {fileID: 0}
-  _leverMissionControl: {fileID: 0}
+  _leverFusee: {fileID: 4339681132590978537}
+  _leverMissionControl: {fileID: 3652646549182877702}
+  _voicesAI: {fileID: 11400000, guid: 80d7d42dee099f34ab0ac92c01038610, type: 2}
   OnStateStart:
     m_PersistentCalls:
       m_Calls: []
@@ -233,7 +234,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

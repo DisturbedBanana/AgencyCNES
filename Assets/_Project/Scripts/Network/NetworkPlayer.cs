@@ -6,7 +6,6 @@ using TMPro;
 
 public class NetworkPlayer : NetworkBehaviour
 {
-
     public Transform root;
     public Transform head;
     public Transform leftHand;
@@ -21,7 +20,7 @@ public class NetworkPlayer : NetworkBehaviour
         {
             foreach (Renderer item in meshesToDisable)
             {
-                //item.enabled = false;
+                item.enabled = false;
             }
         }
     }
