@@ -25011,7 +25011,7 @@ PrefabInstance:
     - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: _launchVideo
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 94560418}
     - target: {fileID: 1140601237886238663, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: _textCountdown
       value: 
@@ -25212,6 +25212,10 @@ PrefabInstance:
       propertyPath: OnPlayerAttached.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3751045794259233498, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 94063975c4cedb6409344652f2a1fdb1, type: 2}
     - target: {fileID: 3834295066409752851, guid: 825174de6348ae0419c5d7ec2af29639, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
