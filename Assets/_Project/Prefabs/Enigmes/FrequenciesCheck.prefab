@@ -845,7 +845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2357980133959616957, guid: 2de91f556c94269479fddb44815a816c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: -0.00000004371139
       objectReference: {fileID: 0}
     - target: {fileID: 2357980133959616957, guid: 2de91f556c94269479fddb44815a816c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -853,7 +853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2357980133959616957, guid: 2de91f556c94269479fddb44815a816c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2357980133959616957, guid: 2de91f556c94269479fddb44815a816c, type: 3}
       propertyPath: m_LocalRotation.z
@@ -996,8 +996,8 @@ MonoBehaviour:
   m_Handle: {fileID: 4017206260832026380}
   m_Value: 1
   m_ClampedMotion: 1
-  m_MaxAngle: 90
-  m_MinAngle: -90
+  m_MaxAngle: 180
+  m_MinAngle: -180
   m_AngleIncrement: 0
   m_PositionTrackedRadius: 0.075
   m_TwistSensitivity: 1.5
