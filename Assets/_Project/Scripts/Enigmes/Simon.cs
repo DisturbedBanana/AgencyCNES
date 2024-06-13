@@ -107,7 +107,7 @@ public class Simon : NetworkBehaviour, IGameState
         StartSimonClientRpc();
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void StartSimonClientRpc()
     {
         Debug.Log("StartSimonClientRpc");

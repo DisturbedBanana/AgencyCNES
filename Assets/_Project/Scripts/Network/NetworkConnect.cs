@@ -170,8 +170,10 @@ public class NetworkConnect : MonoBehaviour
 
     }
 
-    private void SearchAllLobbiesAvailable()
+    private async void SearchAllLobbiesAvailable()
     {
+        //var lobies = await Lobbies.Instance.QueryLobbiesAsync();
+
         //Lobbies.Instance.QueryLobbiesAsync(new QueryLobbiesOptions { Limit = 10, IsPrivate = false }).ContinueWith((task) =>
         //{
         //    if (task.IsFaulted)

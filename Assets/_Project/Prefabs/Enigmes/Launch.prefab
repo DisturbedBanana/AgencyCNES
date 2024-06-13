@@ -150,6 +150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Siege
       objectReference: {fileID: 0}
+    - target: {fileID: 5763639782192020731, guid: cb5960b40ed62db4b907ea6a82d49841, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.161
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -290,6 +294,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 65b262bf9e5636044ab109dd7ca2abcf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 94063975c4cedb6409344652f2a1fdb1, type: 2}
     - target: {fileID: 919132149155446097, guid: 65b262bf9e5636044ab109dd7ca2abcf, type: 3}
       propertyPath: m_Name
       value: CeintureO
@@ -399,11 +407,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3130556819844574636, guid: b46b4d47ea2ad5e47957688d4826ae95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.812
+      value: 0.8679
       objectReference: {fileID: 0}
     - target: {fileID: 3130556819844574636, guid: b46b4d47ea2ad5e47957688d4826ae95, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.421
+      value: -3.396
       objectReference: {fileID: 0}
     - target: {fileID: 3130556819844574636, guid: b46b4d47ea2ad5e47957688d4826ae95, type: 3}
       propertyPath: m_LocalRotation.w
@@ -483,7 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 2332685918
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 128439214
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0

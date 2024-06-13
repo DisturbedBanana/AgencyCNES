@@ -41,6 +41,7 @@ public class PasswordPuzzleManager : NetworkBehaviour, IGameState
     [SerializeField] List<PASSWORDKEYS> _correctPassword = new List<PASSWORDKEYS>();
     public List<PASSWORDKEYS> _currentPassword = new List<PASSWORDKEYS>();
     [SerializeField, Range(0, 5f)] private float _clearPasswordAfter;
+    private bool _canAddKey = true;
 
     [Header("Keyboard")]
     [SerializeField] GameObject _keyboardToActivate;
@@ -86,7 +87,7 @@ public class PasswordPuzzleManager : NetworkBehaviour, IGameState
 
     public void AddKey(PASSWORDKEYS key)
     {
-        if (_isCoroutineRunning || GameState.Instance.CurrentGameState!= GameState.GAMESTATES.PASSWORD)
+        if (!_canAddKey || GameState.Instance.CurrentGameState!= GameState.GAMESTATES.PASSWORD)
             return;
 
 
@@ -128,10 +129,9 @@ public class PasswordPuzzleManager : NetworkBehaviour, IGameState
             _currentHintIndex.Value++;
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     private void OnFailedPasswordClientRpc()
     {
-        _currentPassword.Clear();
         StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
         StartCoroutine(FlashingLightCoroutine(false));
         OnFailedPassword?.Invoke();
@@ -158,9 +158,11 @@ public class PasswordPuzzleManager : NetworkBehaviour, IGameState
 
     private IEnumerator ClearPasswordAfterSeconds(float seconds)
     {
+        _canAddKey = false;
         yield return new WaitForSeconds(seconds);
         _currentPassword.Clear();
         ClearDisplayPasswordOnComputer();
+        _canAddKey = true;
     }
 
     private IEnumerator FlashingLightCoroutine(bool success = false)
