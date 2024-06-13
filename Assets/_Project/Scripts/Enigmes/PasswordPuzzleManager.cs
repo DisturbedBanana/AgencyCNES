@@ -60,6 +60,7 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
     [SerializeField] private VoiceAI _voicesAI;
     private List<VoiceData> _voicesHint => _voicesAI.GetAllHintVoices();
     private NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private Coroutine _hintCoroutine = null;
 
     [Header("Sounds")]
     [SerializeField, Expandable] private SoundSO _SFXValidationLight;
@@ -80,7 +81,7 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
     {
         OnStateStart?.Invoke();
         SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllStartVoices());
-        StartCoroutine(StartHintCountdown());
+        _hintCoroutine = StartCoroutine(StartHintCountdown());
     }
 
     public void AddKey(PASSWORDKEYS key)
@@ -112,6 +113,7 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
                 }
             }
             //Correct Password
+            _currentHintIndex.Value++;
             CorrectPasswordClientRpc();
             OnStateCompleteClientRpc();
             GameState.Instance.ChangeState(GameState.GAMESTATES.LAUNCH);
@@ -145,7 +147,8 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
-        StopCoroutine(StartHintCountdown());
+        if(_hintCoroutine != null)
+            StopCoroutine(_hintCoroutine);
     } 
     #endregion
 
@@ -250,7 +253,11 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
             {
                 if (waitingHintIndex != _currentHintIndex.Value)
                 {
-                    if (_currentHintIndex.Value > _voicesHint.Count - 1) yield break;
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1)
+                    {
+                        StopCoroutine(StartHintCountdown());
+                        yield break;
+                    }
                     waitingHintIndex = _currentHintIndex.Value;
                     waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
                 }

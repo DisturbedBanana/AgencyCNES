@@ -26,12 +26,6 @@ public class PlayersLobby : NetworkBehaviour
         NetworkManager.OnClientConnectedCallback += PlayerConnected;
         NetworkManager.OnClientDisconnectCallback += PlayerDisconnected;
     }
-    private void OnDisable()
-    {
-        NetworkManager.OnClientConnectedCallback -= PlayerConnected;
-        NetworkManager.OnClientDisconnectCallback -= PlayerDisconnected;
-
-    }
     private void DisplayTextNotif(string text)
     {
         _notif.text += $"{text}\n";

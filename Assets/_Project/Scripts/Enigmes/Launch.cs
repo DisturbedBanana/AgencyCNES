@@ -111,7 +111,8 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
     [ClientRpc]
     private void CountdownButtonClientRpc()
     {
-        StopCoroutine(countdownRoutine);
+        if(countdownRoutine != null)
+            StopCoroutine(countdownRoutine);
         countdownRoutine = StartCoroutine(CountdownButton());
     }
 
