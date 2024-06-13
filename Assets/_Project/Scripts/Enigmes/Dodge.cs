@@ -101,7 +101,8 @@ public class Dodge : MonoBehaviour, IGameState, IVoiceAI
         GameState.Instance.ChangeState(GameState.GAMESTATES.FREQUENCY);
     }
 
-    [ClientRpc]
+
+    [Rpc(SendTo.Everyone)]
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();

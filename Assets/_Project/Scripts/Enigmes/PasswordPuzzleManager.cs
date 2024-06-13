@@ -9,7 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PasswordPuzzleManager : MonoBehaviour, IGameState
+public class PasswordPuzzleManager : NetworkBehaviour, IGameState
 {
     bool _isCoroutineRunning = false;
     int _ignoreKeysAmount = 0;
@@ -59,8 +59,8 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
     [Expandable]
     [SerializeField] private VoiceAI _voicesAI;
     private List<VoiceData> _voicesHint => _voicesAI.GetAllHintVoices();
-    private NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    private Coroutine _hintCoroutine = null;
+    public NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    //private NetworkVariable<bool> _stopHintCoroutine = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Sounds")]
     [SerializeField, Expandable] private SoundSO _SFXValidationLight;
@@ -81,7 +81,7 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
     {
         OnStateStart?.Invoke();
         SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllStartVoices());
-        _hintCoroutine = StartCoroutine(StartHintCountdown());
+        StartCoroutine(StartHintCountdown());
     }
 
     public void AddKey(PASSWORDKEYS key)
@@ -113,18 +113,19 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
                 }
             }
             //Correct Password
-            _currentHintIndex.Value++;
             CorrectPasswordClientRpc();
             OnStateCompleteClientRpc();
             GameState.Instance.ChangeState(GameState.GAMESTATES.LAUNCH);
         }
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     private void CorrectPasswordClientRpc()
     {
         StartCoroutine(ClearPasswordAfterSeconds(_clearPasswordAfter));
         StartCoroutine(FlashingLightCoroutine(true));
+        if(IsOwner)
+            _currentHintIndex.Value++;
     }
 
     [ClientRpc]
@@ -143,12 +144,10 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
         OnKeyUsed?.Invoke();
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
-        if(_hintCoroutine != null)
-            StopCoroutine(_hintCoroutine);
     } 
     #endregion
 
@@ -255,7 +254,6 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
                 {
                     if (_currentHintIndex.Value > _voicesHint.Count - 1)
                     {
-                        StopCoroutine(StartHintCountdown());
                         yield break;
                     }
                     waitingHintIndex = _currentHintIndex.Value;
@@ -281,4 +279,9 @@ public class PasswordPuzzleManager : MonoBehaviour, IGameState
     {
         _currentHintIndex.Value = value;
     }
+    //[ServerRpc(RequireOwnership = false)]
+    //public void ChangeStopHintCoroutineServerRpc(bool value)
+    //{
+    //    _stopHintCoroutine.Value = value;
+    //}
 }

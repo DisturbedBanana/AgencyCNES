@@ -95,20 +95,20 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
         CountdownButtonClientRpc();
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     private void OnPlayerAttachedClientRpc()
     {
         OnPlayerAttached?.Invoke();
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     private void OnPlayerDetachedClientRpc()
     {
         OnPlayerDetached?.Invoke();
     }
 
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     private void CountdownButtonClientRpc()
     {
         if(countdownRoutine != null)
@@ -135,7 +135,7 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
         countdownRoutine = null;
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnCountdownFinishedClientRpc()
     {
         OnCountdownFinished?.Invoke();
@@ -160,7 +160,7 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
         }
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
@@ -209,7 +209,10 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
             {
                 if (waitingHintIndex != _currentHintIndex.Value)
                 {
-                    if (_currentHintIndex.Value > _voicesHint.Count - 1) yield break;
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1)
+                    {
+                        yield break;
+                    }
                     waitingHintIndex = _currentHintIndex.Value;
                     waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
                 }

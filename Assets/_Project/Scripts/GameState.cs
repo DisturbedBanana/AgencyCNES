@@ -56,7 +56,8 @@ public class GameState : NetworkBehaviour
 
     public void StartWithState()
     {
-        GoToState(_StartWithState);
+        if (IsOwner)
+            GoToState(_StartWithState);
     }
     public void StateForce(GAMESTATES state)
     {

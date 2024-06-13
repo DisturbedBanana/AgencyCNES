@@ -38,7 +38,7 @@ public class FrequenciesCheck : NetworkBehaviour, IGameState
         }
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
