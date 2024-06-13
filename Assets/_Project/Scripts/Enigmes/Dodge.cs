@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Content.Interaction;
 
-public class Dodge : MonoBehaviour, IGameState, IVoiceAI
+public class Dodge : NetworkBehaviour, IGameState, IVoiceAI
 {
     [Header("Levers")]
     [SerializeField] private XRLever _leverFusee;

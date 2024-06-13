@@ -190,7 +190,7 @@ public class Simon : NetworkBehaviour, IGameState
             _canChooseColor.Value = false;
             EndSimonClientRpc();
             OnStateCompleteClientRpc();
-            GameState.Instance.ChangeState(GameState.GAMESTATES.FUSES);
+            GameState.Instance.ChangeState(GameState.GAMESTATES.DODGE);
 
         }
     }
