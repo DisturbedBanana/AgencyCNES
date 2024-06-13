@@ -169,7 +169,7 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
         _textCountdown.gameObject.SetActive(false);
         _canAttach = false;
         PlayVideoRpc();
-        WaitBeforeDetachPlayer();
+        StartCoroutine(WaitBeforeDetachPlayer());
         if (IsOwner)
             GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
     }
