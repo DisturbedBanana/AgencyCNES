@@ -686,6 +686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1295043112410908878}
+  - component: {fileID: 6834769364893959496}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -712,6 +713,18 @@ Transform:
   - {fileID: 7856000168772198880}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6834769364893959496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992754900087629191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f1d254b82ac2b4fb4c5674e2e6ccb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3363016254539034653
 GameObject:
   m_ObjectHideFlags: 0

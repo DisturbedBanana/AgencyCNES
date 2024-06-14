@@ -123,6 +123,7 @@ public class FuseManager : NetworkBehaviour, IGameState
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
         StopCoroutine(StartHintCountdown());
     }
     public IEnumerator StartHintCountdown()

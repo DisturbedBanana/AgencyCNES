@@ -165,6 +165,7 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
     {
         OnStateComplete?.Invoke();
         StopCoroutine(StartHintCountdown());
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
         SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllEndVoices());
         _textCountdown.gameObject.SetActive(false);
         _canAttach = false;

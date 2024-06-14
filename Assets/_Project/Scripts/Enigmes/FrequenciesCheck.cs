@@ -42,6 +42,7 @@ public class FrequenciesCheck : NetworkBehaviour, IGameState
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
         StopCoroutine(StartHintCountdown());
     }
 
@@ -59,7 +60,10 @@ public class FrequenciesCheck : NetworkBehaviour, IGameState
             {
                 if (waitingHintIndex != _currentHintIndex.Value)
                 {
-                    if (_currentHintIndex.Value > _voicesHint.Count - 1) yield break;
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1)
+                    {
+                        yield break;
+                    }
                     waitingHintIndex = _currentHintIndex.Value;
                     waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
                 }

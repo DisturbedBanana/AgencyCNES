@@ -10,10 +10,10 @@ public class Dodge : NetworkBehaviour, IGameState, IVoiceAI
 {
     [Header("Levers")]
     [SerializeField] private XRLever _leverFusee;
-    private NetworkVariable<bool> _leverFuseeIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> _dodgeLeverFuseeIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [SerializeField] private XRLever _leverMissionControl;
-    private NetworkVariable<bool> _leverMissionControlIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> _dodgeLeverMissionControlIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Voices")]
     [Expandable]
@@ -106,9 +106,10 @@ public class Dodge : NetworkBehaviour, IGameState, IVoiceAI
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
         StopCoroutine(StartHintCountdown());
     }
 
-    private bool AreBothLeverActivated() => _leverFuseeIsActivated.Value && _leverMissionControlIsActivated.Value;
-    private NetworkVariable<bool> GetPlayerLever(int playerNumber) => playerNumber == 0 ? _leverFuseeIsActivated : _leverMissionControlIsActivated;
+    private bool AreBothLeverActivated() => _dodgeLeverFuseeIsActivated.Value && _dodgeLeverMissionControlIsActivated.Value;
+    private NetworkVariable<bool> GetPlayerLever(int playerNumber) => playerNumber == 0 ? _dodgeLeverFuseeIsActivated : _dodgeLeverMissionControlIsActivated;
 }
