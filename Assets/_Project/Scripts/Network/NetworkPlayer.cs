@@ -15,7 +15,6 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        base.OnNetworkSpawn();
         if (IsOwner)
         {
             foreach (Renderer item in meshesToDisable)
@@ -36,12 +35,13 @@ public class NetworkPlayer : NetworkBehaviour
             head.position = VRRigReferences.Singleton.head.position;
             head.rotation = VRRigReferences.Singleton.head.rotation;
 
-            leftHand.position = VRRigReferences.Singleton.leftHand.position;
-            leftHand.rotation = VRRigReferences.Singleton.leftHand.rotation;
+            leftHand.position = leftHand.gameObject.activeSelf ? VRRigReferences.Singleton.leftHand.position : VRRigReferences.Singleton.leftController.position;
+            leftHand.rotation = leftHand.gameObject.activeSelf ? VRRigReferences.Singleton.leftHand.rotation : VRRigReferences.Singleton.leftController.rotation;
 
-            rightHand.position = VRRigReferences.Singleton.rightHand.position;
-            rightHand.rotation = VRRigReferences.Singleton.rightHand.rotation;
+            rightHand.position = rightHand.gameObject.activeSelf ? VRRigReferences.Singleton.rightHand.position : VRRigReferences.Singleton.rightController.position;
+            rightHand.rotation = rightHand.gameObject.activeSelf ? VRRigReferences.Singleton.rightHand.rotation : VRRigReferences.Singleton.rightController.rotation;
 
         }
     }
+
 }
