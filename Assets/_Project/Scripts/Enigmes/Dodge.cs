@@ -84,7 +84,7 @@ public class Dodge : NetworkBehaviour, IGameState, IVoiceAI
     {
         GetPlayerLever(playerNumber).Value = value;
 
-        if (GameState.Instance.CurrentGameState == GameState.GAMESTATES.SEPARATION)
+        if (GameState.Instance.CurrentGameState == GameState.GAMESTATES.DODGE)
         {
             CheckSeparationLeverServerRpc();
         }
@@ -98,7 +98,7 @@ public class Dodge : NetworkBehaviour, IGameState, IVoiceAI
 
         OnStateCompleteClientRpc();
 
-        GameState.Instance.ChangeState(GameState.GAMESTATES.FREQUENCY);
+        //GameState.Instance.ChangeState(GameState.GAMESTATES.FREQUENCY);
     }
 
 
