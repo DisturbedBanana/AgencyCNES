@@ -9,8 +9,6 @@ public class VRRigReferences : MonoBehaviour
     public Transform head;
     public Transform leftHand;
     public Transform rightHand;
-    public Transform leftController;
-    public Transform rightController;
 
     private void Awake()
     {
