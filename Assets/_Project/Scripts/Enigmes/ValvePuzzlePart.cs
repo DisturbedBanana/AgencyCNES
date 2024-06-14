@@ -120,9 +120,9 @@ public class ValvePuzzlePart : NetworkBehaviour
             return;
 
         if (IsCorrectValue() && !_isSolved) //Changed to Correct
-            OnCorrectAngle?.Invoke();
+            OnCorrectAngleClientRpc();
         else if (!IsCorrectValue() && _isSolved)
-            OnCorrectAngleChangedToIncorrect?.Invoke(); //Changed from Correct to Incorrect
+            OnCorrectAngleChangedToIncorrectClientRpc(); //Changed from Correct to Incorrect
 
 
         if (IsCorrectValue())
@@ -131,6 +131,18 @@ public class ValvePuzzlePart : NetworkBehaviour
             _isSolved = false;
 
         ValveManager.instance.CheckValves();
+    }
+
+    [ClientRpc]
+    private void OnCorrectAngleClientRpc()
+    {
+        OnCorrectAngle?.Invoke();
+    }
+
+    [ClientRpc]
+    private void OnCorrectAngleChangedToIncorrectClientRpc()
+    {
+        OnCorrectAngleChangedToIncorrect?.Invoke();
     }
 }
 

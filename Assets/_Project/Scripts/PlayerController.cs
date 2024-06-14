@@ -65,7 +65,7 @@ public class PlayerController : CharacterControllerDriver
 
     public void TeleportToSpawnPosition(Vector3 pos)
     {
-        transform.parent.position = pos;
+        transform.position = pos;
     }
 
     protected new void Start(){ } // Don't delete
