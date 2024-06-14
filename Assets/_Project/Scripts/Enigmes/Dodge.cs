@@ -76,6 +76,8 @@ public class Dodge : NetworkBehaviour, IGameState, IVoiceAI
     }
     public void LeverDeactivated(int playerNumber)
     {
+        var lever = playerNumber == 0 ? _leverFusee : _leverMissionControl;
+        lever.value = false;
         ChangeLeverValueServerRpc(playerNumber, false);
     }
 
