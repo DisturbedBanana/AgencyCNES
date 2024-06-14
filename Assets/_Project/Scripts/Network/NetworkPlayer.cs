@@ -6,7 +6,6 @@ using TMPro;
 
 public class NetworkPlayer : NetworkBehaviour
 {
-
     public Transform root;
     public Transform head;
     public Transform leftHand;

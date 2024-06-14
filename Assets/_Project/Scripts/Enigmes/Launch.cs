@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -9,7 +10,7 @@ using UnityEngine.Events;
 using UnityEngine.Video;
 using UnityEngine.XR.Content.Interaction;
 
-public class Launch : NetworkBehaviour, IGameState
+public class Launch : NetworkBehaviour, IGameState, IVoiceAI
 {
     private bool _canAttach;
     private bool _canPushButton;
@@ -19,7 +20,12 @@ public class Launch : NetworkBehaviour, IGameState
 
     [SerializeField] private VideoPlayer _launchVideo;
 
-    private NetworkVariable<bool> _playerIsLock = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    [Header("Voices")]
+    [Expandable]
+    [SerializeField] private VoiceAI _voicesAI;
+    private List<VoiceData> _voicesHint => _voicesAI.GetAllHintVoices();
+    private NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Countdown")]
     [SerializeField, Range(0, 30)] private float _countdownBeforeButton;
@@ -28,18 +34,24 @@ public class Launch : NetworkBehaviour, IGameState
     [ReadOnly] public float _currentCountdown;
     private Coroutine countdownRoutine;
 
-    [Header("Ceintures")]
+    [Header("Siège")]
+    private NetworkVariable<bool> _playerIsLock = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     [SerializeField] private GameObject _ceintureOpen;
     [SerializeField] private GameObject _ceintureClosed;
+    [SerializeField] private float _waitSecondsBeforeDetach;
 
     [Header("Events")]
     public UnityEvent OnStateStart;
+    public UnityEvent OnPlayerAttached;
+    public UnityEvent OnCountdownFinished;
+    public UnityEvent OnPlayerDetached;
     public UnityEvent OnStateComplete;
 
     private void Reset()
     {
         _canAttach = false;
         _countdownBeforeButton = 10f;
+        _waitSecondsBeforeDetach = 25f;
     }
 
     private void Start()
@@ -51,6 +63,17 @@ public class Launch : NetworkBehaviour, IGameState
         _ceintureClosed.SetActive(false);
     }
 
+
+    public void StartState()
+    {
+        OnStateStart?.Invoke();
+        _canAttach = true;
+        _layoutPassword.SetActive(false);
+        SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllStartVoices());
+        StartCoroutine(StartHintCountdown());
+    }
+
+
     public void AttachPlayer()
     {
         if (!_canAttach)
@@ -61,49 +84,61 @@ public class Launch : NetworkBehaviour, IGameState
         _playerController.transform.position = _attach.position;
         _playerController.transform.rotation = _attach.rotation;
 
-        if(IsOwner)
+        if (IsOwner)
             _playerIsLock.Value = true;
 
 
         _ceintureOpen.SetActive(false);
         _ceintureClosed.SetActive(true);
 
-        CountdownButtonRpc();
+        OnPlayerAttachedClientRpc();
+        CountdownButtonClientRpc();
     }
-    public void DetachPlayer()
+
+    [Rpc(SendTo.Everyone)]
+    private void OnPlayerAttachedClientRpc()
     {
-        _playerController.GetComponent<Collider>().enabled = true;
-        _playerController.LockMovement(false);
-        _ceintureOpen.SetActive(true);
-        _ceintureClosed.SetActive(false);
+        OnPlayerAttached?.Invoke();
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void OnPlayerDetachedClientRpc()
+    {
+        OnPlayerDetached?.Invoke();
     }
 
 
     [Rpc(SendTo.Everyone)]
-    private void CountdownButtonRpc()
+    private void CountdownButtonClientRpc()
     {
-        Debug.Log("CountdownButtonRpc");
-        if (countdownRoutine == null)
-            countdownRoutine = StartCoroutine(CountdownButton());
+        if(countdownRoutine != null)
+            StopCoroutine(countdownRoutine);
+        countdownRoutine = StartCoroutine(CountdownButton());
     }
 
     private IEnumerator CountdownButton()
     {
-        PlayVoiceOffClientRpc(0);
-        yield return new WaitForSeconds(5); // wait for voiceOFF
         _currentCountdown = _countdownBeforeButton;
         _textCountdown.gameObject.SetActive(true);
+        var oneSecondWait = new WaitForSeconds(1);
+        SoundManager.Instance.PlaySound(gameObject, _voicesAI.GetAllSpecialVoices()[0].audio);
         while (_currentCountdown > 0)
         {
-            Debug.Log(_currentCountdown); 
-            _textCountdown.text = _currentCountdown.ToString();
+            Debug.Log(_currentCountdown);
             _currentCountdown--;
-            yield return new WaitForSeconds(1);
+            _textCountdown.text = _currentCountdown.ToString();
+            yield return oneSecondWait;
         }
-
+        OnCountdownFinishedClientRpc();
         _canPushButton = true;
 
         countdownRoutine = null;
+    }
+
+    [Rpc(SendTo.Everyone)]
+    public void OnCountdownFinishedClientRpc()
+    {
+        OnCountdownFinished?.Invoke();
     }
 
 
@@ -116,49 +151,90 @@ public class Launch : NetworkBehaviour, IGameState
     }
 
 
-    [ClientRpc]
-    private void PlayVoiceOffClientRpc(int value)
-    {
-        switch (value)
-        {
-            case 0:
-                Debug.Log("Countdown");
-                break;
-            case 1:
-                Debug.Log($"Player not attached. Please restart");
-                break;
-        }
-    }
-
     [ServerRpc(RequireOwnership = false)]
     private void CheckLaunchServerRpc()
     {
         if (_playerIsLock.Value)
         {
-            PlayVideoRpc();
-            GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
-            DetachPlayer();
-            OnStateComplete?.Invoke();
+            OnStateCompleteClientRpc();
         }
-        else
-        {
-            PlayVoiceOffClientRpc(1);
-        }
-        _canAttach = false;
     }
 
     [Rpc(SendTo.Everyone)]
+    public void OnStateCompleteClientRpc()
+    {
+        OnStateComplete?.Invoke();
+        StopCoroutine(StartHintCountdown());
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
+        SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllEndVoices());
+        _textCountdown.gameObject.SetActive(false);
+        _canAttach = false;
+        PlayVideoRpc();
+        StartCoroutine(WaitBeforeDetachPlayer());
+        if (IsOwner)
+            GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
+    }
+
     private void PlayVideoRpc()
     {
         _launchVideo.gameObject.SetActive(true);
         _launchVideo.Play();
     }
-    public void StartState()
+
+    private IEnumerator WaitBeforeDetachPlayer()
     {
-        OnStateStart?.Invoke();
-        _canAttach = true;
-        _layoutPassword.SetActive(false);
+        yield return new WaitForSeconds(_waitSecondsBeforeDetach);
+        DetachPlayer();
     }
 
+    public void DetachPlayer()
+    {
+        _playerController.GetComponent<Collider>().enabled = true;
+        _playerController.LockMovement(false);
+        _ceintureOpen.SetActive(true);
+        _ceintureClosed.SetActive(false);
+        OnPlayerDetachedClientRpc();
+    }
 
+    public IEnumerator StartHintCountdown()
+    {
+        if (_voicesHint.Count == 0)
+            yield break;
+
+        for (int i = 0; i < _voicesHint[_currentHintIndex.Value].numberOfRepeat + 1; i++)
+        {
+            float waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
+            int waitingHintIndex = _currentHintIndex.Value;
+
+            while (waitBeforeHint > 0)
+            {
+                if (waitingHintIndex != _currentHintIndex.Value)
+                {
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1)
+                    {
+                        yield break;
+                    }
+                    waitingHintIndex = _currentHintIndex.Value;
+                    waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
+                }
+
+                waitBeforeHint -= Time.deltaTime;
+                yield return null;
+            }
+            SoundManager.Instance.PlaySound(gameObject, _voicesHint[_currentHintIndex.Value].audio);
+        }
+
+
+        if (_currentHintIndex.Value < _voicesHint.Count - 1)
+        {
+            ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
+            StartCoroutine(StartHintCountdown());
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ChangeHintIndexServerRpc(int value)
+    {
+        _currentHintIndex.Value = value;
+    }
 }

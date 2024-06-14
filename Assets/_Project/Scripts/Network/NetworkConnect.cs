@@ -128,7 +128,7 @@ public class NetworkConnect : MonoBehaviour
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
             string newJoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             _unityTransport.SetHostRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
-
+            
             CreateLobbyOptions lobbyOptions = new CreateLobbyOptions();
             lobbyOptions.IsPrivate = false;
             lobbyOptions.Data = new Dictionary<string, DataObject>();
@@ -137,7 +137,8 @@ public class NetworkConnect : MonoBehaviour
 
             _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Lobby Name", maxConnections, lobbyOptions);
             NetworkManager.Singleton.StartHost();
-            Debug.LogError($"Lobby created with code {newJoinCode}");
+            DisplayText($"Lobby created with code {newJoinCode}");
+            //Debug.LogError($"Lobby created with code {newJoinCode}");
         }
         catch (Exception e)
         {
@@ -149,6 +150,7 @@ public class NetworkConnect : MonoBehaviour
     [Button]
     public async void Join()
     {
+        SearchAllLobbiesAvailable();
         try
         {
             _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
@@ -162,11 +164,30 @@ public class NetworkConnect : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogException(e);
+            DisplayText("Error trying to connect. Please retry.");
 
         }
 
     }
 
+    private async void SearchAllLobbiesAvailable()
+    {
+        //var lobies = await Lobbies.Instance.QueryLobbiesAsync();
+
+        //Lobbies.Instance.QueryLobbiesAsync(new QueryLobbiesOptions { Limit = 10, IsPrivate = false }).ContinueWith((task) =>
+        //{
+        //    if (task.IsFaulted)
+        //    {
+        //        Debug.LogError("Error searching lobbies");
+        //        return;
+        //    }
+
+        //    foreach (var lobby in task.Result)
+        //    {
+        //        Debug.Log($"Lobby found: {lobby.Id}");
+        //    }
+        //});
+    }
 
     private void Update()
     {

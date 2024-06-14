@@ -59,5 +59,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9b771401bf334494b8c797ddc12dd88b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1705822891361426470}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9b771401bf334494b8c797ddc12dd88b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4655058589976358478}
   m_SourcePrefab: {fileID: 100100000, guid: 9b771401bf334494b8c797ddc12dd88b, type: 3}
+--- !u!1 &8324591359942400125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9b771401bf334494b8c797ddc12dd88b, type: 3}
+  m_PrefabInstance: {fileID: 9171451369497437484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1705822891361426470
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324591359942400125}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2409482, y: 0.96863735, z: 1.0947435}
+  m_Center: {x: 0.0029239655, y: 0.43205464, z: 0.11960471}
+--- !u!65 &4655058589976358478
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324591359942400125}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2408051, y: 1.1212468, z: 0.3206358}
+  m_Center: {x: 0.0065197945, y: 1.4719293, z: -0.26211214}

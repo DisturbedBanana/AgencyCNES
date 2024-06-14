@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77eed2e6275e1514096487091860b33e, type: 3}
+  m_Name: Separation
+  m_EditorClassIdentifier: 
+  _voices:
+  - text: 
+    voiceType: 0
+    audio: {fileID: 8300000, guid: d967f84255a94e2468ba3bcd0415c20a, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 
+    voiceType: 2
+    audio: {fileID: 8300000, guid: 2d070560647d9cc45875ab9772771c33, type: 3}
+    delayedTime: 120
+    numberOfRepeat: 3
