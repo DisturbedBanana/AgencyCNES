@@ -40,6 +40,7 @@ public class GameState : NetworkBehaviour
         FUSES, //Control player activates fuses according to ship player's  instructions
         FREQUENCY, //Both players tune frequency to match other's instructions (easier for ship player)
         DODGE, //Control player controls ship to dodge asteroids, but is guided by ship player (30s)
+        WIN, //Both players win
     }
 
     #region PROPERTIES
@@ -174,6 +175,9 @@ public class GameState : NetworkBehaviour
                 break;
             case GAMESTATES.DODGE:
                 FindObjectOfType<Dodge>().StartState();
+                break;
+            case GAMESTATES.WIN:
+                Debug.LogError("WIN");
                 break;
             default:
                 Debug.LogError("No State found");

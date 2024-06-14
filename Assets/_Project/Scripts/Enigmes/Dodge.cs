@@ -10,10 +10,10 @@ public class Dodge : NetworkBehaviour, IGameState, IVoiceAI
 {
     [Header("Levers")]
     [SerializeField] private XRLever _leverFusee;
-    private NetworkVariable<bool> _dodgeLeverFuseeIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> _dodgeLeverFuseeIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [SerializeField] private XRLever _leverMissionControl;
-    private NetworkVariable<bool> _dodgeLeverMissionControlIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> _dodgeLeverMissionControlIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Voices")]
     [Expandable]
@@ -83,22 +83,15 @@ public class Dodge : NetworkBehaviour, IGameState, IVoiceAI
     public void ChangeLeverValueServerRpc(int playerNumber, bool value)
     {
         GetPlayerLever(playerNumber).Value = value;
-
+        Debug.Log($"Player {playerNumber} lever is activated : {value}");
         if (GameState.Instance.CurrentGameState == GameState.GAMESTATES.DODGE)
         {
-            CheckSeparationLeverServerRpc();
+            if (!AreBothLeverActivated())
+                return;
+
+            OnStateCompleteClientRpc();
+            GameState.Instance.ChangeState(GameState.GAMESTATES.WIN);
         }
-    }
-
-    [ServerRpc]
-    public void CheckSeparationLeverServerRpc()
-    {
-        if (!AreBothLeverActivated())
-            return;
-
-        OnStateCompleteClientRpc();
-
-        //GameState.Instance.ChangeState(GameState.GAMESTATES.FREQUENCY);
     }
 
 
