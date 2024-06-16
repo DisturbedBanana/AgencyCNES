@@ -16,6 +16,7 @@ using Unity.XR.CoreUtils;
 using NaughtyAttributes;
 using System.Linq;
 using UnityEngine.Rendering;
+using System.Threading.Tasks;
 
 public class NetworkConnect : MonoBehaviour
 {
@@ -29,22 +30,9 @@ public class NetworkConnect : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
     [SerializeField] private string _LobbyCode;
 
-    [Button]
-    public async void JoinWithCode()
-    {
-        try
-        {
-            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(_LobbyCode);
-            _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
-
-            NetworkManager.Singleton.StartClient();
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e);
-
-        }
-    }
+    //[Header("UEvents")]
+    public static event Action<bool> OnCreateLobbySuccess;
+    public static event Action<bool> OnJoinLobbySuccess;
 
 
     private async void Awake()
@@ -135,14 +123,17 @@ public class NetworkConnect : MonoBehaviour
             DataObject dataObject = new DataObject(DataObject.VisibilityOptions.Public, newJoinCode);
             lobbyOptions.Data.Add("JOIN_CODE", dataObject);
 
-            _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Lobby Name", maxConnections, lobbyOptions);
-            NetworkManager.Singleton.StartHost();
+            _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Kourou lobby", maxConnections, lobbyOptions);
+            if (NetworkManager.Singleton.StartHost())
+                OnCreateLobbySuccess?.Invoke(true);
+            
             DisplayText($"Lobby created with code {newJoinCode}");
             //Debug.LogError($"Lobby created with code {newJoinCode}");
         }
         catch (Exception e)
         {
             Debug.LogException(e);
+            OnCreateLobbySuccess?.Invoke(false);
 
         }
     }
@@ -150,7 +141,6 @@ public class NetworkConnect : MonoBehaviour
     [Button]
     public async void Join()
     {
-        SearchAllLobbiesAvailable();
         try
         {
             _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
@@ -159,34 +149,65 @@ public class NetworkConnect : MonoBehaviour
             JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
             _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
-            NetworkManager.Singleton.StartClient();
+            if(NetworkManager.Singleton.StartClient())
+                OnJoinLobbySuccess?.Invoke(true);
         }
         catch (Exception e)
         {
             Debug.LogException(e);
             DisplayText("Error trying to connect. Please retry.");
+            OnJoinLobbySuccess?.Invoke(false);
 
         }
 
     }
-
-    private async void SearchAllLobbiesAvailable()
+    [Button]
+    public async void JoinWithCode()
     {
-        //var lobies = await Lobbies.Instance.QueryLobbiesAsync();
+        try
+        {
+            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(_LobbyCode);
+            _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
-        //Lobbies.Instance.QueryLobbiesAsync(new QueryLobbiesOptions { Limit = 10, IsPrivate = false }).ContinueWith((task) =>
-        //{
-        //    if (task.IsFaulted)
-        //    {
-        //        Debug.LogError("Error searching lobbies");
-        //        return;
-        //    }
+            if (NetworkManager.Singleton.StartClient())
+                OnJoinLobbySuccess?.Invoke(true);
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+            OnJoinLobbySuccess?.Invoke(false);
+        }
+    }
+    public async void JoinWithCode(string loobyCode)
+    {
+        try
+        {
+            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(loobyCode);
+            _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
 
-        //    foreach (var lobby in task.Result)
-        //    {
-        //        Debug.Log($"Lobby found: {lobby.Id}");
-        //    }
-        //});
+            if (NetworkManager.Singleton.StartClient())
+                OnJoinLobbySuccess?.Invoke(true);
+
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+            OnJoinLobbySuccess?.Invoke(false);
+
+        }
+    }
+
+    [Button]
+    public async Task<QueryResponse> SearchAllLobbiesAvailable()
+    {
+        var lobbies = await Lobbies.Instance.QueryLobbiesAsync();
+
+        foreach (var lobby in lobbies.Results)
+        {
+            Debug.Log($"Lobby: {lobby.LobbyCode} - {lobby.Name} - {lobby.Data["JOIN_CODE"].Value}");
+        }
+        return lobbies;
     }
 
     private void Update()

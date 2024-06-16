@@ -6,6 +6,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Unity.Services.Lobbies.Models;
 
 public class PlayersLobby : NetworkBehaviour
 {
@@ -21,11 +22,129 @@ public class PlayersLobby : NetworkBehaviour
     [SerializeField] private Button _buttonToStartGame;
     [SerializeField] private TextMeshProUGUI _notif;
 
+    [Header("Buttons Parent")]
+    [SerializeField] private GameObject _layoutParent;
+    [SerializeField] private GameObject _returnButtonParent;
+    [SerializeField] private GameObject _createButtonParent;
+    [SerializeField] private GameObject _joinButtonParent;
+    [SerializeField] private GameObject _refreshLobbies;
+    [SerializeField] private GameObject _readyToStartParent;
+
+    [Header("Button")]
+    [SerializeField] private GameObject _lobbyButtonPrefab;
+
+    private List<GameObject> _lobbyButtons;
+
     private void Start()
     {
         NetworkManager.OnClientConnectedCallback += PlayerConnected;
         NetworkManager.OnClientDisconnectCallback += PlayerDisconnected;
+        NetworkConnect.OnCreateLobbySuccess += OnCreateLobbySuccess;
+        NetworkConnect.OnJoinLobbySuccess += OnJoinLobbySuccess;
+
     }
+
+    public void CreateLobby()
+    {
+        _networkConnect.Create();
+        _createButtonParent.GetComponentInChildren<Button>().interactable = false;
+        _joinButtonParent.GetComponentInChildren<Button>().interactable = false;
+    }
+    public void JoinLobby()
+    {
+        _returnButtonParent.SetActive(true);
+        _joinButtonParent.SetActive(false);
+        _createButtonParent.SetActive(false);
+        RefreshLobbies();
+    }
+
+    public async void RefreshLobbies()
+    {
+        RemoveAllLobbiesButtons();
+
+        _lobbyButtons = new List<GameObject>();
+        var lobbies = await _networkConnect.SearchAllLobbiesAvailable();
+
+        foreach (var lobby in lobbies.Results)
+        {
+            GameObject lobbyButton = Instantiate(_lobbyButtonPrefab, _layoutParent.transform);
+            lobbyButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Join lobby:{lobby.Data["JOIN_CODE"].Value} - {lobby.Players.Count}/{lobby.MaxPlayers}";
+            lobbyButton.GetComponentInChildren<Button>().onClick.AddListener(() => ButtonJoinALobby(lobby.Data["JOIN_CODE"].Value));
+            _lobbyButtons.Add(lobbyButton);
+        }
+    }
+
+    private void ButtonJoinALobby(string lobbyCode)
+    {
+        _networkConnect.JoinWithCode(lobbyCode);
+
+        foreach (var button in _lobbyButtons)
+        {
+            button.GetComponentInChildren<Button>().interactable = false;
+        }
+    }
+
+    private void RemoveAllLobbiesButtons()
+    {
+        if (_lobbyButtons != null)
+        {
+            foreach (var button in _lobbyButtons)
+            {
+                Destroy(button);
+            }
+        }
+    }
+
+    public void Return()
+    {
+        RemoveAllLobbiesButtons();
+        _returnButtonParent.SetActive(false);
+        _joinButtonParent.SetActive(true);
+        _createButtonParent.SetActive(true);
+
+    }
+
+    private void OnCreateLobbySuccess(bool success)
+    {
+        if (success)
+        {
+            _createButtonParent.SetActive(false);
+            _joinButtonParent.SetActive(false);
+            _refreshLobbies.SetActive(false);
+            _readyToStartParent.SetActive(true);
+        }
+        else
+        {
+            _notif.text = "Failed to create lobby";
+            _createButtonParent.GetComponentInChildren<Button>(true).interactable = true;
+            _joinButtonParent.GetComponentInChildren<Button>().interactable = true;
+        }
+    }
+
+    private void OnJoinLobbySuccess(bool success)
+    {
+        if (success)
+        {
+            _createButtonParent.SetActive(false);
+            _joinButtonParent.SetActive(false);
+            _refreshLobbies.SetActive(false);
+            _returnButtonParent.SetActive(false);
+            _readyToStartParent.SetActive(true);
+            foreach (var button in _lobbyButtons)
+            {
+                Destroy(button);
+            }
+        }
+        else
+        {
+            _notif.text = "Failed to join lobby";
+            foreach (var button in _lobbyButtons)
+            {
+                button.GetComponent<Button>().interactable = true;
+            }
+        }
+    }
+
     private void DisplayTextNotif(string text)
     {
         _notif.text += $"{text}\n";
