@@ -1446,6 +1446,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2615,6 +2655,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3068,6 +3148,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3303,6 +3423,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3379,7 +3539,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -3467,25 +3627,25 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -3792,6 +3952,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3904,7 +4104,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1895790519}
     m_Modifications:
     - target: {fileID: 1264349349177139366, guid: 750673a0d138eaf49933e411696ea3c0, type: 3}
       propertyPath: m_Enabled
@@ -3944,15 +4144,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6524061693423940291, guid: 750673a0d138eaf49933e411696ea3c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.16
+      value: 17.30459
       objectReference: {fileID: 0}
     - target: {fileID: 6524061693423940291, guid: 750673a0d138eaf49933e411696ea3c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.289
+      value: 6.688252
       objectReference: {fileID: 0}
     - target: {fileID: 6524061693423940291, guid: 750673a0d138eaf49933e411696ea3c0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.92
+      value: -3.7426176
       objectReference: {fileID: 0}
     - target: {fileID: 6524061693423940291, guid: 750673a0d138eaf49933e411696ea3c0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3960,15 +4160,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6524061693423940291, guid: 750673a0d138eaf49933e411696ea3c0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6524061693423940291, guid: 750673a0d138eaf49933e411696ea3c0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6524061693423940291, guid: 750673a0d138eaf49933e411696ea3c0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6524061693423940291, guid: 750673a0d138eaf49933e411696ea3c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6442,6 +6642,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -6695,6 +6935,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -6796,6 +7076,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -7949,6 +8269,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -8056,7 +8416,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -8142,27 +8502,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 123008956}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -10495,18 +10855,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1895790519}
     m_Modifications:
-    - target: {fileID: 6920894593224375875, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1605007483}
-    - target: {fileID: 6920894593224375875, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_VersionIndex
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7447724044371146832, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1605007483}
     - target: {fileID: 247935207602554642, guid: 25d2d1c6e6cfea2489f94be92ae09d5e, type: 3}
       propertyPath: m_Name
       value: Ecran (4)
@@ -10571,6 +10919,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 652070369}
+    - target: {fileID: 6920894593224375875, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1605007483}
+    - target: {fileID: 6920894593224375875, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_VersionIndex
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447724044371146832, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1605007483}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10867,6 +11227,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -11039,6 +11439,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -11420,7 +11860,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -11506,27 +11946,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 614930876}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -11701,6 +12141,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -11864,6 +12344,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -11915,23 +12435,23 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: a2162bd4d88c9e2438700365f875bc02, type: 3}
     - target: {fileID: 510308882383723969, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 510308882383723969, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 510308882383723969, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 352
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 510308882383723969, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 510308882383723969, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -111
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2370206902216387914, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_TargetGraphic
@@ -11947,7 +12467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3610411520093679258, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 141
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5605029839318455571, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -11963,7 +12483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6047388934183421860, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6388202815752363294, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11975,7 +12495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6388202815752363294, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -43.49
+      value: -475
       objectReference: {fileID: 0}
     - target: {fileID: 6388202815752363294, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12015,31 +12535,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7654220879835342232, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7654220879835342232, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7654220879835342232, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 352
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7654220879835342232, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7654220879835342232, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694168253541789597, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.99999994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694168253541789597, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694168253541789597, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchorMin.x
@@ -12047,11 +12567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8376764884668681674, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8376764884668681674, guid: 3b2f7e0155dea6f4cbe81a84611f68bc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13080,7 +13600,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -13168,25 +13688,25 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -13235,7 +13755,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -13584,14 +14104,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1050002352}
     m_Modifications:
-    - target: {fileID: 637435166279729488, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 401810586}
-    - target: {fileID: 4961286352412309977, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 401810586}
     - target: {fileID: 2146604537598640199, guid: 18c03475b6090694db474b4c03885ed0, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -13656,6 +14168,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.047
       objectReference: {fileID: 0}
+    - target: {fileID: 637435166279729488, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 401810586}
+    - target: {fileID: 4961286352412309977, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 401810586}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13674,14 +14194,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1050002352}
     m_Modifications:
-    - target: {fileID: 637435166279729488, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 2102447156}
-    - target: {fileID: 4961286352412309977, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 2102447156}
     - target: {fileID: 247935207602554642, guid: 25d2d1c6e6cfea2489f94be92ae09d5e, type: 3}
       propertyPath: m_Name
       value: Ecran (4)
@@ -13746,6 +14258,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 443970760}
+    - target: {fileID: 637435166279729488, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2102447156}
+    - target: {fileID: 4961286352412309977, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2102447156}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14566,7 +15086,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -14652,27 +15172,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 1527144306}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -14883,6 +15403,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -15423,7 +15983,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -15509,27 +16069,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 1675278362}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -15715,7 +16275,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1895790519}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -15723,23 +16283,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.4572
+      value: 3.4572003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.4572
+      value: 3.4572003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.322
+      value: 14.82259
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.281
+      value: 0.6802521
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.546
+      value: -4.3686175
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15782,6 +16342,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
+--- !u!4 &790558135 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
+  m_PrefabInstance: {fileID: 790558134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &794547818
 GameObject:
   m_ObjectHideFlags: 0
@@ -15856,7 +16421,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -15942,27 +16507,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 768198001}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -16131,6 +16696,308 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2084285756933289590, guid: e6f5587ae66f9b9458369386b0b18931, type: 3}
   m_PrefabInstance: {fileID: 807179290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &807814599
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1172431342}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.11589472
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.11589472
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.11589472
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -22.64021
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -25.723783
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -63.425926
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9238797
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.38268322
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439730007547781893, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 59da6427ac80cee42b743323c07ad0cb, type: 2}
+    - target: {fileID: 919132149155446097, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_Name
+      value: quick_ariane_mesh2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129496810705857465, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae6576b7b0f0f314ab66696599ccd375, type: 2}
+    - target: {fileID: 7071182760956848314, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 424e68d8245d8cd4a9f31d1e7828141a, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 807814603}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 807814602}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 807814604}
+  m_SourcePrefab: {fileID: 100100000, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+--- !u!1 &807814600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+  m_PrefabInstance: {fileID: 807814599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &807814601 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 917e8b31d5c49ac44ada1c259e84c558, type: 3}
+  m_PrefabInstance: {fileID: 807814599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &807814602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807814600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_OnFirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnLastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectCanceled:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_AttachTransform: {fileID: 0}
+  m_SecondaryAttachTransform: {fileID: 0}
+  m_UseDynamicAttach: 1
+  m_MatchAttachPosition: 1
+  m_MatchAttachRotation: 1
+  m_SnapToColliderVolume: 1
+  m_ReinitializeDynamicAttachEverySingleGrab: 1
+  m_AttachEaseInTime: 0.15
+  m_MovementType: 0
+  m_VelocityDamping: 1
+  m_VelocityScale: 1
+  m_AngularVelocityDamping: 1
+  m_AngularVelocityScale: 1
+  m_TrackPosition: 1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
+  m_TrackRotation: 1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
+  m_TrackScale: 1
+  m_SmoothScale: 0
+  m_SmoothScaleAmount: 8
+  m_TightenScale: 0.1
+  m_ThrowOnDetach: 1
+  m_ThrowSmoothingDuration: 0.25
+  m_ThrowSmoothingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ThrowVelocityScale: 1.5
+  m_ThrowAngularVelocityScale: 1
+  m_ForceGravityOnDetach: 0
+  m_RetainTransformParent: 1
+  m_AttachPointCompatibilityMode: 0
+  m_StartingSingleGrabTransformers: []
+  m_StartingMultipleGrabTransformers: []
+  m_AddDefaultGrabTransformers: 1
+--- !u!54 &807814603
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807814600}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &807814604
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807814600}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5835195
+  m_Height: 4.955646
+  m_Direction: 1
+  m_Center: {x: 1.7818423e-10, y: -0.008500349, z: 0.005302818}
 --- !u!1001 &810233907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16139,14 +17006,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1895790519}
     m_Modifications:
-    - target: {fileID: 637435166279729488, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 811281738}
-    - target: {fileID: 4961286352412309977, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 811281738}
     - target: {fileID: 60558445903679519, guid: d1825e33276e1714592db1ff951cbcaf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -16207,6 +17066,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ecran (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 637435166279729488, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 811281738}
+    - target: {fileID: 4961286352412309977, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 811281738}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16843,6 +17710,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 33db5979450697a429fa7d6d4c8361c7, type: 2}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -17486,6 +18393,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -17799,7 +18746,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -17885,27 +18832,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 674047111}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -18505,6 +19452,42 @@ PrefabInstance:
     - target: {fileID: 3725233637766932199, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4919991511704029535, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
       propertyPath: m_Name
@@ -19139,6 +20122,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 33db5979450697a429fa7d6d4c8361c7, type: 2}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -20150,7 +21173,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1895790519}
     m_Modifications:
     - target: {fileID: 1249050543690693785, guid: d1825e33276e1714592db1ff951cbcaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -20166,15 +21189,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1249050543690693785, guid: d1825e33276e1714592db1ff951cbcaf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.462
+      value: 14.6825905
       objectReference: {fileID: 0}
     - target: {fileID: 1249050543690693785, guid: d1825e33276e1714592db1ff951cbcaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.858
+      value: 0.25725204
       objectReference: {fileID: 0}
     - target: {fileID: 1249050543690693785, guid: d1825e33276e1714592db1ff951cbcaf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.26
+      value: -8.082618
       objectReference: {fileID: 0}
     - target: {fileID: 1249050543690693785, guid: d1825e33276e1714592db1ff951cbcaf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20213,6 +21236,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1825e33276e1714592db1ff951cbcaf, type: 3}
+--- !u!4 &1097287677 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1249050543690693785, guid: d1825e33276e1714592db1ff951cbcaf, type: 3}
+  m_PrefabInstance: {fileID: 1097287676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1099645879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20281,6 +21309,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -21300,7 +22368,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -21386,27 +22454,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 1126294100}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -22083,6 +23151,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -22223,6 +23331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 807814601}
   - {fileID: 92761016}
   - {fileID: 5367998011424330910}
   - {fileID: 1697557248929168553}
@@ -22516,7 +23625,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -22602,27 +23711,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 1044617115}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -23599,6 +24708,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -25760,6 +26909,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -26058,6 +27247,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -26727,6 +27956,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 67bb06237daaeac4e9a2c09213c093f9, type: 2}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -26850,6 +28119,42 @@ PrefabInstance:
     - target: {fileID: 7993727811282610078, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
       propertyPath: m_Name
       value: Crayon (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27075,11 +28380,11 @@ Transform:
   m_GameObject: {fileID: 1555949818}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.86754876, z: -0, w: 0.49735224}
-  m_LocalPosition: {x: -2.773, y: 1.381, z: -4.401}
+  m_LocalPosition: {x: 14.371591, y: 0.7802521, z: -5.2236176}
   m_LocalScale: {x: 0.09051, y: 0.09051, z: 0.09051}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1895790519}
   m_LocalEulerAnglesHint: {x: 0, y: 120.35, z: 0}
 --- !u!1001 &1558683366
 PrefabInstance:
@@ -27331,11 +28636,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1895790519}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.7405124
+      value: 4.740513
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalScale.y
@@ -27347,15 +28652,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.217
+      value: 20.361591
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.083
+      value: 0.482252
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.165
+      value: -5.9876175
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27398,6 +28703,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8581f238097838343bb813710ad5f87c, type: 3}
+--- !u!4 &1573412228 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
+  m_PrefabInstance: {fileID: 1573412227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1575884366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27985,6 +29295,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -30406,6 +31756,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -30507,6 +31897,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -30986,7 +32416,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1895790519}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalScale.x
@@ -31002,15 +32432,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8717
+      value: 16.27289
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.834
+      value: 0.23325205
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.5633
+      value: -4.3859177
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31053,6 +32483,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
+--- !u!4 &1762206269 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3437c619aaefa0a45ad60f87349ddeaf, type: 3}
+  m_PrefabInstance: {fileID: 1762206268}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1764347682
 Mesh:
   m_ObjectHideFlags: 0
@@ -31571,6 +33006,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -32510,6 +33985,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -33004,6 +34519,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -33136,6 +34691,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -33466,6 +35061,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8425277802716970183, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425277802716970183, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425277802716970183, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425277802716970183, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425277802716970183, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425277802716970183, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425277802716970183, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425277802716970183, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
     - target: {fileID: 8516885539973644739, guid: ae2d60046668c1648af8356329c1fec9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -33571,6 +35198,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -33633,6 +35300,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 209990210}
+  - {fileID: 1097287677}
+  - {fileID: 790558135}
+  - {fileID: 1762206269}
+  - {fileID: 1573412228}
+  - {fileID: 2104528069}
+  - {fileID: 1555949820}
   - {fileID: 2038155359}
   - {fileID: 1577369924}
   - {fileID: 331809186}
@@ -34463,6 +36137,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -35676,6 +37390,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -35717,18 +37471,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1895790519}
     m_Modifications:
-    - target: {fileID: 6920894593224375875, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1605007483}
-    - target: {fileID: 6920894593224375875, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_VersionIndex
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7447724044371146832, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1605007483}
     - target: {fileID: 2146604537598640199, guid: 18c03475b6090694db474b4c03885ed0, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -35793,6 +37535,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6920894593224375875, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1605007483}
+    - target: {fileID: 6920894593224375875, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_VersionIndex
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447724044371146832, guid: 664f1c5fb7d5d5e4ead561378c8df8d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1605007483}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36134,6 +37888,46 @@ PrefabInstance:
     - target: {fileID: 4433910376214408743, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
       propertyPath: m_Name
       value: EcranSymboles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113588894773354441, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8469044810916846357, guid: 88ad2f4c5c1ab054eb9b2cb3bc1c2478, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36489,7 +38283,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -36575,27 +38369,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 2057471767}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -36776,7 +38570,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -36862,27 +38656,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 1413975408}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -37232,6 +39026,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -37632,7 +39466,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1895790519}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalScale.x
@@ -37648,15 +39482,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.452
+      value: 19.59659
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.056
+      value: 0.45525205
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.711
+      value: -4.5336175
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -37699,6 +39533,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8581f238097838343bb813710ad5f87c, type: 3}
+--- !u!4 &2104528069 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8581f238097838343bb813710ad5f87c, type: 3}
+  m_PrefabInstance: {fileID: 2104528068}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2105674887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38343,6 +40182,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -3033667219593020291, guid: 6baeaff7b16f67f49b43ff730b4eb01c, type: 3}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7068923802099269739, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -38729,7 +40608,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -38815,27 +40694,27 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 1341728572}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 1.34
+  m_TightenPosition: 0.068
   m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
-  m_TightenRotation: 0.1
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 1.57
+  m_TightenRotation: 0.077
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
@@ -39468,6 +41347,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1172431342}
     m_Modifications:
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425993757779869388, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4919991511704029535, guid: d37d4a1388491184e99af90c667b43f5, type: 3}
       propertyPath: m_Name
       value: Stylo
@@ -39806,6 +41721,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crayon
       objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467727353281192031, guid: 5f2ae7138c879f64cb5590fe24bdd500, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39980,6 +41931,46 @@ PrefabInstance:
     - target: {fileID: 5390513958468483361, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.484
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_AttachTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenPosition
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_TightenRotation
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351677975763805110, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8409016904981808814, guid: d9b0bfdfc7716394eaebabed69f66dae, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -40465,10 +42456,3 @@ SceneRoots:
   - {fileID: 256853135}
   - {fileID: 602323785}
   - {fileID: 1483527538}
-  - {fileID: 1555949820}
-  - {fileID: 2104528068}
-  - {fileID: 1573412227}
-  - {fileID: 1762206268}
-  - {fileID: 790558134}
-  - {fileID: 1097287676}
-  - {fileID: 209990208}
