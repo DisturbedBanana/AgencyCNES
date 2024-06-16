@@ -8,7 +8,6 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Video;
-using UnityEngine.XR.Content.Interaction;
 
 public class Launch : NetworkBehaviour, IGameState, IVoiceAI
 {
@@ -28,6 +27,7 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
     private NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Countdown")]
+    [SerializeField, Expandable] private VoiceAI _voiceCountdown;
     [SerializeField, Range(0, 30)] private float _countdownBeforeButton;
     [SerializeField] private TextMeshProUGUI _textCountdown;
     [SerializeField] private GameObject _layoutPassword;
@@ -46,6 +46,7 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
     public UnityEvent OnCountdownFinished;
     public UnityEvent OnPlayerDetached;
     public UnityEvent OnStateComplete;
+
 
     private void Reset()
     {
@@ -107,6 +108,11 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
         OnPlayerDetached?.Invoke();
     }
 
+    [Button("button")]
+    public void StartCountdownButton()
+    {
+        CountdownButtonClientRpc();
+    }
 
     [Rpc(SendTo.Everyone)]
     private void CountdownButtonClientRpc()
@@ -121,14 +127,22 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
         _currentCountdown = _countdownBeforeButton;
         _textCountdown.gameObject.SetActive(true);
         var oneSecondWait = new WaitForSeconds(1);
-        SoundManager.Instance.PlaySound(gameObject, _voicesAI.GetAllSpecialVoices()[0].audio);
+        //SoundManager.Instance.PlaySound(gameObject, _voicesAI.GetAllSpecialVoices()[0].audio);
+        var voicesCountdown = _voiceCountdown.GetAllSpecialVoices();
         while (_currentCountdown > 0)
         {
             Debug.Log(_currentCountdown);
+            voicesCountdown.ForEach(voice =>
+            {
+                if (voice.text == _currentCountdown.ToString())
+                    SoundManager.Instance.PlaySound(gameObject, voice.audio);
+            });
+
             _currentCountdown--;
             _textCountdown.text = _currentCountdown.ToString();
             yield return oneSecondWait;
         }
+        SoundManager.Instance.PlaySound(gameObject, voicesCountdown.Where(voice => voice.text == "0").First().audio);
         OnCountdownFinishedClientRpc();
         _canPushButton = true;
 
