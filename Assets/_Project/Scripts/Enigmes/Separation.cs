@@ -31,6 +31,7 @@ public class Separation : NetworkBehaviour, IGameState
         OnStateStart?.Invoke();
         SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllStartVoices());
         StartCoroutine(StartHintCountdown());
+        Debug.Log("Started state separation");
     }
     public void LeverActivated(int playerNumber)
     {

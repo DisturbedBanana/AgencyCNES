@@ -66,36 +66,39 @@ public class GameState : NetworkBehaviour
     }
 
     [Button]
-    public void NextStateForce()
+    public void NextStateForce(GAMESTATES state = GAMESTATES.PASSWORD)
     {
-        switch (CurrentGameState)
-        {
-            case GAMESTATES.PASSWORD:
-                ApplyStateChangesRpc(GAMESTATES.LAUNCH);
-                break;
-            case GAMESTATES.LAUNCH:
-                ApplyStateChangesRpc(GAMESTATES.VALVES);
-                break;
-            case GAMESTATES.VALVES:
-                ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
-                break;
-            case GAMESTATES.SIMONSAYS:
-                ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
-                break;
-            case GAMESTATES.SEPARATION:
-                ApplyStateChangesRpc(GAMESTATES.SEPARATION);
-                break;
-            case GAMESTATES.FUSES:
-                ApplyStateChangesRpc(GAMESTATES.FUSES);
-                break;
-            case GAMESTATES.FREQUENCY:
-                ApplyStateChangesRpc(GAMESTATES.FREQUENCY);
-                break;
-            case GAMESTATES.DODGE:
-                break;
-            default:
-                break;
-        }
+        FindObjectOfType<Separation>().StartState();
+
+        //switch (CurrentGameState)
+        //{
+        //    case GAMESTATES.PASSWORD:
+        //        ApplyStateChangesRpc(GAMESTATES.LAUNCH);
+        //        break;
+        //    case GAMESTATES.LAUNCH:
+        //        ApplyStateChangesRpc(GAMESTATES.VALVES);
+        //        break;
+        //    case GAMESTATES.VALVES:
+        //        ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
+        //        break;
+        //    case GAMESTATES.SIMONSAYS:
+        //        ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
+        //        break;
+        //    case GAMESTATES.SEPARATION:
+        //        FindObjectOfType<Separation>().StartState();
+        //        ApplyStateChangesRpc(GAMESTATES.SEPARATION);
+        //        break;
+        //    case GAMESTATES.FUSES:
+        //        ApplyStateChangesRpc(GAMESTATES.FUSES);
+        //        break;
+        //    case GAMESTATES.FREQUENCY:
+        //        ApplyStateChangesRpc(GAMESTATES.FREQUENCY);
+        //        break;
+        //    case GAMESTATES.DODGE:
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
     public void GoToState(GAMESTATES state)
     {
