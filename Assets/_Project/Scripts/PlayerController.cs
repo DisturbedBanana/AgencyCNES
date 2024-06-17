@@ -34,9 +34,10 @@ public class PlayerController : CharacterControllerDriver
     [SerializeField] private GameObject _locomotion;
     [SerializeField] private TeleportationProvider _teleportationProvider;
 
-
+    [Header("Raycaster")]
     [SerializeField] private GameObject _leftControllerRayInteractor;
     [SerializeField] private GameObject _rightControllerRayInteractor;
+    [SerializeField] private float _rayDistance;
 
     private MOVEMENTTYPE _movementType;
 
@@ -45,6 +46,7 @@ public class PlayerController : CharacterControllerDriver
         _rigidbody = GetComponent<Rigidbody>();
         _maxMagnitude = 1; 
         _decreaseSpeed = 1;
+        _rayDistance = 2f;
     }
 
     public void SpawnPlayer(PlayerSpawn playerSpawn)
@@ -56,11 +58,11 @@ public class PlayerController : CharacterControllerDriver
 
     private void ChangeRayDistanceValue()
     {
-        _leftControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = 2;
-        _leftControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = 2;
+        _leftControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = _rayDistance;
+        _leftControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = _rayDistance;
 
-        _rightControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = 2;
-        _rightControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = 2;
+        _rightControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = _rayDistance;
+        _rightControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = _rayDistance;
     }
 
     public void ChangeMovementType(MOVEMENTTYPE movementType)

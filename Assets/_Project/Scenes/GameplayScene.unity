@@ -1996,7 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb0e2d127b03144598cbc1cc80ebc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxConnections: 0
+  _maxConnections: 2
   _unityTransport: {fileID: 112292118}
   m_TextMeshProUGUI: {fileID: 873585124}
   _LobbyCode: G8BDCN
@@ -21316,6 +21316,10 @@ PrefabInstance:
       propertyPath: xrOriginS
       value: 
       objectReference: {fileID: 1074745986}
+    - target: {fileID: 3410306966424115019, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
+      propertyPath: _rayDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3410306966424115019, guid: d20fedebdb8dd7148962a50704853a94, type: 3}
       propertyPath: _maxMagnitude
       value: 1.5
