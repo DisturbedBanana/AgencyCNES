@@ -44,6 +44,12 @@ public class PlayersLobby : NetworkBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        NetworkConnect.OnCreateLobbySuccess -= OnCreateLobbySuccess;
+        NetworkConnect.OnJoinLobbySuccess -= OnJoinLobbySuccess;
+    }
+
     public void CreateLobby()
     {
         _networkConnect.Create();
@@ -65,8 +71,11 @@ public class PlayersLobby : NetworkBehaviour
         _lobbyButtons = new List<GameObject>();
         var lobbies = await _networkConnect.SearchAllLobbiesAvailable();
 
-        foreach (var lobby in lobbies.Results)
+        foreach (var lobby in lobbies.Results.OrderBy(lobbyOrder => lobbyOrder.Created))
         {
+            if (lobby.AvailableSlots == 0)
+                continue;
+            Debug.Log($"Lobby: {lobby.Data["JOIN_CODE"].Value} - {lobby.Players.Count}/{lobby.MaxPlayers} - {lobby.Name} - {lobby.MaxPlayers}");
             GameObject lobbyButton = Instantiate(_lobbyButtonPrefab, _layoutParent.transform);
             lobbyButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Join lobby:{lobby.Data["JOIN_CODE"].Value} - {lobby.Players.Count}/{lobby.MaxPlayers}";
             lobbyButton.GetComponentInChildren<Button>().onClick.AddListener(() => ButtonJoinALobby(lobby.Data["JOIN_CODE"].Value));
@@ -116,8 +125,10 @@ public class PlayersLobby : NetworkBehaviour
         else
         {
             _notif.text = "Failed to create lobby";
-            _createButtonParent.GetComponentInChildren<Button>(true).interactable = true;
+            _createButtonParent.GetComponentInChildren<Button>().interactable = true;
             _joinButtonParent.GetComponentInChildren<Button>().interactable = true;
+            Debug.Assert(true == _createButtonParent.GetComponentInChildren<Button>(true).interactable);
+            Debug.Assert(true == _joinButtonParent.GetComponentInChildren<Button>(true).interactable);
         }
     }
 
@@ -160,8 +171,7 @@ public class PlayersLobby : NetworkBehaviour
     }
     private void PlayerDisconnected(ulong id)
     {
-        if (NetworkManager.Singleton.IsHost)
-            CheckStartAGame();
+        CheckStartAGame();
     }
 
     private void CheckStartAGame()
@@ -174,9 +184,11 @@ public class PlayersLobby : NetworkBehaviour
         else if (NetworkManager.Singleton.ConnectedClients.Count == 2)
         {
             _readyToStart.text = $"Ready to start {NetworkManager.Singleton.ConnectedClients.Count}/2";
-            _buttonToStartGame.interactable = true;
+            if (NetworkManager.Singleton.IsHost)
+                _buttonToStartGame.interactable = true;
         }
-        SyncButtonGameRpc(_readyToStart.text);
+        if(NetworkManager.Singleton.IsHost)
+            SyncButtonGameRpc(_readyToStart.text);
     }
 
     [Rpc(SendTo.NotServer)]

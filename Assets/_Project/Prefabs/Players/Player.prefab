@@ -5162,6 +5162,8 @@ MonoBehaviour:
   _currentMagnitude: 0
   _locomotion: {fileID: 8040985738194106172}
   _teleportationProvider: {fileID: 3489611526090208344}
+  _leftControllerRayInteractor: {fileID: 6090562526496015598}
+  _rightControllerRayInteractor: {fileID: 6282615123263019109}
 --- !u!114 &5220270898440034661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5186,6 +5188,16 @@ Transform:
 --- !u!4 &5823955290113593328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 424857288364750090, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+  m_PrefabInstance: {fileID: 6140584463963077370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6090562526496015598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 122084618895949332, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+  m_PrefabInstance: {fileID: 6140584463963077370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6282615123263019109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 146340753648116383, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
   m_PrefabInstance: {fileID: 6140584463963077370}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7292884599036774721 stripped

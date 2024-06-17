@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 public class NetworkConnect : MonoBehaviour
 {
-    public int maxConnections = 20;
+    [SerializeField] private int _maxConnections;
     [SerializeField] private UnityTransport _unityTransport;
 
     private Lobby _currentLobby;
@@ -34,6 +34,11 @@ public class NetworkConnect : MonoBehaviour
     public static event Action<bool> OnCreateLobbySuccess;
     public static event Action<bool> OnJoinLobbySuccess;
 
+    private void Reset()
+    {
+        _maxConnections = 2;
+        _unityTransport = GetComponent<UnityTransport>();
+    }
 
     private async void Awake()
     {
@@ -50,7 +55,7 @@ public class NetworkConnect : MonoBehaviour
         //NetworkManager.Singleton.OnClientStarted += () => DisplayText("Client Started");
         //NetworkManager.Singleton.OnClientStopped += (bool isstopped) => DisplayText("Client Stopped");
         NetworkManager.Singleton.OnClientConnectedCallback += PlayerConnected;
-        NetworkManager.Singleton.OnClientDisconnectCallback += (ulong id) => DisplayText("A player disconnected");
+        NetworkManager.Singleton.OnClientDisconnectCallback += PlayerDisconnected;
 
         //JoinOrCreate();
 
@@ -66,7 +71,7 @@ public class NetworkConnect : MonoBehaviour
         //NetworkManager.Singleton.OnClientStarted -= () => DisplayText("Client Started");
         //NetworkManager.Singleton.OnClientStopped -= (bool isstopped) => DisplayText("Client Stopped");
         NetworkManager.Singleton.OnClientConnectedCallback -= PlayerConnected;
-        NetworkManager.Singleton.OnClientDisconnectCallback -= (ulong id) => DisplayText("A player disconnected");
+        NetworkManager.Singleton.OnClientDisconnectCallback -= PlayerDisconnected;
     }
 
     private void DisplayText(string text)
@@ -80,7 +85,7 @@ public class NetworkConnect : MonoBehaviour
         Debug.Log("Server info: " + text);
     }
 
-    private void PlayerConnected(ulong id)
+    private async void PlayerConnected(ulong id)
     {
         if (NetworkManager.Singleton.IsHost && NetworkManager.Singleton.LocalClientId == id)
             return;
@@ -89,31 +94,19 @@ public class NetworkConnect : MonoBehaviour
         SendInfoToServerRpc($"Client {NetworkManager.Singleton.LocalClient.ClientId} connected");
     }
 
-
-    public async void JoinOrCreate()
+    private async void PlayerDisconnected(ulong id)
     {
-        try
-        {
-            _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
-            string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
-
-            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
-            _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
-
-            NetworkManager.Singleton.StartClient();
-        }
-        catch
-        {
-            Create();
-        }
+        await LobbyService.Instance.RemovePlayerAsync(_currentLobby.Id, id.ToString());
+        DisplayText("A player disconnected");
     }
+
 
     [Button]
     public async void Create()
     {
         try
         {
-            Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
+            Allocation allocation = await RelayService.Instance.CreateAllocationAsync(_maxConnections);
             string newJoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             _unityTransport.SetHostRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
             
@@ -123,7 +116,7 @@ public class NetworkConnect : MonoBehaviour
             DataObject dataObject = new DataObject(DataObject.VisibilityOptions.Public, newJoinCode);
             lobbyOptions.Data.Add("JOIN_CODE", dataObject);
 
-            _currentLobby = await Lobbies.Instance.CreateLobbyAsync("Kourou lobby", maxConnections, lobbyOptions);
+            _currentLobby = await LobbyService.Instance.CreateLobbyAsync("Kourou lobby", _maxConnections, lobbyOptions);
             if (NetworkManager.Singleton.StartHost())
                 OnCreateLobbySuccess?.Invoke(true);
             
@@ -143,7 +136,7 @@ public class NetworkConnect : MonoBehaviour
     {
         try
         {
-            _currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
+            _currentLobby = await LobbyService.Instance.QuickJoinLobbyAsync();
             string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
 
             JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
@@ -166,9 +159,12 @@ public class NetworkConnect : MonoBehaviour
     {
         try
         {
-            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(_LobbyCode);
-            _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
+            _currentLobby = await LobbyService.Instance.JoinLobbyByCodeAsync(_LobbyCode);
+            string relayJoinCode = _currentLobby.Data["JOIN_CODE"].Value;
 
+            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(relayJoinCode);
+            _unityTransport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
+            
             if (NetworkManager.Singleton.StartClient())
                 OnJoinLobbySuccess?.Invoke(true);
         }
@@ -201,12 +197,12 @@ public class NetworkConnect : MonoBehaviour
     [Button]
     public async Task<QueryResponse> SearchAllLobbiesAvailable()
     {
-        var lobbies = await Lobbies.Instance.QueryLobbiesAsync();
+        var lobbies = await LobbyService.Instance.QueryLobbiesAsync();
 
-        foreach (var lobby in lobbies.Results)
-        {
-            Debug.Log($"Lobby: {lobby.LobbyCode} - {lobby.Name} - {lobby.Data["JOIN_CODE"].Value}");
-        }
+        //foreach (var lobby in lobbies.Results)
+        //{
+        //    Debug.Log($"Lobby: {lobby.LobbyCode} - {lobby.Name} - {lobby.Data["JOIN_CODE"].Value}");
+        //}
         return lobbies;
     }
 
@@ -220,5 +216,14 @@ public class NetworkConnect : MonoBehaviour
         }
 
         _heartBeatTimer += Time.deltaTime;
+    }
+
+    private async void Disable()
+    {
+        if (_currentLobby != null)
+        {
+            if (NetworkManager.Singleton.IsHost)
+                await LobbyService.Instance.DeleteLobbyAsync(_currentLobby.Id);
+        }
     }
 }

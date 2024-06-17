@@ -63,9 +63,6 @@ public class PasswordPuzzleManager : NetworkBehaviour, IGameState
     public NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     //private NetworkVariable<bool> _stopHintCoroutine = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    [Header("Sounds")]
-    [SerializeField, Expandable] private SoundSO _SFXValidationLight;
-
     [Header("Events")]
     public UnityEvent OnStateStart;
     public UnityEvent OnKeyboardPlacedOnSocket;

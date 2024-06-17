@@ -34,6 +34,10 @@ public class PlayerController : CharacterControllerDriver
     [SerializeField] private GameObject _locomotion;
     [SerializeField] private TeleportationProvider _teleportationProvider;
 
+
+    [SerializeField] private GameObject _leftControllerRayInteractor;
+    [SerializeField] private GameObject _rightControllerRayInteractor;
+
     private MOVEMENTTYPE _movementType;
 
     private void Reset()
@@ -46,7 +50,17 @@ public class PlayerController : CharacterControllerDriver
     public void SpawnPlayer(PlayerSpawn playerSpawn)
     {
         ChangeMovementType(playerSpawn.MovementType);
+        ChangeRayDistanceValue();
         TeleportToSpawnPosition(playerSpawn.SpawnTransform.position);
+    }
+
+    private void ChangeRayDistanceValue()
+    {
+        _leftControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = 2;
+        _leftControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = 2;
+
+        _rightControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = 2;
+        _rightControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = 2;
     }
 
     public void ChangeMovementType(MOVEMENTTYPE movementType)
