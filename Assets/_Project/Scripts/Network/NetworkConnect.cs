@@ -42,6 +42,8 @@ public class NetworkConnect : MonoBehaviour
 
     private async void Awake()
     {
+        if(_maxConnections < 2)
+            _maxConnections = 2;
         _currentLobby = null;
         await UnityServices.InitializeAsync();
         string playerName = $"Player_{UnityEngine.Random.Range(0, 100)}";
