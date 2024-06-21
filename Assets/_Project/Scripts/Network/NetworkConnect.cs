@@ -17,13 +17,15 @@ using NaughtyAttributes;
 using System.Linq;
 using UnityEngine.Rendering;
 using System.Threading.Tasks;
+using UnityEngine.Events;
 
 public class NetworkConnect : MonoBehaviour
 {
-    [SerializeField] private int _maxConnections;
+    [SerializeField] private int _maxConnections = 2;
     [SerializeField] private UnityTransport _unityTransport;
 
     private Lobby _currentLobby;
+    public Lobby CurrentLobby => _currentLobby;
 
     private float _heartBeatTimer;
 
@@ -196,7 +198,6 @@ public class NetworkConnect : MonoBehaviour
         }
     }
 
-    [Button]
     public async Task<QueryResponse> SearchAllLobbiesAvailable()
     {
         var lobbies = await LobbyService.Instance.QueryLobbiesAsync();
@@ -227,5 +228,13 @@ public class NetworkConnect : MonoBehaviour
             if (NetworkManager.Singleton.IsHost)
                 await LobbyService.Instance.DeleteLobbyAsync(_currentLobby.Id);
         }
+    }
+
+    public UnityEvent OnButtonEventTest;
+
+    [Button]
+    public void EventButton()
+    {
+        OnButtonEventTest?.Invoke();
     }
 }

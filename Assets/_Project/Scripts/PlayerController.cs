@@ -21,7 +21,8 @@ public class PlayerController : CharacterControllerDriver
     public enum MOVEMENTTYPE
     {
         LAUNCHER = 0,
-        MISSIONCONTROL
+        MISSIONCONTROL,
+        LOBBY
     }
 
     
@@ -52,17 +53,17 @@ public class PlayerController : CharacterControllerDriver
     public void SpawnPlayer(PlayerSpawn playerSpawn)
     {
         ChangeMovementType(playerSpawn.MovementType);
-        ChangeRayDistanceValue();
+        ChangeRayDistanceValue(true);
         TeleportToSpawnPosition(playerSpawn.SpawnTransform.position);
     }
 
-    private void ChangeRayDistanceValue()
+    private void ChangeRayDistanceValue(bool changeToPlaySettings)
     {
-        _leftControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = _rayDistance;
-        _leftControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = _rayDistance;
+        _leftControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = changeToPlaySettings ? _rayDistance : 10f;
+        _leftControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = changeToPlaySettings ? _rayDistance : 10f;
 
-        _rightControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = _rayDistance;
-        _rightControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = _rayDistance;
+        _rightControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = changeToPlaySettings ? _rayDistance : 10f;
+        _rightControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = changeToPlaySettings ? _rayDistance : 10f;
     }
 
     public void ChangeMovementType(MOVEMENTTYPE movementType)
@@ -75,6 +76,11 @@ public class PlayerController : CharacterControllerDriver
                 break;
             case MOVEMENTTYPE.MISSIONCONTROL:
                 _rigidbody.useGravity = true;
+                break;
+            case MOVEMENTTYPE.LOBBY:
+                _rigidbody.useGravity = true;
+                _teleportationProvider.gameObject.SetActive(true);
+                ChangeRayDistanceValue(false);
                 break;
         }
     }

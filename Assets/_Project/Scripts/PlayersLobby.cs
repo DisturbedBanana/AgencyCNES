@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using Unity.Services.Lobbies.Models;
+using NaughtyAttributes;
+using Unity.Services.Lobbies;
 
 public class PlayersLobby : NetworkBehaviour
 {
@@ -16,11 +18,14 @@ public class PlayersLobby : NetworkBehaviour
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private bool enableSpawnPosition;
     [SerializeField] private List<PlayerSpawn> spawns;
+    [SerializeField] private float _waitTimeEndGameTP;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _readyToStart;
     [SerializeField] private Button _buttonToStartGame;
     [SerializeField] private TextMeshProUGUI _notif;
+    [SerializeField] private GameObject _notifPanel;
+    [SerializeField] private GameObject _canvasWin;
 
     [Header("Buttons Parent")]
     [SerializeField] private GameObject _layoutParent;
@@ -29,6 +34,7 @@ public class PlayersLobby : NetworkBehaviour
     [SerializeField] private GameObject _joinButtonParent;
     [SerializeField] private GameObject _refreshLobbies;
     [SerializeField] private GameObject _readyToStartParent;
+    [SerializeField] private GameObject _QuitGameParent;
 
     [Header("Button")]
     [SerializeField] private GameObject _lobbyButtonPrefab;
@@ -233,5 +239,39 @@ public class PlayersLobby : NetworkBehaviour
         PlayerSpawn playerSpawn = isHost ? spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.LAUNCHER)
             : spawns.First(x => x.MovementType == PlayerController.MOVEMENTTYPE.MISSIONCONTROL);
         return playerSpawn;
+    }
+
+    [Rpc(SendTo.Everyone)]
+    public void EndGameRpc()
+    {
+        StartCoroutine(WaitBeforeTPToLobby());
+    }
+
+
+    private IEnumerator WaitBeforeTPToLobby()
+    {
+        yield return new WaitForSeconds(_waitTimeEndGameTP);
+        var tpsLobby = spawns.Where(x => x.MovementType == PlayerController.MOVEMENTTYPE.LOBBY);
+        PlayerSpawn playerSpawn = NetworkManager.Singleton.LocalClientId == 0 ? tpsLobby.First() : tpsLobby.Last();
+        _playerController.SpawnPlayer(playerSpawn);
+
+        _canvasWin.SetActive(true);
+        _QuitGameParent.SetActive(true);
+        _returnButtonParent.SetActive(false);
+        _createButtonParent.SetActive(false);
+        _joinButtonParent.SetActive(false);
+        _refreshLobbies.SetActive(false);
+        _readyToStartParent.SetActive(false);
+        _notifPanel.SetActive(false);
+    }
+
+    public async void QuitGame()
+    {
+        //quit application
+
+        if (NetworkManager.Singleton.IsHost) 
+            await LobbyService.Instance.DeleteLobbyAsync(NetworkManager.Singleton.GetComponent<NetworkConnect>().CurrentLobby.Id);
+
+        Application.Quit();
     }
 }
