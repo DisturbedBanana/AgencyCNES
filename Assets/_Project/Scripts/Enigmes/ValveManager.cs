@@ -58,10 +58,11 @@ public class ValveManager : NetworkBehaviour, IGameState
         GameState.Instance.ChangeState(GameState.GAMESTATES.FUSES);
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
         StopCoroutine(StartHintCountdown());
     }
 
@@ -79,7 +80,10 @@ public class ValveManager : NetworkBehaviour, IGameState
             {
                 if (waitingHintIndex != _currentHintIndex.Value)
                 {
-                    if (_currentHintIndex.Value > _voicesHint.Count - 1) yield break;
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1)
+                    {
+                        yield break;
+                    }
                     waitingHintIndex = _currentHintIndex.Value;
                     waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
                 }

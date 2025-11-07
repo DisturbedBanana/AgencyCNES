@@ -107,7 +107,7 @@ public class Simon : NetworkBehaviour, IGameState
         StartSimonClientRpc();
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void StartSimonClientRpc()
     {
         Debug.Log("StartSimonClientRpc");
@@ -190,7 +190,7 @@ public class Simon : NetworkBehaviour, IGameState
             _canChooseColor.Value = false;
             EndSimonClientRpc();
             OnStateCompleteClientRpc();
-            GameState.Instance.ChangeState(GameState.GAMESTATES.FUSES);
+            GameState.Instance.ChangeState(GameState.GAMESTATES.DODGE);
 
         }
     }
@@ -347,20 +347,21 @@ public class Simon : NetworkBehaviour, IGameState
         }
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
         StopCoroutine(StartHintCountdown());
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnLevelSucceedClientRpc()
     {
         OnLevelSucceed?.Invoke();
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnLevelFailedClientRpc()
     {
         OnLevelFailed?.Invoke();
@@ -379,7 +380,10 @@ public class Simon : NetworkBehaviour, IGameState
             {
                 if (waitingHintIndex != _currentHintIndex.Value)
                 {
-                    if (_currentHintIndex.Value > _voicesHint.Count - 1) yield break;
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1)
+                    {
+                        yield break;
+                    }
                     waitingHintIndex = _currentHintIndex.Value;
                     waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
                 }

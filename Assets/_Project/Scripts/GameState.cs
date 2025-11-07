@@ -40,6 +40,7 @@ public class GameState : NetworkBehaviour
         FUSES, //Control player activates fuses according to ship player's  instructions
         FREQUENCY, //Both players tune frequency to match other's instructions (easier for ship player)
         DODGE, //Control player controls ship to dodge asteroids, but is guided by ship player (30s)
+        WIN, //Both players win
     }
 
     #region PROPERTIES
@@ -56,7 +57,8 @@ public class GameState : NetworkBehaviour
 
     public void StartWithState()
     {
-        GoToState(_StartWithState);
+        if (IsOwner)
+            GoToState(_StartWithState);
     }
     public void StateForce(GAMESTATES state)
     {
@@ -64,36 +66,39 @@ public class GameState : NetworkBehaviour
     }
 
     [Button]
-    public void NextStateForce()
+    public void NextStateForce(GAMESTATES state = GAMESTATES.PASSWORD)
     {
-        switch (CurrentGameState)
-        {
-            case GAMESTATES.PASSWORD:
-                ApplyStateChangesRpc(GAMESTATES.LAUNCH);
-                break;
-            case GAMESTATES.LAUNCH:
-                ApplyStateChangesRpc(GAMESTATES.VALVES);
-                break;
-            case GAMESTATES.VALVES:
-                ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
-                break;
-            case GAMESTATES.SIMONSAYS:
-                ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
-                break;
-            case GAMESTATES.SEPARATION:
-                ApplyStateChangesRpc(GAMESTATES.SEPARATION);
-                break;
-            case GAMESTATES.FUSES:
-                ApplyStateChangesRpc(GAMESTATES.FUSES);
-                break;
-            case GAMESTATES.FREQUENCY:
-                ApplyStateChangesRpc(GAMESTATES.FREQUENCY);
-                break;
-            case GAMESTATES.DODGE:
-                break;
-            default:
-                break;
-        }
+        FindObjectOfType<Separation>().StartState();
+
+        //switch (CurrentGameState)
+        //{
+        //    case GAMESTATES.PASSWORD:
+        //        ApplyStateChangesRpc(GAMESTATES.LAUNCH);
+        //        break;
+        //    case GAMESTATES.LAUNCH:
+        //        ApplyStateChangesRpc(GAMESTATES.VALVES);
+        //        break;
+        //    case GAMESTATES.VALVES:
+        //        ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
+        //        break;
+        //    case GAMESTATES.SIMONSAYS:
+        //        ApplyStateChangesRpc(GAMESTATES.SIMONSAYS);
+        //        break;
+        //    case GAMESTATES.SEPARATION:
+        //        FindObjectOfType<Separation>().StartState();
+        //        ApplyStateChangesRpc(GAMESTATES.SEPARATION);
+        //        break;
+        //    case GAMESTATES.FUSES:
+        //        ApplyStateChangesRpc(GAMESTATES.FUSES);
+        //        break;
+        //    case GAMESTATES.FREQUENCY:
+        //        ApplyStateChangesRpc(GAMESTATES.FREQUENCY);
+        //        break;
+        //    case GAMESTATES.DODGE:
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
     public void GoToState(GAMESTATES state)
     {
@@ -173,6 +178,9 @@ public class GameState : NetworkBehaviour
                 break;
             case GAMESTATES.DODGE:
                 FindObjectOfType<Dodge>().StartState();
+                break;
+            case GAMESTATES.WIN:
+                Debug.LogError("WIN");
                 break;
             default:
                 Debug.LogError("No State found");

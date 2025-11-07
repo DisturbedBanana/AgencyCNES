@@ -8,7 +8,6 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Video;
-using UnityEngine.XR.Content.Interaction;
 
 public class Launch : NetworkBehaviour, IGameState, IVoiceAI
 {
@@ -28,6 +27,7 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
     private NetworkVariable<int> _currentHintIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Countdown")]
+    [SerializeField, Expandable] private VoiceAI _voiceCountdown;
     [SerializeField, Range(0, 30)] private float _countdownBeforeButton;
     [SerializeField] private TextMeshProUGUI _textCountdown;
     [SerializeField] private GameObject _layoutPassword;
@@ -46,6 +46,7 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
     public UnityEvent OnCountdownFinished;
     public UnityEvent OnPlayerDetached;
     public UnityEvent OnStateComplete;
+
 
     private void Reset()
     {
@@ -95,20 +96,25 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
         CountdownButtonClientRpc();
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     private void OnPlayerAttachedClientRpc()
     {
         OnPlayerAttached?.Invoke();
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     private void OnPlayerDetachedClientRpc()
     {
         OnPlayerDetached?.Invoke();
     }
 
+    [Button("button")]
+    public void StartCountdownButton()
+    {
+        CountdownButtonClientRpc();
+    }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     private void CountdownButtonClientRpc()
     {
         if(countdownRoutine != null)
@@ -121,21 +127,29 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
         _currentCountdown = _countdownBeforeButton;
         _textCountdown.gameObject.SetActive(true);
         var oneSecondWait = new WaitForSeconds(1);
-        SoundManager.Instance.PlaySound(gameObject, _voicesAI.GetAllSpecialVoices()[0].audio);
+        //SoundManager.Instance.PlaySound(gameObject, _voicesAI.GetAllSpecialVoices()[0].audio);
+        var voicesCountdown = _voiceCountdown.GetAllSpecialVoices();
         while (_currentCountdown > 0)
         {
             Debug.Log(_currentCountdown);
+            voicesCountdown.ForEach(voice =>
+            {
+                if (voice.text == _currentCountdown.ToString())
+                    SoundManager.Instance.PlaySound(gameObject, voice.audio);
+            });
+
             _currentCountdown--;
             _textCountdown.text = _currentCountdown.ToString();
             yield return oneSecondWait;
         }
+        SoundManager.Instance.PlaySound(gameObject, voicesCountdown.Where(voice => voice.text == "0").First().audio);
         OnCountdownFinishedClientRpc();
         _canPushButton = true;
 
         countdownRoutine = null;
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnCountdownFinishedClientRpc()
     {
         OnCountdownFinished?.Invoke();
@@ -160,16 +174,17 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
         }
     }
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
         StopCoroutine(StartHintCountdown());
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
         SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllEndVoices());
         _textCountdown.gameObject.SetActive(false);
         _canAttach = false;
         PlayVideoRpc();
-        WaitBeforeDetachPlayer();
+        StartCoroutine(WaitBeforeDetachPlayer());
         if (IsOwner)
             GameState.Instance.ChangeState(GameState.GAMESTATES.VALVES);
     }
@@ -209,7 +224,10 @@ public class Launch : NetworkBehaviour, IGameState, IVoiceAI
             {
                 if (waitingHintIndex != _currentHintIndex.Value)
                 {
-                    if (_currentHintIndex.Value > _voicesHint.Count - 1) yield break;
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1)
+                    {
+                        yield break;
+                    }
                     waitingHintIndex = _currentHintIndex.Value;
                     waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
                 }

@@ -31,6 +31,7 @@ public class Separation : NetworkBehaviour, IGameState
         OnStateStart?.Invoke();
         SoundManager.Instance.PlayVoices(gameObject, _voicesAI.GetAllStartVoices());
         StartCoroutine(StartHintCountdown());
+        Debug.Log("Started state separation");
     }
     public void LeverActivated(int playerNumber)
     {
@@ -38,6 +39,8 @@ public class Separation : NetworkBehaviour, IGameState
     }
     public void LeverDeactivated(int playerNumber)
     {
+        var lever = playerNumber == 0 ? _leverFusee : _leverMissionControl;
+        lever.value = false;
         ChangeLeverValueServerRpc(playerNumber, false);
     }
 
@@ -67,10 +70,11 @@ public class Separation : NetworkBehaviour, IGameState
     private NetworkVariable<bool> GetPlayerLever(int playerNumber) => playerNumber == 0 ? _leverFuseeIsActivated : _leverMissionControlIsActivated;
 
 
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
         StopCoroutine(StartHintCountdown());
     }
 
@@ -88,7 +92,10 @@ public class Separation : NetworkBehaviour, IGameState
             {
                 if (waitingHintIndex != _currentHintIndex.Value)
                 {
-                    if (_currentHintIndex.Value > _voicesHint.Count - 1) yield break;
+                    if (_currentHintIndex.Value > _voicesHint.Count - 1)
+                    {
+                        yield break;
+                    }
                     waitingHintIndex = _currentHintIndex.Value;
                     waitBeforeHint = _voicesHint[_currentHintIndex.Value].delayedTime;
                 }

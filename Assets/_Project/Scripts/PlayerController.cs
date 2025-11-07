@@ -21,7 +21,8 @@ public class PlayerController : CharacterControllerDriver
     public enum MOVEMENTTYPE
     {
         LAUNCHER = 0,
-        MISSIONCONTROL
+        MISSIONCONTROL,
+        LOBBY
     }
 
     
@@ -34,6 +35,11 @@ public class PlayerController : CharacterControllerDriver
     [SerializeField] private GameObject _locomotion;
     [SerializeField] private TeleportationProvider _teleportationProvider;
 
+    [Header("Raycaster")]
+    [SerializeField] private GameObject _leftControllerRayInteractor;
+    [SerializeField] private GameObject _rightControllerRayInteractor;
+    [SerializeField] private float _rayDistance;
+
     private MOVEMENTTYPE _movementType;
 
     private void Reset()
@@ -41,12 +47,23 @@ public class PlayerController : CharacterControllerDriver
         _rigidbody = GetComponent<Rigidbody>();
         _maxMagnitude = 1; 
         _decreaseSpeed = 1;
+        _rayDistance = 2f;
     }
 
     public void SpawnPlayer(PlayerSpawn playerSpawn)
     {
         ChangeMovementType(playerSpawn.MovementType);
+        ChangeRayDistanceValue(true);
         TeleportToSpawnPosition(playerSpawn.SpawnTransform.position);
+    }
+
+    private void ChangeRayDistanceValue(bool changeToPlaySettings)
+    {
+        _leftControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = changeToPlaySettings ? _rayDistance : 10f;
+        _leftControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = changeToPlaySettings ? _rayDistance : 10f;
+
+        _rightControllerRayInteractor.GetComponent<XRInteractorLineVisual>().lineLength = changeToPlaySettings ? _rayDistance : 10f;
+        _rightControllerRayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = changeToPlaySettings ? _rayDistance : 10f;
     }
 
     public void ChangeMovementType(MOVEMENTTYPE movementType)
@@ -59,6 +76,11 @@ public class PlayerController : CharacterControllerDriver
                 break;
             case MOVEMENTTYPE.MISSIONCONTROL:
                 _rigidbody.useGravity = true;
+                break;
+            case MOVEMENTTYPE.LOBBY:
+                _rigidbody.useGravity = true;
+                _teleportationProvider.gameObject.SetActive(true);
+                ChangeRayDistanceValue(false);
                 break;
         }
     }

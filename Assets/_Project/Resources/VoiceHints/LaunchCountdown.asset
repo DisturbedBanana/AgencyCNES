@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77eed2e6275e1514096487091860b33e, type: 3}
+  m_Name: LaunchCountdown
+  m_EditorClassIdentifier: 
+  _voices:
+  - text: 9
+    voiceType: 3
+    audio: {fileID: 8300000, guid: ede4bef9941b92c4ab0b7dc0f9d304e9, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 8
+    voiceType: 3
+    audio: {fileID: 8300000, guid: 8a86ee758c6b3414692c696d51972870, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 7
+    voiceType: 3
+    audio: {fileID: 8300000, guid: 44cf2201bedcfa143b95f884676ce592, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 6
+    voiceType: 3
+    audio: {fileID: 8300000, guid: 2a1004902d5c2104aa988d8b2ed415a2, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 5
+    voiceType: 3
+    audio: {fileID: 8300000, guid: f972d828a4efbb242bc8c97c08dfdd63, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 4
+    voiceType: 3
+    audio: {fileID: 8300000, guid: 31e8f95b45501834f9c5a42da8a9d40f, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 3
+    voiceType: 3
+    audio: {fileID: 8300000, guid: 104fa09556ac2b7439f5300e134401ca, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 2
+    voiceType: 3
+    audio: {fileID: 8300000, guid: 5086cdd3d63a3a74f8a43f76a52e26a6, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 1
+    voiceType: 3
+    audio: {fileID: 8300000, guid: 9652cf6519fb5e945906f582e3e3954b, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0
+  - text: 0
+    voiceType: 3
+    audio: {fileID: 8300000, guid: b6a4fc9e89fe63840a41208f7f6139b4, type: 3}
+    delayedTime: 0
+    numberOfRepeat: 0

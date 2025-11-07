@@ -16,12 +16,6 @@ public class Frequency : NetworkBehaviour
     [SerializeField, Range(0.5f, 100f)] private float _movementSpeed;
     [SerializeField, Range(0, 2 * Mathf.PI)] private float _radians;
 
-    [Header("Sensitivity")]
-    [SerializeField, Range(0, 5)] private float _sensitivity;
-    [SerializeField, Range(0, 1)] private float _sensitivitySteps;
-    [SerializeField, Range(0, 1)] private float _minSensitivity;
-    [SerializeField, Range(0, 5)] private float _maxSensitivity;
-
     [Header("Amplitude")]
     [InfoBox("Don't put amplitude above 1", EInfoBoxType.Normal)]
     [SerializeField] private NetworkVariable<float> _amplitude = new NetworkVariable<float>(0.5f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -61,10 +55,6 @@ public class Frequency : NetworkBehaviour
 
         _xLimits = new Vector2(0, 8);
         _movementSpeed = 1;
-        _sensitivity = 1f;
-        _sensitivitySteps = 0.1f;
-        _minSensitivity = 0.1f;
-        _maxSensitivity = 2f;
         _targetDifference = 0.1f;
     }
 
@@ -159,13 +149,9 @@ public class Frequency : NetworkBehaviour
     #region Amplitude
     public void ChangeAmplitude(float value)
     {
-        if (value > _amplitude.Value && (_amplitude.Value + GetSensitivity()) < _maxAmplitude)
+        if (value <= _maxAmplitude && value >= _minAmplitude)
         {
-            ChangeAmplitudeServerRpc(_amplitude.Value + GetSensitivity());
-        }
-        else if (value < _amplitude.Value && (_amplitude.Value - GetSensitivity()) > _minAmplitude)
-        {
-            ChangeAmplitudeServerRpc(_amplitude.Value - GetSensitivity());
+            ChangeAmplitudeServerRpc(value);
         }
         CheckTargetValues();
     }
@@ -180,13 +166,9 @@ public class Frequency : NetworkBehaviour
     #region Frequency
     public void ChangeFrequency(float value)
     {
-        if (value > _frequency.Value && (_frequency.Value + GetSensitivity()) < _maxFrequency)
+        if (value <= _maxFrequency && value > _minFrequency)
         {
-            ChangeFrequencyServerRpc(_frequency.Value + GetSensitivity());
-        }
-        else if (value < _frequency.Value && (_frequency.Value - GetSensitivity()) > _minFrequency)
-        {
-            ChangeFrequencyServerRpc(_frequency.Value - GetSensitivity());
+            ChangeFrequencyServerRpc(value);
         }
         CheckTargetValues();
     }
@@ -215,23 +197,5 @@ public class Frequency : NetworkBehaviour
     private float ConvertRangeJoystick(float originalValue) => (originalValue + 1) / 2;
     #endregion
 
-    #region Sensitivity
-    private float GetSensitivity() => _sensitivity / 100;
-
-    public void IncreaseSensitivity()
-    {
-        if (_sensitivity >= _maxSensitivity)
-            return;
-
-        _sensitivity += _sensitivitySteps;
-    }
-    public void DecreaseSensitivity()
-    {
-        if (_sensitivity <= _minSensitivity)
-            return;
-
-        _sensitivity -= _sensitivitySteps;
-    }
-    #endregion
 
 }

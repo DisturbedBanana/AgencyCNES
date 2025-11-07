@@ -6,14 +6,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Content.Interaction;
 
-public class Dodge : MonoBehaviour, IGameState, IVoiceAI
+public class Dodge : NetworkBehaviour, IGameState, IVoiceAI
 {
     [Header("Levers")]
     [SerializeField] private XRLever _leverFusee;
-    private NetworkVariable<bool> _leverFuseeIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> _dodgeLeverFuseeIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [SerializeField] private XRLever _leverMissionControl;
-    private NetworkVariable<bool> _leverMissionControlIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> _dodgeLeverMissionControlIsActivated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Voices")]
     [Expandable]
@@ -76,6 +76,8 @@ public class Dodge : MonoBehaviour, IGameState, IVoiceAI
     }
     public void LeverDeactivated(int playerNumber)
     {
+        var lever = playerNumber == 0 ? _leverFusee : _leverMissionControl;
+        lever.value = false;
         ChangeLeverValueServerRpc(playerNumber, false);
     }
 
@@ -83,31 +85,26 @@ public class Dodge : MonoBehaviour, IGameState, IVoiceAI
     public void ChangeLeverValueServerRpc(int playerNumber, bool value)
     {
         GetPlayerLever(playerNumber).Value = value;
-
-        if (GameState.Instance.CurrentGameState == GameState.GAMESTATES.SEPARATION)
+        Debug.Log($"Player {playerNumber} lever is activated : {value}");
+        if (GameState.Instance.CurrentGameState == GameState.GAMESTATES.DODGE)
         {
-            CheckSeparationLeverServerRpc();
+            if (!AreBothLeverActivated())
+                return;
+
+            OnStateCompleteClientRpc();
+            GameState.Instance.ChangeState(GameState.GAMESTATES.WIN);
         }
     }
 
-    [ServerRpc]
-    public void CheckSeparationLeverServerRpc()
-    {
-        if (!AreBothLeverActivated())
-            return;
 
-        OnStateCompleteClientRpc();
-
-        GameState.Instance.ChangeState(GameState.GAMESTATES.FREQUENCY);
-    }
-
-    [ClientRpc]
+    [Rpc(SendTo.Everyone)]
     public void OnStateCompleteClientRpc()
     {
         OnStateComplete?.Invoke();
+        ChangeHintIndexServerRpc(_currentHintIndex.Value + 1);
         StopCoroutine(StartHintCountdown());
     }
 
-    private bool AreBothLeverActivated() => _leverFuseeIsActivated.Value && _leverMissionControlIsActivated.Value;
-    private NetworkVariable<bool> GetPlayerLever(int playerNumber) => playerNumber == 0 ? _leverFuseeIsActivated : _leverMissionControlIsActivated;
+    private bool AreBothLeverActivated() => _dodgeLeverFuseeIsActivated.Value && _dodgeLeverMissionControlIsActivated.Value;
+    private NetworkVariable<bool> GetPlayerLever(int playerNumber) => playerNumber == 0 ? _dodgeLeverFuseeIsActivated : _dodgeLeverMissionControlIsActivated;
 }

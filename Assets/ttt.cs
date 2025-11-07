@@ -11,7 +11,7 @@ public class ttt : MonoBehaviour
     [Button]
     public void GoToState()
     {
-        GetComponent<GameState>().GoToState(stateToGo);
+        GameState.Instance.NextStateForce(stateToGo);
     }
 
     [Button]
